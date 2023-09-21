@@ -1,0 +1,50 @@
+// БОКОВАЯ ПАНЕЛЬ
+const Sidebar = () => {
+    return (
+        // БОКОВАЯ ПАНЕЛЬ
+        <div class="main__sidebar sidebar">
+            <UserProfile/>
+            <Recommendation/>
+        </div>
+    );
+}
+export default Sidebar
+
+// ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ
+const UserProfile = () => {
+    return (
+        <div className="sidebar__personal">
+            <p className="sidebar__personal-name">Sergey.Ivanov</p>
+            <div className="sidebar__icon">
+                <svg alt="logout">
+                    <use href="../img/icon/sprite.svg#logout"></use>
+                </svg>
+            </div>
+        </div>
+    );
+}
+
+// РЕКОМЕНДАЦИИ
+const Recommendation = () => {
+    return (
+        <div className="sidebar__block">
+            <div className="sidebar__list">
+                <div className="sidebar__item">
+                    <a className="sidebar__link" href="#">
+                        <img className="sidebar__img" src="../img/playlist01.png" alt="day's playlist" />
+                    </a>
+                </div>
+                <div className="sidebar__item">
+                    <a className="sidebar__link" href="#">
+                        <img className="sidebar__img" src="../img/playlist02.png" alt="day's playlist" />
+                    </a>
+                </div>
+                <div className="sidebar__item">
+                    <a className="sidebar__link" href="#">
+                        <img className="sidebar__img" src="../img/playlist03.png" alt="day's playlist" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+}

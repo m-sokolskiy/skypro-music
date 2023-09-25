@@ -2,6 +2,7 @@ import Navigation from './components/Navigation.js';
 import './App.css';
 import Content from './components/Content.js';
 import SideBar from './components/Sidebar.js';
+import Bar from './components/Bar.js';
 
 
 
@@ -12,11 +13,13 @@ const mainPage = () => {
       <div className="container">
 
         <main className="main">
-          <Navigation/>
-          <Content/>
-          <SideBar/>
+          <Navigation />
+          <Content />
+          <SideBar />
         </main>
-
+        <div>
+          <Bar />
+        </div>
       </div>
 
     </div>

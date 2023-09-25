@@ -1,3 +1,5 @@
+import './style/Content.css'
+
 // КОМПОНЕНТ КОНТЕНТ
 const Content = () => {
     return (
@@ -93,7 +95,7 @@ const Playlist = () => {
                                 </svg>
                             </div>
                             <div className="track__title-text">
-                                <a classNameName="track__title-link" href="http://">Elektro <span className="track__title-span"></span></a>
+                                <a className="track__title-link" href="http://">Elektro <span className="track__title-span"></span></a>
                             </div>
                         </div>
                         <div className="track__author">

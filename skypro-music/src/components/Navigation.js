@@ -1,3 +1,4 @@
+import './style/Navigation.css'
 
 // КОМПОНЕНТ НАВИГАЦИИ
 const Navigation = () => {

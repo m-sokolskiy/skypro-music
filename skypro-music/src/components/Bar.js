@@ -1,3 +1,5 @@
+import './style/Bar.css'
+
 // Проигрыватель
 const Bar = () => {
     return (

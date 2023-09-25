@@ -1,3 +1,5 @@
+import './style/Sidebar.css'
+
 // БОКОВАЯ ПАНЕЛЬ
 const Sidebar = () => {
     return (

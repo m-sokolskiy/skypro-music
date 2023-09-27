@@ -1,7 +1,7 @@
 import './App.css'
 import Navigation from './components/Navigation.js';
 import Content from './components/Content.js';
-import SideBar from './components/Sidebar.js';
+import SideBar from './components/SideBar.js';
 import Bar from './components/Bar.js';
 
 

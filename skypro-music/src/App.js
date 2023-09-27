@@ -1,9 +1,29 @@
-import './App.css';
+import './App.css'
+import Navigation from './components/Navigation.js';
+import Content from './components/Content.js';
+import SideBar from './components/SideBar.js';
+import Bar from './components/Bar.js';
 
-const App = () => {
+
+
+const mainPage = () => {
   return (
-    <div className="text">Здесь скоро будет Skypro.Music</div>
+    <div className="wrapper">
+
+      <div className="container">
+
+        <main className="main">
+          <Navigation />
+          <Content />
+          <SideBar />
+        </main>
+        <div>
+          <Bar />
+        </div>
+      </div>
+
+    </div>
   );
 }
 
-export default App;
+export default mainPage;

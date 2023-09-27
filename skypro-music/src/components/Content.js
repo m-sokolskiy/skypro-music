@@ -7,7 +7,7 @@ import './style/Content.css'
 // КОМПОНЕНТ КОНТЕНТ
 const Content = () => {
     return (
-        <div class="main__centerblock centerblock">
+        <div className="main__centerblock centerblock">
             <Search />
             <TitlePage />
             <Filter />

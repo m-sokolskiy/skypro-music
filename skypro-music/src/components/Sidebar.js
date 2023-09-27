@@ -6,7 +6,7 @@ import './style/Sidebar.css'
 const SideBar = () => {
     return (
         // БОКОВАЯ ПАНЕЛЬ
-        <div class="main__sidebar sidebar">
+        <div className="main__sidebar sidebar">
             <UserProfile/>
             <Recommendation/>
         </div>

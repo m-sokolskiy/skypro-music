@@ -12,7 +12,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
+} 
 
 .burger__line {
   display: inline-block;

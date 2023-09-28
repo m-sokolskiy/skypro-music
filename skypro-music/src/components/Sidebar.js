@@ -1,6 +1,6 @@
 import Recommendation from './Recommendation';
 import UserProfile from './UserProfile';
-import './style/Sidebar.css'
+import './style/SideBar.css'
 
 // БОКОВАЯ ПАНЕЛЬ
 const SideBar = () => {

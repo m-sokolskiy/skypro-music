@@ -1,26 +1,34 @@
+import RecommendationList from './recommendationList.js';
 import './style/Recommendation.css'
 
 // РЕКОМЕНДАЦИИ
 const Recommendation = () => {
+
+    const RecommendationArr = {
+        recommendation: [
+            {
+                img: '../img/playlist01.png',
+                id: 1,
+            },
+            {
+                img: '../img/playlist02.png',
+                id: 2,
+            },
+            {
+                img: '../img/playlist03.png',
+                id: 3,
+            },
+        ]
+    }
+
     return (
         <div className="sidebar__block">
-            <div className="sidebar__list">
-                <div className="sidebar__item">
-                    <a className="sidebar__link" href="#">
-                        <img className="sidebar__img" src="../img/playlist01.png" alt="day's playlist" />
-                    </a>
-                </div>
-                <div className="sidebar__item">
-                    <a className="sidebar__link" href="#">
-                        <img className="sidebar__img" src="../img/playlist02.png" alt="day's playlist" />
-                    </a>
-                </div>
-                <div className="sidebar__item">
-                    <a className="sidebar__link" href="#">
-                        <img className="sidebar__img" src="../img/playlist03.png" alt="day's playlist" />
-                    </a>
-                </div>
-            </div>
+            <ul className="sidebar__list">
+                {/* Рекомендации */}
+                {RecommendationArr.recommendation.map((item) => (
+                    <RecommendationList key={item.id} item={item} />
+                ))}
+            </ul>
         </div>
     );
 }

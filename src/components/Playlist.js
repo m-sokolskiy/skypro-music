@@ -1,6 +1,6 @@
 import './style/Playlist.css'
 import 'react-loading-skeleton/dist/skeleton.css'
-import Track from './track';
+import PlaylistTrack from './PlaylistTrack';
 
 // МАССИВ ТРЕКОВ
 const playList = {
@@ -44,7 +44,7 @@ const Playlist = () => {
             <ul className="content__playlist playlist">
                 {/* Трек */}
                 {playList.tracks.map((track) => (
-                    <Track key={track.id} track={track} />
+                    <PlaylistTrack key={track.id} track={track} />
                 ))}
             </ul>
         </div>

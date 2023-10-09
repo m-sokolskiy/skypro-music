@@ -1,9 +1,10 @@
-import RecommendationList from './recommendationList.js';
+import RecommendationList from './RecommendationList.js';
 import './style/Recommendation.css'
 
 // РЕКОМЕНДАЦИИ
 const Recommendation = () => {
 
+// МАССИВ С РЕКОМЕНДАЦИЯМИ
     const RecommendationArr = {
         recommendation: [
             {

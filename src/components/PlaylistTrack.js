@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const Track = ({ track }) => {
+const PlaylistTrack = ({ track }) => {
 
     const [skeletonNickname, setSkeletonNickname] = useState("");
     const [skeletonAuthor, setSkeletonAuthor] = useState("");
@@ -61,4 +61,4 @@ const Track = ({ track }) => {
         </li>
     )
 }
-export default Track
+export default PlaylistTrack

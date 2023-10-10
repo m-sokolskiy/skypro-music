@@ -8,11 +8,9 @@ const NavigationBurger = () => {
 
     const [visible, setVisible] = useState(false)
 
-    const toggleVisibility = () => setVisible(!visible);
-
     return (
         <div>
-            <div className="nav__burger burger" onClick={toggleVisibility}>
+            <div className="nav__burger burger" onClick={() =>setVisible(!visible)}>
                 <span className="burger__line"></span>
                 <span className="burger__line"></span>
                 <span className="burger__line"></span>

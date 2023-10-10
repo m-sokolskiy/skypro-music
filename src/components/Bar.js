@@ -1,15 +1,9 @@
 import './style/Bar.css'
-import BarPlayer from './BarPlayer';
+import BarPlayer from './BarPlayer.js';
+import { playerArr } from './Array.js';
 
-export const playList = {
-  tracks: [
-    {
-      nickname: "Ты та...",
-      author: "Баста",
-      id: 1,
-    }
-  ]
-}
+
+
 
 // Проигрыватель
 const Bar = ({ track }) => {
@@ -53,7 +47,7 @@ const Bar = ({ track }) => {
 
             <ul className="player__track-play track-play">
 
-                {playList.tracks.map((track) => (
+                {playerArr.tracks.map((track) => (
                   <BarPlayer key={track.id} track={track} />
                 ))}
               

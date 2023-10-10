@@ -4,15 +4,15 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const PlaylistTrack = ({ track }) => {
 
-    const [skeletonNickname, setSkeletonNickname] = useState("");
+    const [skeletonTrackName, setSkeletonTrackName] = useState("");
     const [skeletonAuthor, setSkeletonAuthor] = useState("");
     const [skeletonAlbum, setSkeletonAlbum] = useState("");
     const [skeletonTime, setSkeletonTime] = useState("");
 
     useEffect(() => {
         setTimeout(() => {
-            const { nickname, author, album, time } = track;
-            setSkeletonNickname(nickname)
+            const { trackName, author, album, time } = track;
+            setSkeletonTrackName(trackName)
             setSkeletonAuthor(author)
             setSkeletonAlbum(album)
             setSkeletonTime(time)
@@ -35,7 +35,7 @@ const PlaylistTrack = ({ track }) => {
                     </div>
 
                     <div className="track__title-text">
-                        <a className="track__title-link" href="http://">{skeletonNickname || <Skeleton count={1} width="150px" baseColor='#212121'/>}<span className="track__title-span"></span></a>
+                        <a className="track__title-link" href="http://">{skeletonTrackName || <Skeleton count={1} width="150px" baseColor='#212121'/>}<span className="track__title-span"></span></a>
                     </div>
 
                 </div>

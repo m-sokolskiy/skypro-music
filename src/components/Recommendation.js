@@ -1,26 +1,9 @@
 import RecommendationList from './RecommendationList.js';
 import './style/Recommendation.css'
+import { RecommendationArr } from './Array.js';
 
 // РЕКОМЕНДАЦИИ
 const Recommendation = () => {
-
-// МАССИВ С РЕКОМЕНДАЦИЯМИ
-    const RecommendationArr = {
-        recommendation: [
-            {
-                img: '../img/playlist01.png',
-                id: 1,
-            },
-            {
-                img: '../img/playlist02.png',
-                id: 2,
-            },
-            {
-                img: '../img/playlist03.png',
-                id: 3,
-            },
-        ]
-    }
 
     return (
         <div className="sidebar__block">

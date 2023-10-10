@@ -1,30 +1,7 @@
 import './style/Playlist.css'
 import 'react-loading-skeleton/dist/skeleton.css'
-import PlaylistTrack from './PlaylistTrack';
-
-// МАССИВ ТРЕКОВ
-const playList = {
-    tracks: [
-        {
-            nickname: "Кинолента",
-            img: " ",
-            author: "Баста",
-            album: "Баста 3",
-            liked: " ",
-            time: "4:23",
-            id: 1,
-        },
-        {
-            nickname: "Ты та...",
-            img: " ",
-            author: "Баста",
-            album: "Баста 1",
-            liked: " ",
-            time: "4:02",
-            id: 2,
-        }
-    ]
-}
+import PlaylistTrack from './PlaylistTrack.js';
+import { playListArr } from './Array.js';
 
 // ПЛЕЙЛИСТ
 const Playlist = () => {
@@ -43,7 +20,7 @@ const Playlist = () => {
             </div>
             <ul className="content__playlist playlist">
                 {/* Трек */}
-                {playList.tracks.map((track) => (
+                {playListArr.tracks.map((track) => (
                     <PlaylistTrack key={track.id} track={track} />
                 ))}
             </ul>

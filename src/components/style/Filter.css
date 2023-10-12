@@ -43,9 +43,14 @@
 }
 
 ._btn-text:active {
-  border-color: #ad61ff;
-  color: #ad61ff;
+  border-color: #d9b6ff;
+  color: #d9b6ff;
   cursor: pointer;
+}
+
+.btn-active{
+  color: #d9b6ff;
+  border-color: #d9b6ff;
 }
 
 .popUp__window-author {
@@ -97,6 +102,6 @@
 }
 
 .popUp__link_text:hover {
-  color: #ad61ff;
+  color: #d9b6ff;
   text-decoration: underline;
 }

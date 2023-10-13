@@ -70,22 +70,3 @@ export const TrackPlayAlbumLink = styled.a`
   line-height: 24px;
   color: #ffffff;
 `
-
-// ._btn-icon:hover svg {
-//   fill: transparent;
-//   stroke: #acacac;
-//   cursor: pointer;
-// }
-
-// ._btn-icon:active svg {
-//   fill: transparent;
-//   stroke: #ffffff;
-//   cursor: pointer;
-// }
-
-// ._btn-icon:active .track-play__like-svg,
-// ._btn-icon:active .track-play__dislike-svg {
-//   fill: #696969;
-//   stroke: #ffffff;
-//   cursor: pointer;
-// }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Skeleton from "react-loading-skeleton";
-
+import * as S from './style/RecommendationList.S.js'
 
 const RecommendationList = ({ item }) => {
 
@@ -14,12 +14,12 @@ const RecommendationList = ({ item }) => {
     }, [item]);
 
     return (
-        <li className="sidebar__item">
-            <a className="sidebar__link" href="#">
-               {skeletonImg && (<img className="sidebar__img" src={skeletonImg} alt="day's playlist" />)} 
+        <S.SidebarItem >
+            <S.SidebarLink  href="#">
+               {skeletonImg && (<S.SidebarImg src={skeletonImg} alt="day's playlist" />)} 
                {!skeletonImg && <Skeleton count={1} width="250px" height="150px" baseColor='#212121'/>}
-            </a>
-        </li>
+            </S.SidebarLink>
+        </S.SidebarItem>
     )
 }
 export default RecommendationList

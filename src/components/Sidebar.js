@@ -1,4 +1,4 @@
-import Recommendation from './Recommendation';
+import Recommendation from './Recommendation/Recommendation.js';
 import UserProfile from './UserProfile';
 import './style/SideBar.css'
 

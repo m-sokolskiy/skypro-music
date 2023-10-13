@@ -18,28 +18,24 @@ const BarPlayer = ({ track }) => {
   }, [track]);
 
   return (
-    <>
+    <S.TrackPlayContain >
+      {/* Картинка*/}
+      <S.TrackPlayImage >
+        <S.TrackPlaySvg alt="music">
+          <use href="../img/icon/sprite.svg#icon-note"></use>
+        </S.TrackPlaySvg>
+      </S.TrackPlayImage>
 
-      <S.TrackPlayContain >
-        {/* Картинка*/}
-        <S.TrackPlayImage >
-          <S.TrackPlaySvg alt="music">
-            <use href="../img/icon/sprite.svg#icon-note"></use>
-          </S.TrackPlaySvg>
-        </S.TrackPlayImage>
+      {/* Трек */}
+      <S.TrackPlayAuthor >
+        <S.TrackPlayAuthorLink href="http://">{skeletonNickname || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAuthorLink>
+      </S.TrackPlayAuthor>
 
-        {/* Трек */}
-        <S.TrackPlayAuthor >
-          <S.TrackPlayAuthorLink  href="http://">{skeletonNickname || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAuthorLink>
-        </S.TrackPlayAuthor>
-
-        {/* Автор */}
-        <S.TrackPlayAlbum >
-          <S.TrackPlayAlbumLink href="http://">{skeletonAuthor || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAlbumLink>
-        </S.TrackPlayAlbum>
-      </S.TrackPlayContain>
-
-    </>
-  )
-}
+      {/* Автор */}
+      <S.TrackPlayAlbum >
+        <S.TrackPlayAlbumLink href="http://">{skeletonAuthor || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAlbumLink>
+      </S.TrackPlayAlbum>
+    </S.TrackPlayContain>
+  );
+};
 export default BarPlayer

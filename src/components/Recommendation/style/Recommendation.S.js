@@ -1,4 +1,6 @@
-.sidebar__block {
+import styled from 'styled-components';
+
+export const SidebarBlock = styled.div`
     height: 100%;
     padding: 240px 0 0 0;
     display: -webkit-box;
@@ -11,9 +13,9 @@
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
-}
+`
 
-.sidebar__list {
+export const SidebarList = styled.ul`
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -24,23 +26,4 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
-
-.sidebar__item {
-    width: 250px;
-    height: 150px;
-}
-
-.sidebar__item:not(:last-child) {
-    margin-bottom: 30px;
-}
-
-.sidebar__link {
-    width: 100%;
-    height: 100%;
-}
-
-.sidebar__img {
-    width: 100%;
-    height: auto;
-}
+`

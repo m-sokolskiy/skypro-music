@@ -1,19 +1,19 @@
+import { RecommendationArr } from '../Array.js';
 import RecommendationList from './RecommendationList.js';
-import './style/Recommendation.css'
-import { RecommendationArr } from './Array.js';
+import * as S from './style/Recommendation.S.js'
 
 // РЕКОМЕНДАЦИИ
 const Recommendation = () => {
 
     return (
-        <div className="sidebar__block">
-            <ul className="sidebar__list">
+        <S.SidebarBlock className="sidebar__block">
+            <S.SidebarList className="sidebar__list">
                 {/* Рекомендации */}
                 {RecommendationArr.recommendation.map((item) => (
                     <RecommendationList key={item.id} item={item} />
                 ))}
-            </ul>
-        </div>
+            </S.SidebarList>
+        </S.SidebarBlock>
     );
 }
 export default Recommendation

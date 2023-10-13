@@ -1,5 +1,5 @@
-import Recommendation from './Recommendation/Recommendation.js';
-import UserProfile from './UserProfile';
+import Recommendation from '../Recommendation/Recommendation.js';
+import UserProfile from '../UserProfile/UserProfile.js';
 import './style/SideBar.css'
 
 // БОКОВАЯ ПАНЕЛЬ

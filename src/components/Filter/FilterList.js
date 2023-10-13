@@ -1,4 +1,4 @@
-import { playListArr } from './Array.js';
+import { playListArr } from '../Array.js';
 
 // Поп-Ап
 const FilterList = ({ name }) => {

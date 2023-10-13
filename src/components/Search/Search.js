@@ -1,4 +1,4 @@
-import './style/Search.css'
+import './style/Search.S.js'
 
 // ПОИСК
 const Search = () => {

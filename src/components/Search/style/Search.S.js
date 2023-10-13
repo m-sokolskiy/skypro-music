@@ -1,4 +1,6 @@
-  .centerblock__search {
+  import styled from "styled-components";
+  
+  export const centerblock__search {
     width: 100%;
     border-bottom: 1px solid #4e4e4e;
     margin-bottom: 51px;

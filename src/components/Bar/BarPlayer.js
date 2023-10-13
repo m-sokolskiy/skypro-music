@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-
+import * as S from "./style/BarPlayer.S.js"
 
 
 const BarPlayer = ({ track }) => {
@@ -18,28 +18,28 @@ const BarPlayer = ({ track }) => {
   }, [track]);
 
   return (
-    <li>
+    <>
 
-      <div className="track-play__contain">
+      <S.TrackPlayContain >
         {/* Картинка*/}
-        <div className="track-play__image">
-          <svg className="track-play__svg" alt="music">
+        <S.TrackPlayImage >
+          <S.TrackPlaySvg alt="music">
             <use href="../img/icon/sprite.svg#icon-note"></use>
-          </svg>
-        </div>
+          </S.TrackPlaySvg>
+        </S.TrackPlayImage>
 
         {/* Трек */}
-        <div className="track-play__author">
-          <a className="track-play__author-link" href="http://">{skeletonNickname || <Skeleton count={1} width="75px" baseColor='#212121' />}</a>
-        </div>
+        <S.TrackPlayAuthor >
+          <S.TrackPlayAuthorLink  href="http://">{skeletonNickname || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAuthorLink>
+        </S.TrackPlayAuthor>
 
         {/* Автор */}
-        <div className="track-play__album">
-          <a className="track-play__album-link" href="http://">{skeletonAuthor || <Skeleton count={1} width="75px" baseColor='#212121' />}</a>
-        </div>
-      </div>
+        <S.TrackPlayAlbum >
+          <S.TrackPlayAlbumLink href="http://">{skeletonAuthor || <Skeleton count={1} width="75px" baseColor='#212121' />}</S.TrackPlayAlbumLink>
+        </S.TrackPlayAlbum>
+      </S.TrackPlayContain>
 
-    </li>
+    </>
   )
 }
 export default BarPlayer

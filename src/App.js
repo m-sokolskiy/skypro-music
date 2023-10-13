@@ -2,7 +2,7 @@ import './App.css'
 import Navigation from './components/Navigation/Navigation.js';
 import Content from './components/Content.js';
 import SideBar from './components/Sidebar.js';
-import Bar from './components/Bar.js';
+import Bar from './components/Bar/Bar.js';
 
 
 

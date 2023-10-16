@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './style/Filter.css'
+import './Filter.css'
 import FilterList from './FilterList';
 
 // ФИЛЬТР

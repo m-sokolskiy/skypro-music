@@ -1,7 +1,7 @@
-import Navigation from './components/Navigation/Navigation.js';
-import Content from './components/Content.js';
-import SideBar from './components/Sidebar.js';
-import Bar from './components/Bar/Bar.js';
+import Navigation from './components/Navigation/Navigation.jsx';
+import Content from './components/Content/Content.jsx';
+import SideBar from './components/Sidebar/Sidebar.jsx';
+import Bar from './components/Bar/Bar.jsx';
 import { createGlobalStyle } from 'styled-components';
 import * as S from './App.S.js'
 

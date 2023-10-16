@@ -1,6 +1,6 @@
 import './style/Playlist.S.js'
 import 'react-loading-skeleton/dist/skeleton.css'
-import PlaylistTrack from './PlaylistTrack.js';
+import PlaylistTrack from './PlaylistTrack.jsx';
 import { playListArr } from '../Array.js';
 import * as S from './style/Playlist.S.js'
 
@@ -19,7 +19,7 @@ const Playlist = () => {
                     </S.PlaylistTitleSvg>
                 </S.PlaylistTitleColTime>
             </S.ContentTitle>
-            <S.ContentPlaylist className="content__playlist playlist">
+            <S.ContentPlaylist>
                 {/* Трек */}
                 {playListArr.tracks.map((track) => (
                     <PlaylistTrack key={track.id} track={track} />

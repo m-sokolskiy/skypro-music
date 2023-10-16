@@ -1,7 +1,7 @@
-import Filter from '../Filter';
+import Filter from '../Filter/Filter';
 import Playlist from '../Playlist/Playlist';
 import Search from '../Search/Search';
-import TitlePage from '../TitlePage';
+import TitlePage from '../TitlePage/TitlePage';
 import * as S from './style/Content.S'
 
 // КОМПОНЕНТ КОНТЕНТ

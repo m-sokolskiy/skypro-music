@@ -1,5 +1,5 @@
 import { RecommendationArr } from '../Array.js';
-import RecommendationList from './RecommendationList.js';
+import RecommendationList from './RecommendationList.jsx';
 import * as S from './style/Recommendation.S.js'
 
 // РЕКОМЕНДАЦИИ

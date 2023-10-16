@@ -1,4 +1,4 @@
-import NavigationLink from './NavigationLink.js';
+import NavigationLink from './NavigationLink.jsx';
 import { useState } from 'react';
 import * as S from "./style/NavigationBurger.S.js"
 

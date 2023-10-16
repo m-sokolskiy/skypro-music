@@ -1,4 +1,4 @@
-import BarPlayer from './BarPlayer.js';
+import BarPlayer from './BarPlayer.jsx';
 import { playerArr } from '../Array.js';
 import * as S from "./style/Bar.S.js"
 

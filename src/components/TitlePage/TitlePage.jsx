@@ -1,9 +1,9 @@
-import './style/TitlePage.css'
+import * as S from './style/TitlePage.S'
 
 // ТИТУЛ СТРАНИЦЫ
 const TitlePage = () => {
     return (
-        <h2 className="centerblock__h2">Треки</h2>
+        <S.CenterBlockH >Треки</S.CenterBlockH>
     );
 }
 export default TitlePage

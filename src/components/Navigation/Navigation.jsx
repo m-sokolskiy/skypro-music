@@ -1,5 +1,5 @@
-import Logo from './Logo.js';
-import NavigationBurger from './NavigationBurger.js';
+import Logo from './Logo.jsx';
+import NavigationBurger from './NavigationBurger.jsx';
 import * as S from './style/Navigation.S.js'
 
 // КОМПОНЕНТ НАВИГАЦИИ

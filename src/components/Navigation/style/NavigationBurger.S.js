@@ -14,6 +14,10 @@ export const NavBurger = styled.div`
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    
+    &:hover{
+    cursor: pointer;
+    }
 `
  export const BurgerLine = styled.div`
     display: inline-block;

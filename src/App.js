@@ -14,18 +14,7 @@ const App = () => {
 
       <AppRoutes />
       <GlobalStyle />
-
-      <S.Container>
-        
-        <S.Main>
-          <Navigation />
-          <Content />
-          <SideBar />
-        </S.Main>
-        <Bar />
-        
-      </S.Container>
-      
+          
     </S.Wrapper>
   );
 }

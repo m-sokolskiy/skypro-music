@@ -6,13 +6,15 @@ import * as S from "./style/mainPage.S"
 
 export const MainPage = () => {
     return (
-        <S.Container>
-            <S.Main>
-                <Navigation />
-                <Content />
-                <SideBar />
-            </S.Main>
-            <Bar />
-        </S.Container>
+        <S.Wrapper>
+            <S.Container>
+                <S.Main>
+                    <Navigation />
+                    <Content />
+                    <SideBar />
+                </S.Main>
+                <Bar />
+            </S.Container>
+        </S.Wrapper>
     );
 };

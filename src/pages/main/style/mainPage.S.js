@@ -21,3 +21,9 @@ export const Main = styled.main`
   -ms-flex-pack: justify;
   justify-content: space-between;
 `
+export const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #383838;
+`

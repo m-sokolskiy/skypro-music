@@ -38,9 +38,6 @@ flex-direction: column;
 -ms-flex-align: center;
 align-items: center;
 padding: 43px 47px 47px 40px;
-
-input:first-child
-margin-bottom: 30px;
 `
 
 export const ModalFormLoginLink = styled.a`
@@ -118,17 +115,17 @@ export const ModalInputLogin = styled(ModalInput)`
 margin-bottom: 30px;
 `
 
-export const ModalInputPassword = styled.input(ModalInput)
+export const ModalInputPassword = styled(ModalInput)`
+`
 
 export const ModalBtnEnter = styled.button`
-    width: 100%;
-    height: 100%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #ffffff;
+    width: 278px;
+    height: 52px;
+    background-color: #580ea2;
+    border-radius: 6px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border: none;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -149,29 +146,26 @@ export const ModalBtnEnter = styled.button`
 `
 
 export const ModalBtnEnterLink = styled.a`
-    width: 100%;
-    height: 100%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #ffffff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-decoration: none;
-    font-family: "StratosSkyeng", sans-serif;
-    cursor: pointer;
+width: 100%;
+height: 100%;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 24px;
+letter-spacing: -0.05px;
+color: #ffffff;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
 `
 
-export const ModalBtnSignup = styled.button`
+export const ModalBtnSignUp = styled.button`
     width: 278px;
     height: 52px;
     background-color: transparent;
@@ -195,32 +189,13 @@ export const ModalBtnSignup = styled.button`
 
     &:hover {
         background-color: #f4f5f6;
-      }
+    }
 
     &:active {
         background-color: #d9d9d9;
-      }
+    }
 `
 
 export const ModalBtnSignUpLink = styled.a`
-width: 100%;
-height: 100%;
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 24px;
-letter-spacing: -0.05px;
-color: #000000;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
--webkit-box-pack: center;
--ms-flex-pack: center;
-justify-content: center;
-text-decoration: none;
-font-family: "StratosSkyeng", sans-serif;
-cursor: pointer;
+
 `

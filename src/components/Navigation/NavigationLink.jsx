@@ -15,7 +15,7 @@ const NavigationLink = () => {
                 </S.MenuItem>
 
                 <S.MenuItem >
-                    <S.MenuLink to="/" >Войти</S.MenuLink>
+                    <S.MenuLink to="/" >Выйти</S.MenuLink>
                 </S.MenuItem>
 
             </S.MenuList>

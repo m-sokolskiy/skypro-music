@@ -15,7 +15,7 @@ export const RegistrationPage = () => {
 
                         <S.ModalInputLogin type="text" name="login" placeholder="Почта" />
                         <S.ModalInputPassword type="password" name="password" placeholder="Пароль" />
-                        <S.ModalInputPasswordDouble class="modal__input password-double" type="password" name="password" placeholder="Повторите пароль"/>
+                        <S.ModalInputPasswordDouble type="password" name="password" placeholder="Повторите пароль"/>
 
                         <S.ModalBtnSignUpEnt >
                             <S.ModalBtnSignUpEntLink to="/main">Зарегистрироваться</S.ModalBtnSignUpEntLink>

@@ -1,3 +1,4 @@
+import { setToken } from '../../localStorage';
 import * as S from './style/loginPage.S'
 
 export const LoginPage = () => {
@@ -19,7 +20,7 @@ export const LoginPage = () => {
 
                         <S.ModalBtnEnter >
 
-                            <S.ModalBtnEnterLink to="/main">Войти</S.ModalBtnEnterLink>
+                            <S.ModalBtnEnterLink to="/main" onClick={() => {setToken("token")}}>Войти</S.ModalBtnEnterLink>
 
                         </S.ModalBtnEnter>
 

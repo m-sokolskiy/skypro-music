@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -40,7 +41,7 @@ align-items: center;
 padding: 43px 47px 47px 40px;
 `
 
-export const ModalFormLoginLink = styled.a`
+export const ModalFormLoginLink = styled(Link)`
     text-decoration: none;
     font-family: "StratosSkyeng", sans-serif;
     cursor: pointer
@@ -145,7 +146,7 @@ export const ModalBtnEnter = styled.button`
     }
 `
 
-export const ModalBtnEnterLink = styled.a`
+export const ModalBtnEnterLink = styled(Link)`
 width: 100%;
 height: 100%;
 font-style: normal;
@@ -196,6 +197,22 @@ export const ModalBtnSignUp = styled.button`
     }
 `
 
-export const ModalBtnSignUpLink = styled.a`
-
+export const ModalBtnSignUpLink = styled(Link)`
+    width: 100%;
+    height: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #000000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 `

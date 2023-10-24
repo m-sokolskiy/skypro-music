@@ -15,11 +15,15 @@ const RecommendationList = ({ item }) => {
 
     return (
         <S.SidebarItem >
-            <S.SidebarLink  href="#">
+
+            <S.SidebarLink  to={`/recommendation/${item.id}`} >
+
                {skeletonImg && (<S.SidebarImg src={skeletonImg} alt="day's playlist" />)} 
                {!skeletonImg && <Skeleton count={1} width="250px" height="150px" baseColor='#212121'/>}
+
             </S.SidebarLink>
         </S.SidebarItem>
+
     )
 }
 export default RecommendationList

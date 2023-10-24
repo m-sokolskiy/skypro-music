@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -40,7 +41,7 @@ align-items: center;
 padding: 43px 47px 47px 40px;
 `
 
-export const ModalFormLoginLink = styled.a`
+export const ModalFormLoginLink = styled(Link)`
     text-decoration: none;
     font-family: "StratosSkyeng", sans-serif;
     cursor: pointer
@@ -123,54 +124,6 @@ export const ModalInputPasswordDouble = styled(ModalInput)`
 margin-bottom: 30px;
 `
 
-
-export const ModalBtnEnter = styled.button`
-    width: 278px;
-    height: 52px;
-    background-color: #580ea2;
-    border-radius: 6px;
-    margin-top: 60px;
-    margin-bottom: 20px;
-    border: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-
-    &:hover {
-        background-color: #3f007d;
-    }
-
-    &:active {
-        background-color: #271a58;
-    }
-`
-
-export const ModalBtnEnterLink = styled.a`
-width: 100%;
-height: 100%;
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 24px;
-letter-spacing: -0.05px;
-color: #ffffff;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
--webkit-box-pack: center;
--ms-flex-pack: center;
-justify-content: center;
-`
-
 export const ModalBtnSignUpEnt = styled.button`
     width: 278px;
     height: 62px;
@@ -198,7 +151,7 @@ export const ModalBtnSignUpEnt = styled.button`
     }
 `
 
-export const ModalBtnSignUpEntLink = styled.a`
+export const ModalBtnSignUpEntLink = styled(Link)`
     width: 100%;
     height: 100%;
     font-style: normal;

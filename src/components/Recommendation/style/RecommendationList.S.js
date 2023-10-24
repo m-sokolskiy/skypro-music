@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SidebarItem = styled.li`
@@ -7,7 +8,7 @@ export const SidebarItem = styled.li`
 
 `
 
-export const SidebarLink = styled.a`
+export const SidebarLink = styled(Link)`
     width: 100%;
     height: 100%;
 `

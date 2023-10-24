@@ -41,8 +41,7 @@
 }
 
 // МАССИВ С РЕКОМЕНДАЦИЯМИ
- export const RecommendationArr = {
-    recommendation: [
+ export const RecommendationArr = [
         {
             img: '../img/playlist01.png',
             id: 1,
@@ -55,8 +54,7 @@
             img: '../img/playlist03.png',
             id: 3,
         },
-    ]
-}
+    ];
 
 // МАССИВ ПЕЛЕЙРА
 export const playerArr = {

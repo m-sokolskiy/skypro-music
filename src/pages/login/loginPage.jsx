@@ -7,19 +7,28 @@ export const LoginPage = () => {
             <S.ContainerEnter>
                 <S.ModalBlock>
                     <S.ModalFormLogin action="#">
-                        <S.ModalFormLoginLink href="#">
+
+                        <S.ModalFormLoginLink to="/main">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
+
                         <S.ModalInputLogin type="text" name="login" placeholder="Почта" />
                         <S.ModalInputPassword type="password" name="password" placeholder="Пароль" />
+
                         <S.ModalBtnEnter >
-                            <S.ModalBtnEnterLink href="#" >Войти</S.ModalBtnEnterLink>
+
+                            <S.ModalBtnEnterLink to="/main">Войти</S.ModalBtnEnterLink>
+
                         </S.ModalBtnEnter>
+
                         <S.ModalBtnSignUp >
-                            <S.ModalBtnSignUpLink href="#">Зарегистрироваться</S.ModalBtnSignUpLink>
+
+                            <S.ModalBtnSignUpLink to="/registration">Зарегистрироваться</S.ModalBtnSignUpLink>
+
                         </S.ModalBtnSignUp>
+
                     </S.ModalFormLogin>
                 </S.ModalBlock>
             </S.ContainerEnter>

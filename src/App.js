@@ -6,7 +6,7 @@ import { AppRoutes } from './routes.jsx';
 const App = () => {
   return (
     <>
-      <AppRoutes></AppRoutes>
+      <AppRoutes/>
       <GlobalStyle />
     </>
   );

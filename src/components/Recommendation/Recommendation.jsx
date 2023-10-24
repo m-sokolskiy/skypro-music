@@ -6,10 +6,10 @@ import * as S from './style/Recommendation.S.js'
 const Recommendation = () => {
 
     return (
-        <S.SidebarBlock className="sidebar__block">
-            <S.SidebarList className="sidebar__list">
+        <S.SidebarBlock >
+            <S.SidebarList >
                 {/* Рекомендации */}
-                {RecommendationArr.recommendation.map((item) => (
+                {RecommendationArr.map((item) => (
                     <RecommendationList key={item.id} item={item} />
                 ))}
             </S.SidebarList>

@@ -12,8 +12,3 @@ export const AppHeader = styled.header`
   align-items: center;
   justify-content: center;
 `
-
-export const Igm = styled.img`
-  width: 600px;
-  hight: 250px;
-`

@@ -1,4 +1,4 @@
-import * as S from "./style/notfoundPage.S"
+import * as S from "./style/NotFoundPage.S"
 
 export const NotFoundPage = () => {
     return (

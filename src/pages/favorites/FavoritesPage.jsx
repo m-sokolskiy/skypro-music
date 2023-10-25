@@ -1,8 +1,8 @@
 
-import * as S from "./style/favoritePage.S"
+import * as S from "./style/FavoritesPage.S"
 
 
-export const FavoritePage = () => {
+export const FavoritesPage = () => {
 
     return (
         <S.App >

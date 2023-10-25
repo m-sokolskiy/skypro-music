@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { RecommendationArr } from "../../components/Array";
-import * as S from "./style/recommendationPage.S"
+import * as S from "./style/CategoryPage.S"
 
 
-export const RecommendationPage = () => {
+export const CategoryPage = () => {
     // useParams хук позволяет получить параметры из адресной строки объявленые ранее
     const params = useParams()
     // Метод find вернет первый найденный в массиве элемент подходящий под условия

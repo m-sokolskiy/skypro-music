@@ -12,7 +12,7 @@ const NavigationLink = () => {
                 </S.MenuItem>
 
                 <S.MenuItem >
-                    <S.MenuLink to="/favorite" >Мой плейлист</S.MenuLink>
+                    <S.MenuLink to="/favorites" >Мой плейлист</S.MenuLink>
                 </S.MenuItem>
 
                 <S.MenuItem >

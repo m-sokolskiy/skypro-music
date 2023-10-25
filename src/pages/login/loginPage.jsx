@@ -1,5 +1,5 @@
 import { setToken } from '../../localStorage';
-import * as S from './style/loginPage.S'
+import * as S from './style/LoginPage.S'
 
 export const LoginPage = () => {
     return (
@@ -9,7 +9,7 @@ export const LoginPage = () => {
                 <S.ModalBlock>
                     <S.ModalFormLogin action="#">
 
-                        <S.ModalFormLoginLink to="/main">
+                        <S.ModalFormLoginLink to="/">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>
@@ -26,7 +26,7 @@ export const LoginPage = () => {
 
                         <S.ModalBtnSignUp >
 
-                            <S.ModalBtnSignUpLink to="/registration">Зарегистрироваться</S.ModalBtnSignUpLink>
+                            <S.ModalBtnSignUpLink to="/register">Зарегистрироваться</S.ModalBtnSignUpLink>
 
                         </S.ModalBtnSignUp>
 

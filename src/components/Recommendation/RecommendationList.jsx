@@ -16,7 +16,7 @@ const RecommendationList = ({ item }) => {
     return (
         <S.SidebarItem >
 
-            <S.SidebarLink  to={`/recommendation/${item.id}`} >
+            <S.SidebarLink  to={`/category/${item.id}`} >
 
                {skeletonImg && (<S.SidebarImg src={skeletonImg} alt="day's playlist" />)} 
                {!skeletonImg && <Skeleton count={1} width="250px" height="150px" baseColor='#212121'/>}

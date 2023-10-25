@@ -1,13 +1,13 @@
-import * as S from './style/registrationPage.S'
+import * as S from './style/RegisterPage.S'
 
-export const RegistrationPage = () => {
+export const RegisterPage = () => {
     return (
 
         <S.Wrapper>
             <S.ContainerEnter>
                 <S.ModalBlock>
                     <S.ModalFormLogin action="#">
-                        <S.ModalFormLoginLink href="#">
+                        <S.ModalFormLoginLink to="/">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>
@@ -18,7 +18,7 @@ export const RegistrationPage = () => {
                         <S.ModalInputPasswordDouble type="password" name="password" placeholder="Повторите пароль"/>
 
                         <S.ModalBtnSignUpEnt >
-                            <S.ModalBtnSignUpEntLink to="/main">Зарегистрироваться</S.ModalBtnSignUpEntLink>
+                            <S.ModalBtnSignUpEntLink to="/">Зарегистрироваться</S.ModalBtnSignUpEntLink>
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>

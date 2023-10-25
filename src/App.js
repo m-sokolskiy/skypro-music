@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GlobalStyle } from './GlobalStyle.js';
 import { getToken } from './localStorage.js';
-import { AppRoutes } from './routes.jsx';
+import { AppRoutes } from './AppRoutes.jsx';
 
 
 

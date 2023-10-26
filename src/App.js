@@ -3,8 +3,6 @@ import { GlobalStyle } from './GlobalStyle.js';
 import { getToken } from './localStorage.js';
 import { AppRoutes } from './AppRoutes.jsx';
 
-
-
 const App = () => {
 
   const userToken = getToken();

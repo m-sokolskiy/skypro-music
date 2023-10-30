@@ -1,11 +1,24 @@
 import './style/Playlist.S.js'
 import 'react-loading-skeleton/dist/skeleton.css'
 import PlaylistTrack from './PlaylistTrack.jsx';
-import { playListArr } from '../Array.js';
-import * as S from './style/Playlist.S.js'
+import * as S from './style/Playlist.S.js';
+import { getAllTracks } from '../../Api.js';
+import { useState, useEffect } from 'react';
 
 // ПЛЕЙЛИСТ
 const Playlist = () => {
+    const [tracks, setTracks] = useState([]);
+
+    const getTracks = async () => {
+        const allTracksData = await getAllTracks();
+        await setTracks(allTracksData);
+    };
+
+    useEffect(() => {
+        getTracks();
+    }, []);
+
+
     return (
         <S.CenterBlockContent>
             {/* Титул */}
@@ -19,12 +32,27 @@ const Playlist = () => {
                     </S.PlaylistTitleSvg>
                 </S.PlaylistTitleColTime>
             </S.ContentTitle>
+
             <S.ContentPlaylist>
+
                 {/* Трек */}
-                {playListArr.tracks.map((track) => (
-                    <PlaylistTrack key={track.id} track={track} />
-                ))}
+                {tracks.map((track) => {
+                    return (
+                        <PlaylistTrack
+                            key={track.id}
+                            id={track.id}
+                            name={track.name}
+                            author={track.author}
+                            album={track.album}
+                            time={track.duration_in_seconds}
+                            feat={track.feat}
+                        />
+                    )
+                }
+                )}
+
             </S.ContentPlaylist>
+
         </S.CenterBlockContent>
     );
 }

@@ -10,7 +10,7 @@ const RecommendationList = ({ item }) => {
         setTimeout(() => {
             const {img}= item;
             setSkeletonImg(img)
-        }, 5 * 1000)
+        }, 3 * 1000)
     }, [item]);
 
     return (

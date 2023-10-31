@@ -14,7 +14,7 @@ const BarPlayer = ({ track }) => {
       const { nickname, author, } = track;
       setSkeletonNickname(nickname)
       setSkeletonAuthor(author)
-    }, 5 * 1000)
+    }, 3 * 1000)
   }, [track]);
 
   return (

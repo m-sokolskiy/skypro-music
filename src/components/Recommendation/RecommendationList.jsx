@@ -1,27 +1,32 @@
-import { useEffect, useState } from 'react';
-import Skeleton from "react-loading-skeleton";
+import { useState } from 'react';
+import { delay, runLoad, load } from '../Skeleton/loadStart.js';
 import * as S from './style/RecommendationList.S.js'
+import SkeletonSideBar from '../Skeleton/SkeletonSideBar.jsx';
 
 const RecommendationList = ({ item }) => {
 
-    const [skeletonImg, setSkeletonImg] = useState("");
+    const [loadState, getLoad] = useState(load);
 
-    useEffect(() => {
+    const preLoad = () => {
         setTimeout(() => {
-            const {img}= item;
-            setSkeletonImg(img)
-        }, 5 * 1000)
-    }, [item]);
+            runLoad(load);
+            getLoad(() => {
+                loadState ? loadState : !loadState;
+            });
+        }, delay);
+    };
+
+    preLoad();
 
     return (
         <S.SidebarItem >
 
-            <S.SidebarLink  to={`/category/${item.id}`} >
+            <S.SidebarLink to={`/category/${item.id}`} >
 
-               {skeletonImg && (<S.SidebarImg src={skeletonImg} alt="day's playlist" />)} 
-               {!skeletonImg && <Skeleton count={1} width="250px" height="150px" baseColor='#212121'/>}
+                {loadState ? (<SkeletonSideBar height={150} weight={250} />) : (<S.SidebarImg src={item.img} alt="day's playlist" />)}
 
             </S.SidebarLink>
+
         </S.SidebarItem>
 
     )

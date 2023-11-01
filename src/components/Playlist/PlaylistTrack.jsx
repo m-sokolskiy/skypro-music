@@ -28,6 +28,10 @@ const PlaylistTrack = ({ name, author, album, time, id }) => {
         }, 3 * 1000)
     }, []);
 
+    const IdTrack = (id) => {
+        console.log(id);
+    }
+
     return (
         <S.PlaylistItem>
 
@@ -44,7 +48,7 @@ const PlaylistTrack = ({ name, author, album, time, id }) => {
 
                     {/* Трек */}
                     <S.TrackTitleText >
-                        <S.TrackTitleLink href="http://">
+                        <S.TrackTitleLink onClick={() => IdTrack(id)} href="http://">
                             {skeletonName || <Skeleton count={1} width="150px" baseColor='#212121' />}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>

@@ -4,6 +4,7 @@ import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 // ПЛЕЙЛИСТ
 const Playlist = () => {
@@ -36,6 +37,7 @@ const Playlist = () => {
             <S.ContentPlaylist>
 
                 {/* Трек */}
+
                 {tracks.map((track) => {
                     return (
                         <PlaylistTrack

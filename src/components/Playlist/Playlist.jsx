@@ -45,6 +45,7 @@ const Playlist = () => {
                             author={track.author}
                             album={track.album}
                             time={track.duration_in_seconds}
+                            feat={track.feat}
                         />
                     )
                 }

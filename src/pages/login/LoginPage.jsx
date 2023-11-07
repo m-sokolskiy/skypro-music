@@ -1,7 +1,26 @@
+import { useEffect, useState } from 'react';
 import { setToken } from '../../localStorage';
 import * as S from './style/LoginPage.S'
+import { login } from '../../Api';
 
 export const LoginPage = () => {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    useEffect(() => {
+        console.log(email, password);
+    }, [email, password])
+
+    useEffect(() => {
+        console.log("Логин компонент");
+    }, [])
+
+    const loginPost = async () => {
+        const result = await login(email, password)
+        console.log(result);
+    }
+
     return (
 
         <S.Wrapper>
@@ -15,12 +34,15 @@ export const LoginPage = () => {
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
 
-                        <S.ModalInputLogin type="text" name="login" placeholder="Почта" />
-                        <S.ModalInputPassword type="password" name="password" placeholder="Пароль" />
+                        {/* Инпут почта */}
+                        <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
+
+                        {/* Инпут пароль */}
+                        <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
                         <S.ModalBtnEnter >
 
-                            <S.ModalBtnEnterLink to="/main" onClick={() => {setToken("token")}}>Войти</S.ModalBtnEnterLink>
+                            <S.ModalBtnEnterLink to="/main" onClick={loginPost}>Войти</S.ModalBtnEnterLink>
 
                         </S.ModalBtnEnter>
 

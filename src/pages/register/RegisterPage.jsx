@@ -13,9 +13,14 @@ export const RegisterPage = () => {
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
 
+                        {/* Инпут почта */}
                         <S.ModalInputLogin type="text" name="login" placeholder="Почта" />
-                        <S.ModalInputPassword type="password" name="password" placeholder="Пароль" />
-                        <S.ModalInputPasswordDouble type="password" name="password" placeholder="Повторите пароль"/>
+                        
+                        {/* Инпут Имя пользователя */}
+                        <S.ModalInputPassword type="password" name="password" placeholder="Имя пользователя" />
+
+                        {/* Инпут Повторите пароль */}
+                        <S.ModalInputPasswordDouble type="password" name="password" placeholder="Пароль" />
 
                         <S.ModalBtnSignUpEnt >
                             <S.ModalBtnSignUpEntLink to="/">Зарегистрироваться</S.ModalBtnSignUpEntLink>

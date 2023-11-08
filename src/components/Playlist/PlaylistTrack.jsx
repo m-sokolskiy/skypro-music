@@ -12,21 +12,7 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, id }) => {
-
-    const [skeletonName, setSkeletonTrackName] = useState("");
-    const [skeletonAuthor, setSkeletonAuthor] = useState("");
-    const [skeletonAlbum, setSkeletonAlbum] = useState("");
-    const [skeletonTime, setSkeletonTime] = useState("");
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSkeletonTrackName(name)
-            setSkeletonAuthor(author)
-            setSkeletonAlbum(album)
-            setSkeletonTime(timeTrack(time))
-        }, 3 * 1000)
-    }, []);
+const PlaylistTrack = ({ name, author, album, time, isLoading }) => {
 
     return (
         <S.PlaylistItem>
@@ -45,7 +31,7 @@ const PlaylistTrack = ({ name, author, album, time, id }) => {
                     {/* Трек */}
                     <S.TrackTitleText >
                         <S.TrackTitleLink href="http://">
-                            {skeletonName || <Skeleton count={1} width="150px" baseColor='#212121' />}
+                            {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
                     </S.TrackTitleText>
@@ -55,14 +41,14 @@ const PlaylistTrack = ({ name, author, album, time, id }) => {
                 {/* Автор */}
                 <S.TrackAuthor>
                     <S.TrackAuthorLink href="http://">
-                        {skeletonAuthor || <Skeleton count={1} width="150px" baseColor='#212121' />}
+                        {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : author}
                     </S.TrackAuthorLink>
                 </S.TrackAuthor>
 
                 {/* Альбом */}
                 <S.TrackAlbum >
                     <S.TrackAlbumLink href="http://">
-                        {skeletonAlbum || <Skeleton count={1} width="150px" baseColor='#212121' />}
+                        {isLoading? <Skeleton count={1} width="150px" baseColor='#212121' /> : album}
                     </S.TrackAlbumLink>
                 </S.TrackAlbum>
 
@@ -75,7 +61,7 @@ const PlaylistTrack = ({ name, author, album, time, id }) => {
 
                     {/* Время */}
                     <S.TrackTimeText >
-                        {skeletonTime || "0:00"}
+                        {isLoading ? "0:00" : timeTrack(time)}
                     </S.TrackTimeText>
 
                 </S.TrackTime>

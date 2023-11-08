@@ -11,7 +11,7 @@ const Content = () => {
             <Search />
             <TitlePage />
             <Filter />
-            <Playlist/>
+            <Playlist />
         </S.MainCenterBlock>
     );
 }

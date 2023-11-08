@@ -8,10 +8,15 @@ import { useState, useEffect } from 'react';
 // ПЛЕЙЛИСТ
 const Playlist = () => {
     const [tracks, setTracks] = useState([]);
+    const [isLoading, setIsLoading] = useState(null);
 
     const getTracks = async () => {
+
+        setIsLoading(true);
         const allTracksData = await getAllTracks();
         await setTracks(allTracksData);
+        setIsLoading(false);
+
     };
 
     useEffect(() => {
@@ -39,6 +44,7 @@ const Playlist = () => {
                 {tracks.map((track) => {
                     return (
                         <PlaylistTrack
+                            isLoading={isLoading}
                             key={track.id}
                             id={track.id}
                             name={track.name}

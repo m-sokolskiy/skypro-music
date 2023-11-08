@@ -1,5 +1,3 @@
-import { getAllTracks } from "../../Api";
-import Bar from "../../components/Bar/Bar";
 import Content from "../../components/Content/Content";
 import Navigation from "../../components/Navigation/Navigation";
 import SideBar from "../../components/Sidebar/Sidebar";

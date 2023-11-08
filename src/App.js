@@ -11,6 +11,8 @@ const App = () => {
     return userToken === "token" ? true : false;
   })
 
+  //Поднимаю состояния
+
   return (
     <>
       <AppRoutes token={token} />

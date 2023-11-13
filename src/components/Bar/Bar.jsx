@@ -1,11 +1,8 @@
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
-import { useState, useEffect } from 'react';
 
 // Проигрыватель
 const Bar = ({ trackBar }) => {
-
-  const [isLoading, setIsLoading] = useState(null);
 
   return (
     <S.Bar>
@@ -67,7 +64,6 @@ const Bar = ({ trackBar }) => {
 
               <BarPlayer
                 trackBar={trackBar}
-                isLoading={isLoading}
               />
 
 

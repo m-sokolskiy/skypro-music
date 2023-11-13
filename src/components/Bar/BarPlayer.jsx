@@ -1,9 +1,8 @@
-import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from "./style/BarPlayer.S.js"
 
 
-const BarPlayer = ({ isLoading, trackBar }) => {
+const BarPlayer = ({ trackBar }) => {
 
   return (
     <S.TrackPlayContain >
@@ -17,14 +16,14 @@ const BarPlayer = ({ isLoading, trackBar }) => {
       {/* Трек */}
       <S.TrackPlayAuthor >
         <S.TrackPlayAuthorLink href="http://">
-          {isLoading ? <Skeleton count={1} width="75px" baseColor='#212121' /> : trackBar.name}
+          {trackBar.name}
         </S.TrackPlayAuthorLink>
       </S.TrackPlayAuthor>
 
       {/* Автор */}
-      <S.TrackPlayAlbum >
+      <S.TrackPlayAlbum >  
         <S.TrackPlayAlbumLink href="http://">
-          {isLoading ? <Skeleton count={1} width="75px" baseColor='#212121' /> : trackBar.author}
+          {trackBar.author}
         </S.TrackPlayAlbumLink>
       </S.TrackPlayAlbum>
     </S.TrackPlayContain>

@@ -14,6 +14,10 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, isLoading }) => {
 
+    const IdTrack = (id) => {
+        console.log(id);
+    }
+
     return (
         <S.PlaylistItem>
 

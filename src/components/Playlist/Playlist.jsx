@@ -6,17 +6,23 @@ import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
 
 // ПЛЕЙЛИСТ
-const Playlist = ({setTrackBar}) => {
+const Playlist = ({ setTrackBar }) => {
+
     const [tracks, setTracks] = useState([]);
-    const [isLoading, setIsLoading] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorGetPlayList, setErrorGetPlayList] = useState(null)
+
 
     const getTracks = async () => {
-
-        setIsLoading(true);
-        const allTracksData = await getAllTracks();
-        await setTracks(allTracksData);
-        setIsLoading(false);
-
+        try {
+            setIsLoading(true);
+            const allTracksData = await getAllTracks();
+            await setTracks(allTracksData);
+            setIsLoading(false);
+        } catch (error) {
+            setErrorGetPlayList("Не удалось получить список треков")
+            setIsLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -39,6 +45,9 @@ const Playlist = ({setTrackBar}) => {
             </S.ContentTitle>
 
             <S.ContentPlaylist>
+                <p style={{color: "red"}}>
+                {errorGetPlayList}
+                </p>
 
                 {/* Трек */}
 

@@ -4,10 +4,9 @@ import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
-import Skeleton from 'react-loading-skeleton';
 
 // ПЛЕЙЛИСТ
-const Playlist = () => {
+const Playlist = ({setTrackBar}) => {
     const [tracks, setTracks] = useState([]);
     const [isLoading, setIsLoading] = useState(null);
 
@@ -53,6 +52,8 @@ const Playlist = () => {
                             author={track.author}
                             album={track.album}
                             time={track.duration_in_seconds}
+                            track={track}
+                            setTrackBar={setTrackBar}
                         />
                     )
                 }

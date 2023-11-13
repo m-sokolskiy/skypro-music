@@ -1,5 +1,4 @@
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useState, useEffect } from 'react';
 import * as S from './style/PlaylistTrack.S.js'
 import Skeleton from 'react-loading-skeleton';
 
@@ -12,11 +11,7 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, isLoading }) => {
-
-    const IdTrack = (id) => {
-        console.log(id);
-    }
+const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
 
     return (
         <S.PlaylistItem>
@@ -34,24 +29,26 @@ const PlaylistTrack = ({ name, author, album, time, isLoading }) => {
 
                     {/* Трек */}
                     <S.TrackTitleText >
-                        <S.TrackTitleLink href="http://">
+
+                        <S.TrackTitleLink href="#" onClick={() => setTrackBar(track)}>
                             {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
+
                     </S.TrackTitleText>
 
                 </S.TrackTitle>
 
                 {/* Автор */}
                 <S.TrackAuthor>
-                    <S.TrackAuthorLink href="http://">
+                    <S.TrackAuthorLink href="#">
                         {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : author}
                     </S.TrackAuthorLink>
                 </S.TrackAuthor>
 
                 {/* Альбом */}
                 <S.TrackAlbum >
-                    <S.TrackAlbumLink href="http://">
+                    <S.TrackAlbumLink href="#">
                         {isLoading? <Skeleton count={1} width="150px" baseColor='#212121' /> : album}
                     </S.TrackAlbumLink>
                 </S.TrackAlbum>

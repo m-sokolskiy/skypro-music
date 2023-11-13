@@ -5,13 +5,13 @@ import TitlePage from '../TitlePage/TitlePage';
 import * as S from './style/Content.S'
 
 // КОМПОНЕНТ КОНТЕНТ
-const Content = () => {
+const Content = ({ setTrackBar }) => {
     return (
         <S.MainCenterBlock>
             <Search />
             <TitlePage />
             <Filter />
-            <Playlist />
+            <Playlist setTrackBar={setTrackBar} />
         </S.MainCenterBlock>
     );
 }

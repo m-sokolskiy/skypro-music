@@ -1,15 +1,16 @@
 import BarPlayer from './BarPlayer.jsx';
-import { playerArr } from '../Array.js';
 import * as S from "./style/Bar.S.js"
-
+import { useState, useEffect } from 'react';
 
 // Проигрыватель
-const Bar = ({ track }) => {
+const Bar = ({ trackBar }) => {
+
+  const [isLoading, setIsLoading] = useState(null);
 
   return (
     <S.Bar>
       <S.BarContent>
-        <S.BarPlayerProgress></S.BarPlayerProgress> 
+        <S.BarPlayerProgress></S.BarPlayerProgress>
         <S.BarPlayerBlock>
 
           {/* Проигрыватель */}
@@ -63,10 +64,13 @@ const Bar = ({ track }) => {
 
             <S.PlayerTrackPlay>
 
-                {playerArr.tracks.map((track) => (
-                  <BarPlayer key={track.id} track={track} />
-                ))}
-              
+
+              <BarPlayer
+                trackBar={trackBar}
+                isLoading={isLoading}
+              />
+
+
               {/* Лайки */}
               <S.TrackPlayLikeDis>
 

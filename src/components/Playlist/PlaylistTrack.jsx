@@ -11,6 +11,8 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
+
+
 const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
 
     return (

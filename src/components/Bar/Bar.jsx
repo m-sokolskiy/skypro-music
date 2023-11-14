@@ -1,6 +1,10 @@
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 
+{/* < audio controls  >
+  <source src="/music/song.mp3" type="audio/mpeg" />
+</audio > */}
+
 // Проигрыватель
 const Bar = ({ trackBar }) => {
 
@@ -15,44 +19,39 @@ const Bar = ({ trackBar }) => {
 
             <S.PlayerControls>
 
+              {/* Предыдущий */}
               <S.PlayerBtnPrev >
-
                 <S.PlayerBtnPrevSvg alt="prev">
                   <use href="../img/icon/sprite.svg#icon-prev"></use>
                 </S.PlayerBtnPrevSvg>
-
               </S.PlayerBtnPrev>
 
+              {/* Плей */}
               <S.PlayerBtnPlay >
-
                 <S.PlayerBtnPlaySvg alt="play">
                   <use href="../img/icon/sprite.svg#icon-play"></use>
                 </S.PlayerBtnPlaySvg>
-
               </S.PlayerBtnPlay>
 
+              {/* Следующий */}
               <S.PlayerBtnNext >
-
                 <S.PlayerBtnNextSvg alt="next">
                   <use href="../img/icon/sprite.svg#icon-next"></use>
                 </S.PlayerBtnNextSvg>
-
               </S.PlayerBtnNext>
 
+              {/* Повтор */}
               <S.PlayerBtnRepeat >
-
                 <S.PlayerBtnRepeatSvg alt="repeat">
                   <use href="../img/icon/sprite.svg#icon-repeat"></use>
                 </S.PlayerBtnRepeatSvg>
-
               </S.PlayerBtnRepeat>
 
+              {/* Случайный */}
               <S.PlayerBtnShuffle >
-
                 <S.PlayerBtnShuffleSvg alt="shuffle">
                   <use href="../img/icon/sprite.svg#icon-shuffle"></use>
                 </S.PlayerBtnShuffleSvg>
-
               </S.PlayerBtnShuffle>
 
             </S.PlayerControls>
@@ -61,10 +60,8 @@ const Bar = ({ trackBar }) => {
 
             <S.PlayerTrackPlay>
 
-
-              <BarPlayer
-                trackBar={trackBar}
-              />
+              {/* Активный трек */}
+              <BarPlayer trackBar={trackBar} />
 
 
               {/* Лайки */}

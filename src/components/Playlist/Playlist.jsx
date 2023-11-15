@@ -8,7 +8,21 @@ import { useState, useEffect } from 'react';
 // ПЛЕЙЛИСТ
 const Playlist = ({ setTrackBar }) => {
 
-    const [tracks, setTracks] = useState([]);
+    const [tracks, setTracks] = useState([
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>,
+        <S.DataStub></S.DataStub>
+    ]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorGetPlayList, setErrorGetPlayList] = useState(null)
 
@@ -45,8 +59,8 @@ const Playlist = ({ setTrackBar }) => {
             </S.ContentTitle>
 
             <S.ContentPlaylist>
-                <p style={{color: "red"}}>
-                {errorGetPlayList}
+                <p style={{ color: "red" }}>
+                    {errorGetPlayList}
                 </p>
 
                 {/* Трек */}

@@ -72,6 +72,10 @@ export const TrackTitleLink = styled.a`
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+
+  &:hover {
+    color: #666666; 
+  }
 `
 
 export const TrackTitleSpan = styled.span`

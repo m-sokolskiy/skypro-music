@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
 import { login } from '../../Api';
+import { useNavigate } from 'react-router-dom';
 
-export const LoginPage = () => {
+export const LoginPage = ({ setUser }) => {
 
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -18,6 +20,8 @@ export const LoginPage = () => {
     const loginPost = async () => {
         const result = await login(email, password)
         console.log(result);
+        setUser(true)
+        navigate("/")
     }
 
     return (
@@ -41,7 +45,7 @@ export const LoginPage = () => {
 
                         <S.ModalBtnEnter >
 
-                            <S.ModalBtnEnterLink to="/main" onClick={loginPost}>Войти</S.ModalBtnEnterLink>
+                            <S.ModalBtnEnterLink to="/" onClick={loginPost}>Войти</S.ModalBtnEnterLink>
 
                         </S.ModalBtnEnter>
 

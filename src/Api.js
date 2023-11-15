@@ -35,7 +35,7 @@ export const login = async (email, password) => {
   })
     .then((response) => {
       if (response.ok) {
-       return getToken(email, password);
+        return getToken(email, password);
       }
     }).then((data) => console.log(data));
 };
@@ -53,11 +53,14 @@ export const getToken = async (email, password) => {
     },
   });
   const result = await response.json()
+  //Положим значение
+  localStorage.setItem("user", JSON.stringify(result))
   return result
 };
 
 // Регистриция  
 export const registration = async (email, password, username) => {
+  console.log(email, password, username);
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
     method: "POST",
     body: JSON.stringify({
@@ -69,5 +72,5 @@ export const registration = async (email, password, username) => {
       "content-type": "application/json",
     },
   }).then((response) => response.json())
-  .then((json) => console.log(json));
+    .then((json) => console.log(json));
 };

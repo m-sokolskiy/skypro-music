@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import { registration } from '../../Api';
 import * as S from './style/RegisterPage.S'
 import { useEffect, useState } from 'react';
 
 
 export const RegisterPage = () => {
+
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
@@ -13,9 +16,12 @@ export const RegisterPage = () => {
         console.log(email, password);
     }, [email, password, username])
 
-    const register = async () => {
+    const register = async (event) => {
+        //Отменяет дефолтное поведение элемента.Обновлояет страницу.
+        event.preventDefault()
         const result = await registration(email, password, username)
         console.log(result);
+        navigate("/login")
     }
 
     return (
@@ -23,6 +29,7 @@ export const RegisterPage = () => {
         <S.Wrapper>
             <S.ContainerEnter>
                 <S.ModalBlock>
+
                     <S.ModalFormLogin action="#">
                         <S.ModalFormLoginLink to="/">
                             <S.ModalLogo>
@@ -44,6 +51,7 @@ export const RegisterPage = () => {
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>
+
                 </S.ModalBlock>
             </S.ContainerEnter>
         </S.Wrapper>

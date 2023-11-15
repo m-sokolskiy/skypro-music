@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = ({ redirectPath = "/", isAllowed }) => {
+export const ProtectedRoute = ({ redirectPath = "/login", isAllowed }) => {
     if (!isAllowed) {
         // Компонент Navigate перенаправляет пользователя (редирект-насильное перенаправление пользователя)
         // isAllowed - может пользователь войти или нет

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { setToken } from '../../localStorage';
 import * as S from './style/LoginPage.S'
 import { login } from '../../Api';
 

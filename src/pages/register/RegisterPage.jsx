@@ -1,6 +1,23 @@
+import { registration } from '../../Api';
 import * as S from './style/RegisterPage.S'
+import { useEffect, useState } from 'react';
+
 
 export const RegisterPage = () => {
+
+    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+    useEffect(() => {
+        console.log(email, password);
+    }, [email, password, username])
+
+    const register = async () => {
+        const result = await registration(email, password, username)
+        console.log(result);
+    }
+
     return (
 
         <S.Wrapper>
@@ -14,16 +31,16 @@ export const RegisterPage = () => {
                         </S.ModalFormLoginLink>
 
                         {/* Инпут почта */}
-                        <S.ModalInputLogin type="text" name="login" placeholder="Почта" />
+                        <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="email" name="login" placeholder="Почта" />
                         
                         {/* Инпут Имя пользователя */}
-                        <S.ModalInputPassword type="password" name="password" placeholder="Имя пользователя" />
+                        <S.ModalInputPassword value={username} onChange={(event) => setUsername(event.target.value)} type="text" name="username" placeholder="Имя пользователя" />
 
-                        {/* Инпут Повторите пароль */}
-                        <S.ModalInputPasswordDouble type="password" name="password" placeholder="Пароль" />
+                        {/* Инпут Пароль */}
+                        <S.ModalInputPasswordDouble value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
                         <S.ModalBtnSignUpEnt >
-                            <S.ModalBtnSignUpEntLink to="/">Зарегистрироваться</S.ModalBtnSignUpEntLink>
+                            <S.ModalBtnSignUpEntLink onClick={register} to="/">Зарегистрироваться</S.ModalBtnSignUpEntLink>
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>

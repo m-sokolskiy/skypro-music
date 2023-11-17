@@ -36,7 +36,7 @@ export const BarPlayerBlock = styled.div`
   -ms-flex-pack: justify;
   justify-content: space-between;
 `
-{/* Проигрыватель */}
+{/* Проигрыватель */ }
 export const BarPlayer = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
@@ -79,6 +79,7 @@ export const PlayerBtnPrev = styled(PlayerBtn)`
 `
 export const PlayerBtnPlay = styled(PlayerBtn)`
   margin-right: 23px;
+
 `
 export const PlayerBtnNext = styled(PlayerBtn)`
   margin-right: 28px;
@@ -96,35 +97,113 @@ export const PlayerBtnShuffle = styled(PlayerBtn)`
   -ms-flex-align: center;
   align-items: center;
 `
-
+{/* Иконки */ }
 export const PlayerBtnPrevSvg = styled.svg`
   width: 15px;
   height: 14px;
+
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
 `
 export const PlayerBtnPlaySvg = styled.svg`
   width: 22px;
   height: 20px;
   fill: #d9d9d9;
+  
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
 `
 export const PlayerBtnNextSvg = styled.svg`
   width: 15px;
   height: 14px;
   fill: inherit;
   stroke: #d9d9d9;
+
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
 `
 export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;  
   height: 12px;
   fill: transparent;
   stroke: #696969;
+
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
 `
 export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
+
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
 `
-{/* ТРЕК */}
+
+export const TrackPlayLikeSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+  
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
+`
+
+export const TrackPlayDislikeSvg = styled.svg`
+  width: 14.34px;
+  height: 13px;
+  fill: transparent;
+  stroke: #696969;
+
+  &:hover{
+    cursor: pointer;
+    background: red;
+  }
+
+  &:active{
+    background: blue;
+  }
+`
+
+{/* ТРЕК */ }
 export const PlayerTrackPlay = styled.ul`
   display: -webkit-box;
   display: -ms-flexbox;
@@ -134,7 +213,8 @@ export const PlayerTrackPlay = styled.ul`
   -ms-flex-direction: row;
   flex-direction: row;
 `
-{/* ТРЕК */}
+
+{/* ТРЕК */ }
 export const TrackPlayLikeDis = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
@@ -156,20 +236,7 @@ export const TrackPlayDislike = styled.div`
   padding: 5px;
   margin-left: 28.5px;
 `
-export const TrackPlayLikeSvg = styled.svg`
-  width: 14px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-`
-
-export const TrackPlayDislikeSvg = styled.svg`
-  width: 14.34px;
-  height: 13px;
-  fill: transparent;
-  stroke: #696969;
-`
-{/* Громкость */}
+{/* Громкость */ }
 export const BarVolumeBlock = styled.div`
 width: auto;
 display: -webkit-box;

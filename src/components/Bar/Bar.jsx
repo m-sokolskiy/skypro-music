@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
+import { useRef } from 'react';
+import { nullLiteral } from '@babel/types';
 
 {/* < audio controls  >
   <source src="/music/song.mp3" type="audio/mpeg" />
@@ -8,107 +11,137 @@ import * as S from "./style/Bar.S.js"
 // Проигрыватель
 const Bar = ({ trackBar }) => {
 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
+
+  const audioRef = useRef(null);
+  // Воспроизведение и пауза.
+  const handleStart = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+  const togglePlay = isPlaying ? handleStop : handleStart;
+
+// Зацикливание трека
+  const handleLoop = () => {
+    audioRef.current.loop = true;
+    setIsLoop(true)
+  }
+  const toggleLoop = isLoop ? handleLoop : null;
+
+
   return (
-    <S.Bar>
-      <S.BarContent>
-        <S.BarPlayerProgress></S.BarPlayerProgress>
-        <S.BarPlayerBlock>
+    <>
+      <audio ref={audioRef} src={trackBar.track_file} >
+        <source src="/music/song.mp3" type="audio/mpeg" />
+      </audio>
 
-          {/* Проигрыватель */}
-          <S.BarPlayer >
+      <S.Bar>
+        <S.BarContent>
+          <S.BarPlayerProgress></S.BarPlayerProgress>
+          <S.BarPlayerBlock>
 
-            <S.PlayerControls>
+            {/* Проигрыватель */}
+            <S.BarPlayer >
 
-              {/* Предыдущий */}
-              <S.PlayerBtnPrev >
-                <S.PlayerBtnPrevSvg alt="prev">
-                  <use href="../img/icon/sprite.svg#icon-prev"></use>
-                </S.PlayerBtnPrevSvg>
-              </S.PlayerBtnPrev>
+              <S.PlayerControls>
 
-              {/* Плей */}
-              <S.PlayerBtnPlay >
-                <S.PlayerBtnPlaySvg alt="play">
-                  <use href="../img/icon/sprite.svg#icon-play"></use>
-                </S.PlayerBtnPlaySvg>
-              </S.PlayerBtnPlay>
+                {/* Предыдущий */}
+                <S.PlayerBtnPrev  >
+                  <S.PlayerBtnPrevSvg alt="prev">
+                    <use href="../img/icon/sprite.svg#icon-prev"></use>
+                  </S.PlayerBtnPrevSvg>
+                </S.PlayerBtnPrev>
 
-              {/* Следующий */}
-              <S.PlayerBtnNext >
-                <S.PlayerBtnNextSvg alt="next">
-                  <use href="../img/icon/sprite.svg#icon-next"></use>
-                </S.PlayerBtnNextSvg>
-              </S.PlayerBtnNext>
+                {/* Плей */}
+                <S.PlayerBtnPlay onClick={togglePlay} >
+                  <S.PlayerBtnPlaySvg alt={isPlaying ? "pause" : "play"}>
+                    <use href={isPlaying ? "../img/icon/sprite.svg#icon-pause" : "../img/icon/sprite.svg#icon-play"}
+                    ></use>
+                  </S.PlayerBtnPlaySvg>
+                </S.PlayerBtnPlay>
 
-              {/* Повтор */}
-              <S.PlayerBtnRepeat >
-                <S.PlayerBtnRepeatSvg alt="repeat">
-                  <use href="../img/icon/sprite.svg#icon-repeat"></use>
-                </S.PlayerBtnRepeatSvg>
-              </S.PlayerBtnRepeat>
+                {/* Следующий */}
+                <S.PlayerBtnNext >
+                  <S.PlayerBtnNextSvg alt="next">
+                    <use href="../img/icon/sprite.svg#icon-next"></use>
+                  </S.PlayerBtnNextSvg>
+                </S.PlayerBtnNext>
 
-              {/* Случайный */}
-              <S.PlayerBtnShuffle >
-                <S.PlayerBtnShuffleSvg alt="shuffle">
-                  <use href="../img/icon/sprite.svg#icon-shuffle"></use>
-                </S.PlayerBtnShuffleSvg>
-              </S.PlayerBtnShuffle>
+                {/* Повтор */}
+                <S.PlayerBtnRepeat onClick={toggleLoop}  >
+                  <S.PlayerBtnRepeatSvg alt="repeat">
+                    <use href="../img/icon/sprite.svg#icon-repeat"></use>
+                  </S.PlayerBtnRepeatSvg>
+                </S.PlayerBtnRepeat>
 
-            </S.PlayerControls>
+                {/* Случайный */}
+                <S.PlayerBtnShuffle  >
+                  <S.PlayerBtnShuffleSvg alt="shuffle">
+                    <use href="../img/icon/sprite.svg#icon-shuffle"></use>
+                  </S.PlayerBtnShuffleSvg>
+                </S.PlayerBtnShuffle>
 
-            {/* ТРЕК */}
+              </S.PlayerControls>
 
-            <S.PlayerTrackPlay>
+              {/* ТРЕК */}
 
-              {/* Активный трек */}
-              <BarPlayer trackBar={trackBar} />
+              <S.PlayerTrackPlay>
+
+                {/* Активный трек */}
+                <BarPlayer trackBar={trackBar} />
 
 
-              {/* Лайки */}
-              <S.TrackPlayLikeDis>
+                {/* Лайки */}
+                <S.TrackPlayLikeDis>
 
-                <S.TrackPlayLike>
-                  <S.TrackPlayLikeSvg alt="like">
-                    <use href="../img/icon/sprite.svg#icon-like"></use>
-                  </S.TrackPlayLikeSvg>
-                </S.TrackPlayLike>
+                  <S.TrackPlayLike>
+                    <S.TrackPlayLikeSvg alt="like">
+                      <use href="../img/icon/sprite.svg#icon-like"></use>
+                    </S.TrackPlayLikeSvg>
+                  </S.TrackPlayLike>
 
-                <S.TrackPlayDislike>
-                  <S.TrackPlayDislikeSvg alt="dislike">
-                    <use href="../img/icon/sprite.svg#icon-dislike"></use>
-                  </S.TrackPlayDislikeSvg>
-                </S.TrackPlayDislike>
+                  <S.TrackPlayDislike>
+                    <S.TrackPlayDislikeSvg alt="dislike">
+                      <use href="../img/icon/sprite.svg#icon-dislike"></use>
+                    </S.TrackPlayDislikeSvg>
+                  </S.TrackPlayDislike>
 
-              </S.TrackPlayLikeDis>
+                </S.TrackPlayLikeDis>
 
-            </S.PlayerTrackPlay>
+              </S.PlayerTrackPlay>
 
-          </S.BarPlayer>
+            </S.BarPlayer>
 
-          {/* Громкость */}
-          <S.BarVolumeBlock>
+            {/* Громкость */}
+            <S.BarVolumeBlock>
 
-            <S.VolumeContent >
+              <S.VolumeContent >
 
-              <S.VolumeImage>
-                <S.VolumeSvg alt="volume">
-                  <use href="../img/icon/sprite.svg#icon-volume"></use>
-                </S.VolumeSvg>
-              </S.VolumeImage>
+                <S.VolumeImage>
+                  <S.VolumeSvg alt="volume">
+                    <use href="../img/icon/sprite.svg#icon-volume"></use>
+                  </S.VolumeSvg>
+                </S.VolumeImage>
 
-              <S.VolumeProgress>
-                <S.VolumeProgressLine type="range" name="range" />
-              </S.VolumeProgress>
+                <S.VolumeProgress>
+                  <S.VolumeProgressLine type="range" name="range" />
+                </S.VolumeProgress>
 
-            </S.VolumeContent>
+              </S.VolumeContent>
 
-          </S.BarVolumeBlock>
+            </S.BarVolumeBlock>
 
-        </S.BarPlayerBlock>
+          </S.BarPlayerBlock>
 
-      </S.BarContent>
+        </S.BarContent>
 
-    </S.Bar>
+      </S.Bar>
+    </>
   );
 }
 export default Bar

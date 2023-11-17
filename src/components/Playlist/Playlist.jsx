@@ -33,6 +33,7 @@ const Playlist = ({ setTrackBar }) => {
             const allTracksData = await getAllTracks();
             await setTracks(allTracksData);
             setIsLoading(false);
+            console.log(allTracksData);
         } catch (error) {
             setErrorGetPlayList("Не удалось получить список треков")
             setIsLoading(false);

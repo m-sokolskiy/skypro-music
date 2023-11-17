@@ -23,3 +23,54 @@ export const getTrackID = async (id) => {
   console.log(data);
   return data;
 };
+
+// Авторизация 
+export const login = async (email, password) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+       return getToken(email, password);
+      }
+    }).then((data) => console.log(data));
+};
+
+// Токен 
+export const getToken = async (email, password) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const result = await response.json()
+  return result
+};
+
+// Регистриция  
+export const registration = async (email, password, username) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password,
+      username
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  }).then((response) => response.json())
+  .then((json) => console.log(json));
+};

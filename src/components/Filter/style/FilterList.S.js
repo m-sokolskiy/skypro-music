@@ -47,6 +47,7 @@ export const PopUpWindowYear = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  
 `
 
 export const PopUpWindowGenre = styled.div`
@@ -63,3 +64,6 @@ export const PopUpWindowGenre = styled.div`
   justify-content: center;
   gap: 15px;
 `
+
+// top: 290px;
+// left: 616px;

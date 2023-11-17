@@ -4,6 +4,12 @@ export const PlaylistItem = styled.li`
   width: 100%;
   display: block;
   margin-bottom: 12px;
+  padding: 4px;
+  
+  &:hover{
+    box-shadow: inset 0 0 0 2px #ad61ff;
+    cursor: pointer;
+  }
 `
 
 export const PlaylistTrack = styled.div`
@@ -66,6 +72,10 @@ export const TrackTitleLink = styled.a`
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+
+  &:hover {
+    color: #666666; 
+  }
 `
 
 export const TrackTitleSpan = styled.span`

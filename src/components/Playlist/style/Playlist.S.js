@@ -67,3 +67,7 @@ export const PlaylistTitleColTime = styled(PlaylistTitleCol)`
 width: 60px;
 text-align: end;
 `
+
+export const DataStub = styled.div`
+
+`

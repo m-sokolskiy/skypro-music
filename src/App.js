@@ -3,8 +3,6 @@ import { GlobalStyle } from './GlobalStyle.js';
 import { getToken } from './localStorage.js';
 import { AppRoutes } from './AppRoutes.jsx';
 
-
-
 const App = () => {
 
   const userToken = getToken();
@@ -12,6 +10,10 @@ const App = () => {
   const [token] = useState(() => {
     return userToken === "token" ? true : false;
   })
+
+  //Поднимаю состояния
+
+  
 
   return (
     <>

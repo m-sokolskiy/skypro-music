@@ -3,7 +3,7 @@ import { useState } from 'react';
 import * as S from "./style/NavigationBurger.S.js"
 
 // ВЫПАДАЮЩЕЕ МЕНЮ
-const NavigationBurger = () => {
+const NavigationBurger = ({logout}) => {
 
     const [visible, setVisible] = useState(false)
 
@@ -14,7 +14,7 @@ const NavigationBurger = () => {
                 <S.BurgerLine ></S.BurgerLine>
                 <S.BurgerLine ></S.BurgerLine>
             </S.NavBurger>
-            {visible && (<NavigationLink />)}
+            {visible && (<NavigationLink logout={logout}/>)}
         </>
 
     );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GlobalStyle } from './GlobalStyle.js';
-import { getToken } from './localStorage.js';
+import { getToken, removeKeyFromLS } from './localStorage.js';
 import { AppRoutes } from './AppRoutes.jsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,8 @@ const App = () => {
     const result = localStorage.getItem("user")
 
     if (result) {
-      navigate("/")
       setUser(true)
+      navigate("/")
     }
   }
 
@@ -28,9 +28,14 @@ const App = () => {
     return userToken === "token" ? true : false;
   })
 
+  const logout = () => {
+    setUser(false);
+    removeKeyFromLS("user")
+  }
+
   return (
     <>
-      <AppRoutes user={user} setUser={setUser} token={token} />
+      <AppRoutes user={user} logout={logout} setUser={setUser} token={token} />
       <GlobalStyle />
     </>
   );

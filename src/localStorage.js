@@ -3,8 +3,8 @@ export const setToken = (token) => {
     window.localStorage.setItem("max", token);
   };
     // Удаляет значение 
-  export const removeToken = () => {
-    window.localStorage.removeItem("max");
+  export const removeKeyFromLS = ( key ) => {
+    window.localStorage.removeItem(key);
   };
     // Получает значение 
   export const getToken = () => {

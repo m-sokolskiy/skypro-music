@@ -3,11 +3,11 @@ import NavigationBurger from './NavigationBurger.jsx';
 import * as S from './style/Navigation.S.js'
 
 // КОМПОНЕНТ НАВИГАЦИИ
-const Navigation = () => {
+const Navigation = ({logout}) => {
     return (
         <S.MainNav >
             <Logo />
-            <NavigationBurger />
+            <NavigationBurger logout={logout}/>
         </S.MainNav>
     );
 }

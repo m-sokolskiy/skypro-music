@@ -3,11 +3,11 @@ import UserProfile from '../UserProfile/UserProfile.jsx';
 import * as S from './style/SideBar.S.js'
 
 // БОКОВАЯ ПАНЕЛЬ
-const SideBar = () => {
+const SideBar = ( {logout} ) => {
     return (
         // БОКОВАЯ ПАНЕЛЬ
         <S.MainSidebar >
-            <UserProfile/>
+            <UserProfile logout={logout}/>
             <Recommendation/>
         </S.MainSidebar>
     );

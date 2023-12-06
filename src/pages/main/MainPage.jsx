@@ -5,15 +5,15 @@ import Navigation from "../../components/Navigation/Navigation";
 import SideBar from "../../components/Sidebar/Sidebar";
 import * as S from "./style/MainPage.S"
 
-export const MainPage = () => {
+export const MainPage = ({ logout }) => {
 
     return (
         <S.Wrapper>
             <S.Container>
                 <S.Main>
-                    <Navigation />
+                    <Navigation logout={logout} />
                     <Content />
-                    <SideBar />
+                    <SideBar logout={logout} />
                 </S.Main>
             </S.Container>
         </S.Wrapper>

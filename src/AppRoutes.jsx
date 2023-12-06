@@ -8,7 +8,7 @@ import { CategoryPage } from "./pages/category/CategoryPage"
 import { FavoritesPage } from "./pages/favorites/FavoritesPage"
 
 // Компонент возвращает реестр всех маршрутов
-export const AppRoutes = ({ user, setUser }) => {
+export const AppRoutes = ({ user, setUser, logout }) => {
     return (
         // Компонент содержит все роуты
         <Routes>
@@ -18,7 +18,7 @@ export const AppRoutes = ({ user, setUser }) => {
             <Route path="*" element={<NotFoundPage />} />
             {/* Для авторизованных пользователей */}
             <Route element={<ProtectedRoute isAllowed={user} />}>
-                <Route path="/" element={<MainPage />} />
+                <Route path="/" element={<MainPage logout={logout} />} />
                 <Route path="/favorites" element={<FavoritesPage />} />
                 <Route path="/category/:id" element={<CategoryPage/>} />
             </Route>

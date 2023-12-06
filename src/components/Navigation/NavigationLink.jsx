@@ -2,7 +2,7 @@ import { removeToken } from "../../localStorage.js";
 import * as S from "./style/NavigationLink.S.js"
 
 // ССЫЛКИ ПО ПРЕЛОЖЕНИЮ
-const NavigationLink = () => {
+const NavigationLink = ({logout}) => {
     return (
         <S.NavMenu >
             <S.MenuList >
@@ -16,7 +16,7 @@ const NavigationLink = () => {
                 </S.MenuItem>
 
                 <S.MenuItem >
-                    <S.MenuLink to="/" onClick={() => removeToken()} >Выйти</S.MenuLink>
+                    <S.MenuLink to="/" onClick={logout} >Выйти</S.MenuLink>
                 </S.MenuItem>
 
             </S.MenuList>

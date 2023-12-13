@@ -20,8 +20,11 @@ export const LoginPage = ({ setUser }) => {
     const loginPost = async () => {
         const result = await login(email, password)
         console.log(result);
-        setUser(true)
-        navigate("/")
+        if (result) {
+            console.log(result);
+            setUser(true)
+            navigate("/")
+        }
     }
 
     return (

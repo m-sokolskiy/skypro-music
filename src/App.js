@@ -22,12 +22,7 @@ const App = () => {
     checkOut()
   }, [])
 
-  const userToken = getToken();
-  console.log(userToken);
-  const [token] = useState(() => {
-    return userToken === "token" ? true : false;
-  })
-
+// Выход
   const logout = () => {
     setUser(false);
     removeKeyFromLS("user")
@@ -35,7 +30,7 @@ const App = () => {
 
   return (
     <>
-      <AppRoutes user={user} logout={logout} setUser={setUser} token={token} />
+      <AppRoutes user={user} logout={logout} setUser={setUser} />
       <GlobalStyle />
     </>
   );

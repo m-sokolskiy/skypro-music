@@ -21,24 +21,32 @@ export const getTrackID = async (id) => {
   return data;
 };
 
+// then Получает результат запроса, и если все успешно, то выполняется. Главное чтобы отработал запрос. RESPONSE - это то что возвращает наш запрос. Promise - инструмент который помогает мне.
+
 // Авторизация 
 export const login = async (email, password) => {
-  const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password
-    }),
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return getToken(email, password);
-      }
-    }).then((data) => console.log(data));
-};
+  try {
+    // В этой переменной храниться отвте на запрос
+    const response = await fetch("https://kypro-music-api.skyeng.tech/user/login/", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    if (response.ok) {
+      return getToken(email, password)
+    }
+
+  } catch (error) {
+    return error;
+  }
+}
+
+
 
 // Токен 
 export const getToken = async (email, password) => {
@@ -49,6 +57,7 @@ export const getToken = async (email, password) => {
       password
     }),
     headers: {
+      // Формат
       "content-type": "application/json",
     },
   });

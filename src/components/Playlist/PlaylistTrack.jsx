@@ -15,6 +15,11 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
 
+    const handelTrackBAr = () => {
+        setTrackBar(track)
+        console.log(track);
+    }
+
     return (
         <S.PlaylistItem>
 
@@ -32,7 +37,7 @@ const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, trac
                     {/* Трек */}
                     <S.TrackTitleText >
 
-                        <S.TrackTitleLink href="#" onClick={() => setTrackBar(track)}>
+                        <S.TrackTitleLink href="#" onClick={() => handelTrackBAr()}>
                             {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>

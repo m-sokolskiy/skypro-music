@@ -2,11 +2,6 @@ import { useState } from 'react';
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
-import { nullLiteral } from '@babel/types';
-
-{/* < audio controls  >
-  <source src="/music/song.mp3" type="audio/mpeg" />
-</audio > */}
 
 // Проигрыватель
 const Bar = ({ trackBar }) => {
@@ -14,30 +9,35 @@ const Bar = ({ trackBar }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoop, setIsLoop] = useState(false);
 
+  //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
-  // Воспроизведение и пауза.
+
+  //Воспроизведение и пауза.
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
   };
+  //Пауза.
   const handleStop = () => {
     audioRef.current.pause();
     setIsPlaying(false);
   };
   const togglePlay = isPlaying ? handleStop : handleStart;
 
-// Зацикливание трека
+  //Зацикливание трека
   const handleLoop = () => {
     audioRef.current.loop = true;
     setIsLoop(true)
   }
-  const toggleLoop = isLoop ? handleLoop : null;
+
+  const toggleLoop = isLoop ? handleLoop : false;
 
 
   return (
     <>
+      {/* HTML элемент на который мы ссылаемся */}
       <audio ref={audioRef} src={trackBar.track_file} >
-        <source src="/music/song.mp3" type="audio/mpeg" />
+        <source src="/music/song.mp3" type="audio/mpeg" loop/>
       </audio>
 
       <S.Bar>

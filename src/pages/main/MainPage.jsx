@@ -6,7 +6,8 @@ import Bar from "../../components/Bar/Bar";
 import * as S from "./style/MainPage.S"
 
 export const MainPage = () => {
-
+    
+    //Состояние Bar
     const [trackBar, setTrackBar] = useState(null)
 
     return (

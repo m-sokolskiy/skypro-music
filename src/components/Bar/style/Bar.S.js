@@ -144,15 +144,12 @@ export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;  
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => props.$isActive ?  'green' :  '#696969' };
 
   &:hover{
     cursor: pointer;
-    background: red;
-  }
-
-  &:active{
-    background: blue;
+    stroke: red;
+    fill: red;
   }
 `
 export const PlayerBtnShuffleSvg = styled.svg`

@@ -28,16 +28,22 @@ const Bar = ({ trackBar }) => {
   const handleLoop = () => {
     audioRef.current.loop = true;
     setIsLoop(true)
+    console.log(audioRef.current.loop);
   }
-
-  const toggleLoop = isLoop ? handleLoop : false;
+  // Отключение зацикливания трека
+  const handleDisLoop = () => {
+    audioRef.current.loop = false;
+    setIsLoop(false)
+    console.log(audioRef.current.loop);
+  }
+  const toggleLoop = isLoop ? handleDisLoop : handleLoop;
 
 
   return (
     <>
       {/* HTML элемент на который мы ссылаемся */}
-      <audio ref={audioRef} src={trackBar.track_file} >
-        <source src="/music/song.mp3" type="audio/mpeg" loop/>
+      <audio controls ref={audioRef} src={trackBar.track_file} >
+        <source src="/music/song.mp3" type="audio/mpeg" />
       </audio>
 
       <S.Bar>
@@ -74,9 +80,11 @@ const Bar = ({ trackBar }) => {
 
                 {/* Повтор */}
                 <S.PlayerBtnRepeat onClick={toggleLoop}  >
-                  <S.PlayerBtnRepeatSvg alt="repeat">
-                    <use href="../img/icon/sprite.svg#icon-repeat"></use>
+
+                  <S.PlayerBtnRepeatSvg  alt="repeat" $isActive={isLoop}>
+                    <use xlinkHref="../img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
+
                 </S.PlayerBtnRepeat>
 
                 {/* Случайный */}

@@ -15,6 +15,7 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
 
+    //Клик на трек и включение Bar
     const handelTrackBAr = () => {
         setTrackBar(track)
         console.log(track);

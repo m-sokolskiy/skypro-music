@@ -16,11 +16,14 @@ const Bar = ({ trackBar }) => {
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
+    console.log(isPlaying)
   };
+
   //Пауза.
   const handleStop = () => {
     audioRef.current.pause();
     setIsPlaying(false);
+    console.log(isPlaying)
   };
   const togglePlay = isPlaying ? handleStop : handleStart;
 
@@ -127,19 +130,18 @@ const Bar = ({ trackBar }) => {
 
             {/* Громкость */}
             <S.BarVolumeBlock>
-
               <S.VolumeContent >
-
                 <S.VolumeImage>
                   <S.VolumeSvg alt="volume">
                     <use href="../img/icon/sprite.svg#icon-volume"></use>
                   </S.VolumeSvg>
                 </S.VolumeImage>
 
+                {/* Регулировка громкости */}
                 <S.VolumeProgress>
                   <S.VolumeProgressLine type="range" name="range" />
                 </S.VolumeProgress>
-
+                
               </S.VolumeContent>
 
             </S.BarVolumeBlock>

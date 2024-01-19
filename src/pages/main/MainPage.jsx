@@ -13,13 +13,17 @@ export const MainPage = () => {
     return (
         <S.Wrapper>
             <S.Container>
+
                 <S.Main>
                     <Navigation />
                     <Content trackBar={trackBar} setTrackBar={setTrackBar} />
                     <SideBar />
                 </S.Main>
+
                 {trackBar ? <Bar trackBar={trackBar} /> : null}
+
             </S.Container>
+            
         </S.Wrapper>
     );
 };

@@ -8,6 +8,7 @@ const Bar = ({ trackBar }) => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoop, setIsLoop] = useState(false);
+  const [isVolume, setVolume] = useState(50)
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -40,6 +41,13 @@ const Bar = ({ trackBar }) => {
     console.log(audioRef.current.loop);
   }
   const toggleLoop = isLoop ? handleDisLoop : handleLoop;
+
+  //Громкость
+  const handleVolume = (event) => {
+    const volume = audioRef.current.volume = event.target.value
+    setVolume(volume)
+    console.log(event)
+  };
 
 
   return (
@@ -84,7 +92,7 @@ const Bar = ({ trackBar }) => {
                 {/* Повтор */}
                 <S.PlayerBtnRepeat onClick={toggleLoop}  >
 
-                  <S.PlayerBtnRepeatSvg  alt="repeat" $isActive={isLoop}>
+                  <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLoop}>
                     <use xlinkHref="../img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
 
@@ -139,9 +147,15 @@ const Bar = ({ trackBar }) => {
 
                 {/* Регулировка громкости */}
                 <S.VolumeProgress>
-                  <S.VolumeProgressLine type="range" name="range" />
+                  <S.VolumeProgressLine
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={isVolume}
+                    onChange={(event) => handleVolume(event)} />
                 </S.VolumeProgress>
-                
+
               </S.VolumeContent>
 
             </S.BarVolumeBlock>

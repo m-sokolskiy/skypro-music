@@ -6,14 +6,21 @@ import { useRef } from 'react';
 // Проигрыватель
 const Bar = ({ trackBar }) => {
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
-  const [isVolume, setVolume] = useState(50)
+  const [isVolume, setIsVolume] = useState("0.3")
+
+  // Прогресс трека
+  const [isProgress, setIsProgress] = useState(0)
+  // Время трека
+  const [isTime, setIsTime] = useState(0);
+
+
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
 
-  //Воспроизведение и пауза.
+  //Воспроизведение.
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
@@ -45,24 +52,68 @@ const Bar = ({ trackBar }) => {
   //Громкость
   const handleVolume = (event) => {
     const volume = audioRef.current.volume = event.target.value
-    setVolume(volume)
-    console.log(event)
+    setIsVolume(volume)
   };
 
+  //Перемотка
+  const rewinding = (event) => {
+    const progress = audioRef.current.currentTime = event.target.value
+    setIsTime(progress)
+  };
+
+  //Прогресс
+  const progressTrack = () => {
+    let duration = audioRef.current.duration;
+    let currentTime = audioRef.current.currentTime;
+    setIsProgress(duration);
+    setIsTime(currentTime);
+  };
+
+  // Время 
+  const timeTrack = (time) => {
+    let min = Math.floor(time / 60);
+    let sec = Math.floor(time % 60);
+    min = min < 10 ? `0${min}` : min;
+    sec = sec < 10 ? `0${sec}` : sec;
+    return `${min}:${sec}`;
+  };
+
+  console.log(audioRef);
 
   return (
     <>
       {/* HTML элемент на который мы ссылаемся */}
-      <audio controls ref={audioRef} src={trackBar.track_file} >
+      <audio
+        controls
+        ref={audioRef}
+        src={trackBar.track_file}
+        onTimeUpdate={progressTrack}
+        autoPlay={true} >
         <source src="/music/song.mp3" type="audio/mpeg" />
       </audio>
 
+      <p style={{
+        color: "rgba(255,255,255,0.61)",
+        position: "absolute",
+        bottom: "83px",
+        right: "15px"
+      }}>{isProgress ? `${timeTrack(isTime)} / ${timeTrack(isProgress)}` : ""}</p>
+
       <S.Bar>
         <S.BarContent>
-          <S.BarPlayerProgress></S.BarPlayerProgress>
-          <S.BarPlayerBlock>
 
-            {/* Проигрыватель */}
+          {/* Прогресс трека */}
+          <S.BarPlayerProgress
+            type="range"
+            min={0}
+            max={isProgress}
+            step={0.01}
+            value={isTime}
+            onChange={(event) => rewinding(event)}>
+          </S.BarPlayerProgress>
+
+          {/* Проигрыватель */}
+          <S.BarPlayerBlock>
             <S.BarPlayer >
 
               <S.PlayerControls>

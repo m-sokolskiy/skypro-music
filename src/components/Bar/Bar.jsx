@@ -57,8 +57,8 @@ const Bar = ({ trackBar }) => {
 
   //Перемотка
   const rewindingTrack = (event) => {
-    const progress = audioRef.current.currentTime = event.target.value
-    setCurrentTime(progress)
+    const rewinding = audioRef.current.currentTime = event.target.value
+    setCurrentTime(rewinding)
   };
 
   //Прогресс 
@@ -94,8 +94,9 @@ const Bar = ({ trackBar }) => {
         color: "rgba(255,255,255,0.61)",
         position: "absolute",
         bottom: "83px",
-        right: "15px"
-      }}>{isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}</p>
+        right: "15px"}}>
+        {isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}
+      </p>
 
       <S.Bar>
         <S.BarContent>
@@ -108,7 +109,7 @@ const Bar = ({ trackBar }) => {
             step={0.01}
             value={isCurrentTime}
             onChange={(event) => rewindingTrack(event)}
-            >
+          >
           </S.BarPlayerProgress>
 
           {/* Проигрыватель */}

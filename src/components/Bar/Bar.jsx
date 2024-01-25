@@ -10,10 +10,10 @@ const Bar = ({ trackBar }) => {
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
 
-  // Прогресс трека
-  const [isProgress, setIsProgress] = useState(0)
-  // Время трека
-  const [isTime, setIsTime] = useState(0);
+  //Продолжительность трека
+  const [isDuration, setIsDuration] = useState(0)
+  //Текущее время трека
+  const [isCurrentTime, setCurrentTime] = useState(0);
 
 
 
@@ -41,7 +41,7 @@ const Bar = ({ trackBar }) => {
     setIsLoop(true)
     console.log(audioRef.current.loop);
   }
-  // Отключение зацикливания трека
+  //Отключение зацикливания трека
   const handleDisLoop = () => {
     audioRef.current.loop = false;
     setIsLoop(false)
@@ -56,20 +56,20 @@ const Bar = ({ trackBar }) => {
   };
 
   //Перемотка
-  const rewinding = (event) => {
+  const rewindingTrack = (event) => {
     const progress = audioRef.current.currentTime = event.target.value
-    setIsTime(progress)
+    setCurrentTime(progress)
   };
 
-  //Прогресс
+  //Прогресс 
   const progressTrack = () => {
     let duration = audioRef.current.duration;
     let currentTime = audioRef.current.currentTime;
-    setIsProgress(duration);
-    setIsTime(currentTime);
+    setIsDuration(duration);
+    setCurrentTime(currentTime);
   };
 
-  // Время 
+  //Время 
   const timeTrack = (time) => {
     let min = Math.floor(time / 60);
     let sec = Math.floor(time % 60);
@@ -77,8 +77,6 @@ const Bar = ({ trackBar }) => {
     sec = sec < 10 ? `0${sec}` : sec;
     return `${min}:${sec}`;
   };
-
-  console.log(audioRef);
 
   return (
     <>
@@ -97,7 +95,7 @@ const Bar = ({ trackBar }) => {
         position: "absolute",
         bottom: "83px",
         right: "15px"
-      }}>{isProgress ? `${timeTrack(isTime)} / ${timeTrack(isProgress)}` : ""}</p>
+      }}>{isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}</p>
 
       <S.Bar>
         <S.BarContent>
@@ -106,10 +104,11 @@ const Bar = ({ trackBar }) => {
           <S.BarPlayerProgress
             type="range"
             min={0}
-            max={isProgress}
+            max={isDuration}
             step={0.01}
-            value={isTime}
-            onChange={(event) => rewinding(event)}>
+            value={isCurrentTime}
+            onChange={(event) => rewindingTrack(event)}
+            >
           </S.BarPlayerProgress>
 
           {/* Проигрыватель */}

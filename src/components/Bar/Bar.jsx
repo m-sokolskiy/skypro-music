@@ -74,6 +74,22 @@ const Bar = ({ trackBar }) => {
     sec = sec < 10 ? `0${sec}` : sec;
     return `${min}:${sec}`;
   };
+  
+  //Назад 
+  const handleBack = () => {
+    alert("Еще не реализовано")
+  };
+  
+  //Вперед 
+  const handleNext = () => {
+    alert("Еще не реализовано")
+  };
+  
+  //Перемешать 
+  const handleShuffle = () => {
+    alert("Еще не реализовано")
+  };
+
 
   return (
     <>
@@ -91,7 +107,8 @@ const Bar = ({ trackBar }) => {
         color: "rgba(255,255,255,0.61)",
         position: "absolute",
         bottom: "83px",
-        right: "15px"}}>
+        right: "15px"
+      }}>
         {isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}
       </p>
 
@@ -116,7 +133,7 @@ const Bar = ({ trackBar }) => {
               <S.PlayerControls>
 
                 {/* Предыдущий */}
-                <S.PlayerBtnPrev  >
+                <S.PlayerBtnPrev onClick={handleBack} >
                   <S.PlayerBtnPrevSvg alt="prev">
                     <use href="../img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
@@ -131,7 +148,7 @@ const Bar = ({ trackBar }) => {
                 </S.PlayerBtnPlay>
 
                 {/* Следующий */}
-                <S.PlayerBtnNext >
+                <S.PlayerBtnNext onClick={handleNext} >
                   <S.PlayerBtnNextSvg alt="next">
                     <use href="../img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
@@ -147,7 +164,7 @@ const Bar = ({ trackBar }) => {
                 </S.PlayerBtnRepeat>
 
                 {/* Случайный */}
-                <S.PlayerBtnShuffle  >
+                <S.PlayerBtnShuffle onClick={handleShuffle} >
                   <S.PlayerBtnShuffleSvg alt="shuffle">
                     <use href="../img/icon/sprite.svg#icon-shuffle"></use>
                   </S.PlayerBtnShuffleSvg>

@@ -9,13 +9,10 @@ const Bar = ({ trackBar }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
-
   //Продолжительность трека
   const [isDuration, setIsDuration] = useState(0)
   //Текущее время трека
   const [isCurrentTime, setCurrentTime] = useState(0);
-
-
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -35,7 +32,7 @@ const Bar = ({ trackBar }) => {
   };
   const togglePlay = isPlaying ? handleStop : handleStart;
 
-  //Зацикливание трека
+  //Включить зацикливание трека
   const handleLoop = () => {
     audioRef.current.loop = true;
     setIsLoop(true)

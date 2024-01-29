@@ -16,7 +16,7 @@ const timeTrack = (time) => {
 const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
 
     //Клик на трек и включение Bar
-    const handelTrackBAr = () => {
+    const handelTrackBar = () => {
         setTrackBar(track)
         console.log(track);
     }
@@ -38,7 +38,7 @@ const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, trac
                     {/* Трек */}
                     <S.TrackTitleText >
 
-                        <S.TrackTitleLink href="#" onClick={() => handelTrackBAr()}>
+                        <S.TrackTitleLink href="#" onClick={() => handelTrackBar()}>
                             {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>

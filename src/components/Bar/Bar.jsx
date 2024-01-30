@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
@@ -90,6 +90,13 @@ const Bar = ({ trackBar }) => {
     alert("Еще не реализовано")
   };
 
+  useEffect(() => {
+    setIsPlaying(true)
+  },[trackBar])
+
+  useEffect(() => {
+    audioRef.current.volume = isVolume;
+  },[isVolume])
 
   return (
     <>

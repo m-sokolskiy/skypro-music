@@ -7,12 +7,7 @@ const App = () => {
 
   const userToken = getToken();
   
-  const [token] = useState(() => {
-    return userToken === "token" ? true : false;
-  })
-
-  //Поднимаю состояния
-
+  const [token] = useState(userToken)
   
 
   return (

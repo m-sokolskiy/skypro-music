@@ -64,6 +64,3 @@ export const PopUpWindowGenre = styled.div`
   justify-content: center;
   gap: 15px;
 `
-
-// top: 290px;
-// left: 616px;

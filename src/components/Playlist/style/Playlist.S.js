@@ -37,7 +37,7 @@ export const ContentPlaylist = styled.ul`
   flex-direction: column;
   overflow-y: auto;
 `
-export const PlaylistTitleSvg = styled.div`
+export const PlaylistTitleSvg = styled.svg`
   width: 12px;
   height: 12px;
   fill: transparent;

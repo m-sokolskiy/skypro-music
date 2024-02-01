@@ -10,9 +10,9 @@ const Bar = ({ trackBar }) => {
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
   //Продолжительность трека
-  const [isDuration, setIsDuration] = useState(0)
+  const [isDuration, setIsDuration] = useState('0')
   //Текущее время трека
-  const [isCurrentTime, setCurrentTime] = useState(0);
+  const [isCurrentTime, setCurrentTime] = useState('0');
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -64,6 +64,9 @@ const Bar = ({ trackBar }) => {
     let currentTime = audioRef.current.currentTime;
     setIsDuration(duration);
     setCurrentTime(currentTime);
+    if (currentTime === duration) {
+      setIsPlaying(false)
+    }
   };
 
   //Время 
@@ -74,29 +77,30 @@ const Bar = ({ trackBar }) => {
     sec = sec < 10 ? `0${sec}` : sec;
     return `${min}:${sec}`;
   };
-  
+
   //Назад 
   const handleBack = () => {
     alert("Еще не реализовано")
   };
-  
+
   //Вперед 
   const handleNext = () => {
     alert("Еще не реализовано")
   };
-  
+
   //Перемешать 
   const handleShuffle = () => {
     alert("Еще не реализовано")
   };
 
   useEffect(() => {
-    setIsPlaying(true)
-  },[trackBar])
+    setIsPlaying(true);
+  }, [trackBar])
 
   useEffect(() => {
     audioRef.current.volume = isVolume;
-  },[isVolume])
+  }, [isVolume])
+
 
   return (
     <>

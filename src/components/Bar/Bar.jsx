@@ -130,7 +130,7 @@ const Bar = ({ trackBar }) => {
           <S.BarPlayerProgress
             type="range"
             min={0}
-            max={isDuration}
+            max={"isDuration"}
             step={0.01}
             value={isCurrentTime}
             onChange={(event) => rewindingTrack(event)}

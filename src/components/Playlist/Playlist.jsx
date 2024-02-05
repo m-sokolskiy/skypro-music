@@ -59,19 +59,6 @@ const Playlist = ({ setTrackBar }) => {
                 {isLoading ?
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
-                        <SkeletonPlaylist />
                     </S.PlaylistSkeleton> :
                     tracks.map((track) => {
                         return (

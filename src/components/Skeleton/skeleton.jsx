@@ -1,7 +1,6 @@
-import React from "react"
 import ContentLoader from "react-content-loader"
 
-const Skeleton = (props) => (
+const SkeletonPlaylist = () => (
   <ContentLoader 
     speed={2}
     width={1107}
@@ -9,7 +8,6 @@ const Skeleton = (props) => (
     viewBox="0 0 1107 51"
     backgroundColor="#181818"
     foregroundColor="#454545"
-    {...props}
   >
     <rect x="0" y="0" rx="0" ry="0" width="51" height="51" /> 
     <rect x="65" y="16" rx="0" ry="0" width="356" height="19" /> 
@@ -18,4 +16,4 @@ const Skeleton = (props) => (
   </ContentLoader>
 )
 
-export default Skeleton
+export default SkeletonPlaylist

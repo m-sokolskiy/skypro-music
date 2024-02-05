@@ -36,6 +36,11 @@ export const ContentPlaylist = styled.ul`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+  max-height: 70vh; 
+  padding-bottom: 150px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 export const PlaylistTitleSvg = styled.svg`
   width: 12px;
@@ -68,6 +73,10 @@ width: 60px;
 text-align: end;
 `
 
-export const DataStub = styled.div`
-
-`
+export const PlaylistSkeleton = styled.div`
+  width: 20px;
+  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;

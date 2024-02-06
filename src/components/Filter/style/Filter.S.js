@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const CenterBlockFilter = styled.div`
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -11,8 +13,7 @@ export const CenterBlockFilter = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 51px;
-  gap: 10px;
+  margin-bottom: 30px;
 `
 
 export const FilterTitle = styled.div`

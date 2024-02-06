@@ -10,9 +10,9 @@ const Bar = ({ trackBar }) => {
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
   //Продолжительность трека
-  const [isDuration, setIsDuration] = useState('0')
+  const [isDuration, setIsDuration] = useState(0)
   //Текущее время трека
-  const [isCurrentTime, setCurrentTime] = useState('0');
+  const [isCurrentTime, setCurrentTime] = useState(0);
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -62,6 +62,7 @@ const Bar = ({ trackBar }) => {
   const progressTrack = () => {
     let duration = audioRef.current.duration;
     let currentTime = audioRef.current.currentTime;
+
     setIsDuration(duration);
     setCurrentTime(currentTime);
     if (currentTime === duration) {
@@ -130,7 +131,7 @@ const Bar = ({ trackBar }) => {
           <S.BarPlayerProgress
             type="range"
             min={0}
-            max={"isDuration"}
+            max={isDuration}
             step={0.01}
             value={isCurrentTime}
             onChange={(event) => rewindingTrack(event)}

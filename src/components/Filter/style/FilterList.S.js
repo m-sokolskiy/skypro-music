@@ -3,15 +3,17 @@ import styled from "styled-components";
 export const PopUpText = styled.a`
     color: #FFF;
   font-variant-numeric: lining-nums proportional-nums;
-  font-family: StratosSkyeng;
+  font-family: inherit ;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 120% */
+  line-height: 24px;
+
   &:hover{
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
+    
   }
   &:active {
     border-color: #ad61ff;

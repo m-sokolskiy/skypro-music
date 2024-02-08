@@ -107,7 +107,6 @@ const Bar = ({ trackBar }) => {
     <>
       {/* HTML элемент на который мы ссылаемся */}
       <audio
-        controls
         ref={audioRef}
         src={trackBar.track_file}
         onTimeUpdate={progressTrack}

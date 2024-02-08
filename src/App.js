@@ -1,18 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GlobalStyle } from './GlobalStyle.js';
-import { getToken } from './localStorage.js';
+import { removeKeyFromLS } from './localStorage.js';
 import { AppRoutes } from './AppRoutes.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
-  const userToken = getToken();
-  
-  const [token] = useState(userToken)
-  
+  const userData = window.localStorage.getItem("user");
+  const [user, setUser] = useState(userData)
+
+  const navigate = useNavigate()
+
+  const checkOut = () => {
+    const result = localStorage.getItem("user")
+
+    if (result) {
+      setUser(true)
+      navigate("/")
+    }
+  }
+
+  useEffect(() => {
+    checkOut()
+  }, [])
+
+// Выход
+  const logout = () => {
+    setUser(false);
+    removeKeyFromLS("user")
+  }
 
   return (
     <>
-      <AppRoutes token={token} />
+      <AppRoutes user={user} logout={logout} setUser={setUser} />
       <GlobalStyle />
     </>
   );

@@ -1,6 +1,5 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
-import Skeleton from 'react-loading-skeleton';
 
 // Правильный формат времени
 const timeTrack = (time) => {

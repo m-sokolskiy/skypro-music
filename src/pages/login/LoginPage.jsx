@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
 import { login } from '../../Api';
+import { setToken } from '../../localStorage';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         console.log(email, password);
@@ -18,6 +22,10 @@ export const LoginPage = () => {
     const loginPost = async () => {
         const result = await login(email, password)
         console.log(result);
+        if (result) {
+            setToken(result.access);
+            navigate('/main');
+        }
     }
 
     return (

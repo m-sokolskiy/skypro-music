@@ -13,7 +13,13 @@ const timeTrack = (time) => {
 
 
 
-const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, track}) => {
+const PlaylistTrack = ({ name, author, album, time, setTrackBar, track}) => {
+
+    //Клик на трек и включение Bar
+    const handelTrackBar = () => {
+        setTrackBar(track)
+        console.log(track);
+    }
 
     return (
         <S.PlaylistItem>
@@ -32,8 +38,8 @@ const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, trac
                     {/* Трек */}
                     <S.TrackTitleText >
 
-                        <S.TrackTitleLink href="#" onClick={() => setTrackBar(track)}>
-                            {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : name}
+                        <S.TrackTitleLink href="#" onClick={() => handelTrackBar()}>
+                            {name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
 
@@ -44,14 +50,14 @@ const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, trac
                 {/* Автор */}
                 <S.TrackAuthor>
                     <S.TrackAuthorLink href="#">
-                        {isLoading ? <Skeleton count={1} width="150px" baseColor='#212121' /> : author}
+                        {author}
                     </S.TrackAuthorLink>
                 </S.TrackAuthor>
 
                 {/* Альбом */}
                 <S.TrackAlbum >
                     <S.TrackAlbumLink href="#">
-                        {isLoading? <Skeleton count={1} width="150px" baseColor='#212121' /> : album}
+                        {album}
                     </S.TrackAlbumLink>
                 </S.TrackAlbum>
 
@@ -64,7 +70,7 @@ const PlaylistTrack = ({ name, author, album, time, isLoading, setTrackBar, trac
 
                     {/* Время */}
                     <S.TrackTimeText >
-                        {isLoading ? "0:00" : timeTrack(time)}
+                        {timeTrack(time)}
                     </S.TrackTimeText>
 
                 </S.TrackTime>

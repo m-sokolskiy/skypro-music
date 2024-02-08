@@ -36,11 +36,12 @@ export const login = async (email, password) => {
       "content-type": "application/json",
     },
   })
-    .then((response) => {
-      if (response.ok) {
-       return getToken(email, password);
-      }
-    }).then((data) => console.log(data));
+
+  if (response.ok) {
+    const data = await getToken(email, password)
+    return data
+  }
+  
 };
 
 // Токен 

@@ -4,25 +4,15 @@ import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
+import SkeletonPlaylist from '../Skeleton/skeleton.jsx';
+
 
 // ПЛЕЙЛИСТ
 const Playlist = ({ setTrackBar }) => {
 
-    const [tracks, setTracks] = useState([
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>,
-        <S.DataStub></S.DataStub>
-    ]);
+    //Треки
+    const [tracks, setTracks] = useState([]);
+    //Загрузка треков
     const [isLoading, setIsLoading] = useState(false);
     const [errorGetPlayList, setErrorGetPlayList] = useState(null)
 
@@ -33,6 +23,7 @@ const Playlist = ({ setTrackBar }) => {
             const allTracksData = await getAllTracks();
             await setTracks(allTracksData);
             setIsLoading(false);
+            console.log(allTracksData);
         } catch (error) {
             setErrorGetPlayList("Не удалось получить список треков")
             setIsLoading(false);
@@ -58,29 +49,34 @@ const Playlist = ({ setTrackBar }) => {
                 </S.PlaylistTitleColTime>
             </S.ContentTitle>
 
+            {/* Треки */}
             <S.ContentPlaylist>
+
                 <p style={{ color: "red" }}>
                     {errorGetPlayList}
                 </p>
 
-                {/* Трек */}
+                {isLoading ?
+                    <S.PlaylistSkeleton>
+                        <SkeletonPlaylist />
+                    </S.PlaylistSkeleton> :
+                    tracks.map((track) => {
+                        return (
+                            <PlaylistTrack
+                                key={track.id}
+                                id={track.id}
+                                name={track.name}
+                                author={track.author}
+                                album={track.album}
+                                time={track.duration_in_seconds}
+                                track={track}
+                                setTrackBar={setTrackBar}
+                            />
+                        )
+                    }
+                    )}
 
-                {tracks.map((track) => {
-                    return (
-                        <PlaylistTrack
-                            isLoading={isLoading}
-                            key={track.id}
-                            id={track.id}
-                            name={track.name}
-                            author={track.author}
-                            album={track.album}
-                            time={track.duration_in_seconds}
-                            track={track}
-                            setTrackBar={setTrackBar}
-                        />
-                    )
-                }
-                )}
+
 
             </S.ContentPlaylist>
 

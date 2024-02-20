@@ -24,7 +24,7 @@ export const getTrackID = async (id) => {
   return data;
 };
 
-// Авторизация 
+// Авторизация, возвращает token
 export const login = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
     method: "POST",
@@ -37,14 +37,15 @@ export const login = async (email, password) => {
     },
   })
 
+  //Если рапрос прошел удачно, до выполняется запрос на получение токина
   if (response.ok) {
-    const data = await getToken(email, password)
-    return data
+    const result = await getToken(email, password)
+    return result
   }
   
 };
 
-// Токен 
+// Получаем токен и сохраняем его в переменную result
 export const getToken = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
     method: "POST",

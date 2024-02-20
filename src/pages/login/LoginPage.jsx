@@ -4,26 +4,32 @@ import { login } from '../../Api';
 import { setToken } from '../../localStorage';
 import { useNavigate } from 'react-router-dom';
 
-export const LoginPage = () => {
-
+export const LoginPage = ({setUser}) => {
+    
+    //Состояние input почта
     const [email, setEmail] = useState("")
+    //Состояние input пароль
     const [password, setPassword] = useState("")
 
     const navigate = useNavigate()
 
+    //Консолим изменения в input в консоли
     useEffect(() => {
         console.log(email, password);
     }, [email, password])
 
-    useEffect(() => {
-        console.log("Логин компонент");
-    }, [])
-
+    //Функция входа
+    //Делаем запрос в Api, если пользователь существует, то мы получаем токен
+    //И если токен существует, то разрешаем доступ к приложению
     const loginPost = async () => {
+
         const result = await login(email, password)
+        
         console.log(result);
+
         if (result) {
-            setToken(result.access);
+            console.log("Авторизация выполнена успешно")
+            setUser(true);
             navigate('/main');
         }
     }

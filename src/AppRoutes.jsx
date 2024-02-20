@@ -8,12 +8,12 @@ import { CategoryPage } from "./pages/category/CategoryPage"
 import { FavoritesPage } from "./pages/favorites/FavoritesPage"
 
 // Компонент возвращает реестр всех маршрутов
-export const AppRoutes = ({ token }) => {
+export const AppRoutes = ({ token, setUser }) => {
     return (
         // Компонент содержит все роуты
         <Routes>
             {/* Сами роуты */}
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage setUser={setUser} />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<NotFoundPage />} />
             {/* Для авторизованных пользователей */}

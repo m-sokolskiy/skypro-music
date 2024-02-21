@@ -9,7 +9,7 @@ const App = () => {
   //Получает значение ключа "user" из localStorage 
   const userData = window.localStorage.getItem("user");
 
-  //Состояние user хранящее в себе userData=(token)
+  //Состояние принмающее текущее значение "user"(token)
   const [user, setUser] = useState(userData)
 
   //Создадим переменную с useNavigate() для простоты использования.
@@ -41,7 +41,10 @@ const App = () => {
 
   return (
     <>
-      <AppRoutes user={user} logout={logout} setUser={setUser} />
+      {/* Оборачиваем context в компонент Provider и в value передаем нужные данные, для дальнейшего использования в дереву. */}
+      <UserContext.Provider value={{ user, setUser }}>
+        <AppRoutes />
+      </UserContext.Provider>
       <GlobalStyle />
     </>
   );

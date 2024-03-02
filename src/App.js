@@ -3,6 +3,7 @@ import { GlobalStyle } from './GlobalStyle.js';
 import { removeToken } from './localStorage.js';
 import { AppRoutes } from './AppRoutes.jsx';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from './components/context/UserContext.js';
 
 const App = () => {
 

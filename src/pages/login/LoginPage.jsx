@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
 import { login } from '../../Api';
-import { setToken } from '../../localStorage';
 import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = ({setUser}) => {

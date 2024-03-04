@@ -1,9 +1,9 @@
 import './style/Playlist.S.js'
-import 'react-loading-skeleton/dist/skeleton.css'
 import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
+import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 
 
 

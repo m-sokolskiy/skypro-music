@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
 import { login } from '../../Api';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../components/context/UserContext';
 
-export const LoginPage = ({setUser}) => {
+export const LoginPage = () => {
+    //Вызываю данные из контекста
+    const { setUser } = useContext(UserContext);
     
     //Состояние input почта
     const [email, setEmail] = useState("")
@@ -12,7 +15,7 @@ export const LoginPage = ({setUser}) => {
 
     const navigate = useNavigate()
 
-    //Консолим изменения в input в консоли
+    //Консолим изменения в input
     useEffect(() => {
         console.log(email, password);
     }, [email, password])
@@ -21,11 +24,8 @@ export const LoginPage = ({setUser}) => {
     //Делаем запрос в Api, если пользователь существует, то мы получаем токен
     //И если токен существует, то разрешаем доступ к приложению
     const loginPost = async () => {
-
         const result = await login(email, password)
-        
         console.log(result);
-
         if (result) {
             console.log("Авторизация выполнена успешно")
             setUser(true);

@@ -29,20 +29,22 @@ export const login = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
     method: "POST",
     body: JSON.stringify({
-      email,
-      password
+      email: email,
+      password: password
     }),
     headers: {
       "content-type": "application/json",
     },
   })
 
+  console.log(response);
+
   //Если рапрос прошел удачно, до выполняется запрос на получение токина
   if (response.ok) {
     const result = await getToken(email, password)
     return result
   }
-  
+
 };
 
 // Получаем токен и сохраняем его в переменную result
@@ -74,5 +76,5 @@ export const registration = async (email, password, username) => {
       "content-type": "application/json",
     },
   }).then((response) => response.json())
-  .then((json) => console.log(json));
+    .then((json) => console.log(json));
 };

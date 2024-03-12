@@ -12,16 +12,34 @@ export const RegisterPage = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         console.log(email, password, username);
     }, [email, password, username])
 
-    const register = async (event) => {
-        //Отменяет дефолтное поведение элемента.Обновлояет страницу.
-        event.preventDefault()
-        const result = await postRegister(email, password, username)
-        console.log(result);
-        navigate("/")
+    const register = async () => {
+
+        if (email.length === 0 && password.length === 0 && username.length === 0) {
+            setError("Заполните поля");
+        } else if (email.length === 0) {
+            setError("Укажите email");
+            return;
+        } else if (password.length === 0) {
+            setError("Укажите пароль");
+            return;
+        } else if (username.length === 0) {
+            setError("Укажите имя пользователя");
+            return;
+        } else {
+            try {
+                const result = await postRegister(email, password, username)
+                console.log(result);
+                navigate("/");
+            } catch (error) {
+                setError(error.message);
+            };
+        }
     }
 
     return (
@@ -38,15 +56,18 @@ export const RegisterPage = () => {
 
                         {/* Инпут почта */}
                         <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="email" name="login" placeholder="Почта" />
-                        
+
                         {/* Инпут Имя пользователя */}
                         <S.ModalInputPassword value={username} onChange={(event) => setUsername(event.target.value)} type="text" name="username" placeholder="Имя пользователя" />
 
                         {/* Инпут Пароль */}
                         <S.ModalInputPasswordDouble value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
+                        {/* Рендер ошибки */}
+                        {error && <S.Error>{error}</S.Error>}
+
                         <S.ModalBtnSignUpEnt >
-                            <S.ModalBtnSignUpEntLink onClick={register} to="/">Зарегистрироваться</S.ModalBtnSignUpEntLink>
+                            <S.PrimaryButton onClick={register} >Зарегистрироваться</S.PrimaryButton>
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>

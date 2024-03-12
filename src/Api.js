@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 // Ссылки Api
 const getAllTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/all/";
 const getOneTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/";
@@ -76,6 +78,10 @@ export const postRegister = async (email, password, username) => {
     headers: {
       "content-type": "application/json",
     },
-  }).then((response) => response.json())
-    .then((json) => console.log(json));
+  })
+
+  const data = (await response).json();
+  console.log(data)
+  return data;
+
 };

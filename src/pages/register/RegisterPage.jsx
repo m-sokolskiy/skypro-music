@@ -1,21 +1,27 @@
-import { registration } from '../../Api';
+import { useNavigate } from 'react-router-dom';
+import { postRegister } from '../../Api';
 import * as S from './style/RegisterPage.S'
 import { useEffect, useState } from 'react';
 
 
 export const RegisterPage = () => {
 
+    const navigate = useNavigate()
+
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     useEffect(() => {
-        console.log(email, password);
+        console.log(email, password, username);
     }, [email, password, username])
 
-    const register = async () => {
-        const result = await registration(email, password, username)
+    const register = async (event) => {
+        //Отменяет дефолтное поведение элемента.Обновлояет страницу.
+        event.preventDefault()
+        const result = await postRegister(email, password, username)
         console.log(result);
+        navigate("/")
     }
 
     return (

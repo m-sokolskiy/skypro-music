@@ -64,7 +64,8 @@ export const getToken = async (email, password) => {
 };
 
 // Регистриция  
-export const registration = async (email, password, username) => {
+export const postRegister = async (email, password, username) => {
+  console.log(email, password, username);
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
     method: "POST",
     body: JSON.stringify({

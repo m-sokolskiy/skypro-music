@@ -11,6 +11,7 @@ export const RegisterPage = () => {
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [repeatPassword, setRepeatPassword] = useState("");
 
     const [error, setError] = useState(null);
 
@@ -47,6 +48,7 @@ export const RegisterPage = () => {
         <S.Wrapper>
             <S.ContainerEnter>
                 <S.ModalBlock>
+
                     <S.ModalFormLogin action="#">
                         <S.ModalFormLoginLink to="/">
                             <S.ModalLogo>
@@ -63,11 +65,14 @@ export const RegisterPage = () => {
                         {/* Инпут Пароль */}
                         <S.ModalInputPasswordDouble value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
+                        {/* Инпут Повторите Пароль */}
+                        <S.ModalInputPasswordDouble value={repeatPassword} onChange={(event) => setRepeatPassword(event.target.value)} type="password" name="repeatPassword" placeholder="Повторите пароль" />
+                        
                         {/* Рендер ошибки */}
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.ModalBtnSignUpEnt >
-                            <S.PrimaryButton onClick={register} >Зарегистрироваться</S.PrimaryButton>
+                            <S.ModalBtnSignUpEntLink onClick={register} >Зарегистрироваться</S.ModalBtnSignUpEntLink>
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>

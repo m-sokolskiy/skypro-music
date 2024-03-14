@@ -15,29 +15,34 @@ export const RegisterPage = () => {
 
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        console.log(email, password, username);
-    }, [email, password, username])
+    // useEffect(() => {
+    //     console.log(email, password, username, repeatPassword);
+    // }, [email, password, username, repeatPassword])
 
     const register = async () => {
 
         if (email.length === 0 && password.length === 0 && username.length === 0) {
             setError("Заполните поля");
         } else if (email.length === 0) {
-            setError("Укажите email");
-            return;
-        } else if (password.length === 0) {
-            setError("Укажите пароль");
+            setError("Укажите почту");
             return;
         } else if (username.length === 0) {
             setError("Укажите имя пользователя");
             return;
+        } else if (password.length === 0) {
+            setError(" Укажите пароль");
+            return;
+        } else if (repeatPassword.length === 0) {
+            setError("Повторите пароль");
+            return;
+        } else if (password !== repeatPassword) {
+            setError("Пароли не совпадают");
         } else {
             try {
                 const result = await postRegister(email, password, username)
-                console.log(result);
                 navigate("/");
             } catch (error) {
+                console.log(error.message);
                 setError(error.message);
             };
         }
@@ -67,7 +72,7 @@ export const RegisterPage = () => {
 
                         {/* Инпут Повторите Пароль */}
                         <S.ModalInputPasswordDouble value={repeatPassword} onChange={(event) => setRepeatPassword(event.target.value)} type="password" name="repeatPassword" placeholder="Повторите пароль" />
-                        
+
                         {/* Рендер ошибки */}
                         {error && <S.Error>{error}</S.Error>}
 

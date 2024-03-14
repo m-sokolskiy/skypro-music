@@ -78,10 +78,29 @@ export const postRegister = async (email, password, username) => {
     headers: {
       "content-type": "application/json",
     },
-  })
+  }).then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      //Объект в котором массив из 3-х объектов
+      const errorEmail = data.email
+      const errorUsername = data.username
+      const errorPassword = data.password
+      console.log(errorEmail.join())
+      
+      if (response.status === 400) {
+        throw new Error('errorEmail.join()');
+        }
 
-  const data = (await response).json();
-  console.log(data)
-  return data;
+    })
 
 };
+
+
+// if (data.status === 500) {
+//   throw new Error("Сервер упал");
+// } else if (data.status === 400) {
+//   throw new Error(data.email && data.password && data.username)
+// }
+// if (!response.json().ok) {
+//   throw new Error("У вас проблемы с интернетом");
+// }

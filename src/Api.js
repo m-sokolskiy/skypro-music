@@ -67,7 +67,6 @@ export const getToken = async (email, password) => {
 
 // Регистриция  
 export const postRegister = async (email, password, username) => {
-  console.log(email, password, username);
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
     method: "POST",
     body: JSON.stringify({
@@ -78,23 +77,28 @@ export const postRegister = async (email, password, username) => {
     headers: {
       "content-type": "application/json",
     },
-  }).then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-      //Объект в котором массив из 3-х объектов
-      const errorEmail = data.email
-      const errorUsername = data.username
-      const errorPassword = data.password
-      console.log(errorEmail.join())
-      
-      if (response.status === 400) {
-        throw new Error('errorEmail.join()');
-        }
-
-    })
+  })
 
 };
 
+
+// if (response.status === 400) {
+// if (response.status === 400) {
+//   throw new Error('Ошибка')
+// }
+// Получаем ключи из объекта
+// let keys = Object.keys(data)
+// console.log(keys)
+// Получаем значения из объекта
+// let values = Object.values(data)
+// console.log(values[1])
+// Получаем значения из объекта
+// let entries = Object.entries(data)
+// console.log(entries);
+
+// const errorEmail = data.email
+// const errorUsername =  data.username
+// const errorPassword = data.password
 
 // if (data.status === 500) {
 //   throw new Error("Сервер упал");
@@ -104,3 +108,13 @@ export const postRegister = async (email, password, username) => {
 // if (!response.json().ok) {
 //   throw new Error("У вас проблемы с интернетом");
 // }
+
+  // Получаем статус ответа от Апи
+  // console.log(response);
+  // Объект с данными 
+  // const data = (await response).json();
+  // console.log(data)
+
+  // if (response.status === 400) {
+  //   throw new Error('Ошибка')
+  // }

@@ -40,6 +40,7 @@ export const RegisterPage = () => {
         } else {
             try {
                 const result = await postRegister(email, password, username)
+                // console.log(result);
                 navigate("/");
             } catch (error) {
                 console.log(error.message);

@@ -14,6 +14,7 @@ export const RegisterPage = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const register = async () => {
 
@@ -37,14 +38,15 @@ export const RegisterPage = () => {
             try {
                 const result = await postRegister(email, password, username)
                     .then((data) => {
-                        if (data.email && data.email !== undefined) {
+                        if (data.email !== email && data.email !== undefined) {
                             throw new Error(data.email);
-                        } else if ((data.username && data.username !== undefined)) {
+                        } else if ((data.username !== username && data.username !== undefined)) {
                             throw new Error(data.username);
-                        } else if ((data.password && data.password !== undefined)) {
+                        } else if ((data.password !== password && data.password !== undefined)) {
                             throw new Error(data.password);
                         }
                     })
+                setLoading(false)
                 navigate("/");
             } catch (error) {
                 console.log(error.message);
@@ -82,7 +84,7 @@ export const RegisterPage = () => {
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.ModalBtnSignUpEnt >
-                            <S.ModalBtnSignUpEntLink onClick={register} >Зарегистрироваться</S.ModalBtnSignUpEntLink>
+                            <S.ModalBtnSignUpEntLink onClick={register} > {loading ? "Зарегестрироваться" : "Регестрируем..."} </S.ModalBtnSignUpEntLink>
                         </S.ModalBtnSignUpEnt>
 
                     </S.ModalFormLogin>

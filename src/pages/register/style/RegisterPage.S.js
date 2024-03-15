@@ -174,10 +174,11 @@ export const ModalBtnSignUpEntLink = styled(Link)`
 `
 
 export const Error = styled.div`
-  color: coral;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  text-align: left;
+  text-align: center;
+  color: coral;
+  width: 280px;
 `;
 

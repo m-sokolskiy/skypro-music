@@ -79,42 +79,13 @@ export const postRegister = async (email, password, username) => {
     },
   })
 
+  if (response.status === 500) {
+    throw new Error("Сервер не отвечает")
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data
+
 };
 
-
-// if (response.status === 400) {
-// if (response.status === 400) {
-//   throw new Error('Ошибка')
-// }
-// Получаем ключи из объекта
-// let keys = Object.keys(data)
-// console.log(keys)
-// Получаем значения из объекта
-// let values = Object.values(data)
-// console.log(values[1])
-// Получаем значения из объекта
-// let entries = Object.entries(data)
-// console.log(entries);
-
-// const errorEmail = data.email
-// const errorUsername =  data.username
-// const errorPassword = data.password
-
-// if (data.status === 500) {
-//   throw new Error("Сервер упал");
-// } else if (data.status === 400) {
-//   throw new Error(data.email && data.password && data.username)
-// }
-// if (!response.json().ok) {
-//   throw new Error("У вас проблемы с интернетом");
-// }
-
-  // Получаем статус ответа от Апи
-  // console.log(response);
-  // Объект с данными 
-  // const data = (await response).json();
-  // console.log(data)
-
-  // if (response.status === 400) {
-  //   throw new Error('Ошибка')
-  // }

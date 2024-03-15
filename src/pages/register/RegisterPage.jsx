@@ -15,10 +15,6 @@ export const RegisterPage = () => {
 
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     console.log(email, password, username, repeatPassword);
-    // }, [email, password, username, repeatPassword])
-
     const register = async () => {
 
         if (email.length === 0 && password.length === 0 && username.length === 0) {
@@ -40,7 +36,15 @@ export const RegisterPage = () => {
         } else {
             try {
                 const result = await postRegister(email, password, username)
-                // console.log(result);
+                    .then((data) => {
+                        if (data.email !== email && data.email !== undefined) {
+                            throw new Error(data.email);
+                        } else if ((data.username !== username && data.username !== undefined)) {
+                            throw new Error(data.username);
+                        } else if ((data.password !== password && data.password !== undefined)) {
+                            throw new Error(data.password);
+                        }
+                    })
                 navigate("/");
             } catch (error) {
                 console.log(error.message);

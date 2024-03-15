@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postRegister } from '../../Api';
 import * as S from './style/RegisterPage.S'
 import { useEffect, useState } from 'react';
@@ -14,7 +14,11 @@ export const RegisterPage = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(null);
+
+    const test = () => {
+        console.log("Кнопка нажата")
+    }
 
     const register = async () => {
 
@@ -35,25 +39,35 @@ export const RegisterPage = () => {
         } else if (password !== repeatPassword) {
             setError("Пароли не совпадают");
         } else {
+
             try {
-                const result = await postRegister(email, password, username)
-                    .then((data) => {
-                        if (data.email !== email && data.email !== undefined) {
-                            throw new Error(data.email);
-                        } else if ((data.username !== username && data.username !== undefined)) {
-                            throw new Error(data.username);
-                        } else if ((data.password !== password && data.password !== undefined)) {
-                            throw new Error(data.password);
-                        }
-                    })
+
+                setLoading(true)
+
+                const result = await postRegister(email, password, username).then((data) => {
+                    if (data.email !== email && data.email !== undefined) {
+                        throw new Error(data.email);
+                    } else if ((data.username !== username && data.username !== undefined)) {
+                        throw new Error(data.username);
+                    } else if ((data.password !== password && data.password !== undefined)) {
+                        throw new Error(data.password);
+                    }
+                })
+                
                 setLoading(false)
                 navigate("/");
             } catch (error) {
                 console.log(error.message);
                 setError(error.message);
+                setLoading(false)
             };
         }
     }
+
+    // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
+    useEffect(() => {
+        setError(null);
+    }, [email, password, repeatPassword, username]);
 
     return (
 
@@ -83,9 +97,17 @@ export const RegisterPage = () => {
                         {/* Рендер ошибки */}
                         {error && <S.Error>{error}</S.Error>}
 
-                        <S.ModalBtnSignUpEnt >
-                            <S.ModalBtnSignUpEntLink onClick={register} > {loading ? "Зарегестрироваться" : "Регестрируем..."} </S.ModalBtnSignUpEntLink>
-                        </S.ModalBtnSignUpEnt>
+                        <S.Buttons>
+                            <S.SignUpButton onClick={register} disabled={loading} type="button" >
+
+                                {loading ? "Регестрируем..." : "Зарегестрироваться"}
+
+                            </S.SignUpButton>
+
+                            <Link to="/">
+                                <S.LoginButton >Войти</S.LoginButton>
+                            </Link>
+                        </S.Buttons>
 
                     </S.ModalFormLogin>
                 </S.ModalBlock>

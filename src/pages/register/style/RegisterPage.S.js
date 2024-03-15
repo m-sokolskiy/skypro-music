@@ -126,51 +126,43 @@ export const ModalInputPasswordDouble = styled(ModalInput)`
 margin-bottom: 30px;
 `
 
-export const ModalBtnSignUpEnt = styled.button`
-    width: 278px;
-    height: 62px;
-    background-color: #580EA2;
-    border-radius: 6px;
-    margin-left: 4px;
-    border: none;
-    margin-top: 30px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;;
+
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  width: 278px;
+  height: 52px;
+  border-radius: 6px;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+
+  &:disabled {
+    background-color: #303030;
 
     &:hover {
-        background-color: #3F007D;
+      background-color: #595959;
     }
+  }
+`;
 
-    &:active {
-        background-color: #271A58;
-    }
-`
+export const SignUpButton = styled(Button)`
+color: #ffffff;
+background-color: #580ea2;
 
-export const ModalBtnSignUpEntLink = styled(Link)`
-    width: 100%;
-    height: 100%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #FFFFFF;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+&:hover {
+  background-color: #3f007d;
+}
+
+&:active {
+  background-color: #271a58;
+}
 `
 
 export const Error = styled.div`
@@ -182,3 +174,24 @@ export const Error = styled.div`
   width: 280px;
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 60px;
+  width: 100%;
+`;
+
+export const LoginButton = styled(Button)`
+  color: #000000;
+  background-color: transparent;
+  border: 1px solid #d0cece;
+
+  &:hover {
+    background-color: #f4f5f6;
+  }
+
+  &:active {
+    background-color: #d9d9d9;
+  }
+`

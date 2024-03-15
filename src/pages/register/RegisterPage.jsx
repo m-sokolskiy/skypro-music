@@ -37,11 +37,11 @@ export const RegisterPage = () => {
             try {
                 const result = await postRegister(email, password, username)
                     .then((data) => {
-                        if (data.email !== email && data.email !== undefined) {
+                        if (data.email && data.email !== undefined) {
                             throw new Error(data.email);
-                        } else if ((data.username !== username && data.username !== undefined)) {
+                        } else if ((data.username && data.username !== undefined)) {
                             throw new Error(data.username);
-                        } else if ((data.password !== password && data.password !== undefined)) {
+                        } else if ((data.password && data.password !== undefined)) {
                             throw new Error(data.password);
                         }
                     })

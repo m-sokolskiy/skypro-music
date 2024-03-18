@@ -14,11 +14,7 @@ export const RegisterPage = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(null);
-
-    const test = () => {
-        console.log("Кнопка нажата")
-    }
+    const [block, setBlock] = useState(null);
 
     const register = async () => {
 
@@ -39,11 +35,8 @@ export const RegisterPage = () => {
         } else if (password !== repeatPassword) {
             setError("Пароли не совпадают");
         } else {
-
             try {
-
-                setLoading(true)
-
+                setBlock(true)
                 const result = await postRegister(email, password, username).then((data) => {
                     if (data.email !== email && data.email !== undefined) {
                         throw new Error(data.email);
@@ -53,13 +46,12 @@ export const RegisterPage = () => {
                         throw new Error(data.password);
                     }
                 })
-                
-                setLoading(false)
+                setBlock(false)
                 navigate("/");
             } catch (error) {
                 console.log(error.message);
                 setError(error.message);
-                setLoading(false)
+                setBlock(false)
             };
         }
     }
@@ -98,12 +90,9 @@ export const RegisterPage = () => {
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.Buttons>
-                            <S.SignUpButton onClick={register} disabled={loading} type="button" >
-
-                                {loading ? "Регестрируем..." : "Зарегестрироваться"}
-
+                            <S.SignUpButton onClick={register} disabled={block} type="button" >
+                                {block ? "Регестрируем..." : "Зарегестрироваться"}
                             </S.SignUpButton>
-
                             <Link to="/">
                                 <S.LoginButton >Войти</S.LoginButton>
                             </Link>

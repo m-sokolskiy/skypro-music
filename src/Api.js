@@ -1,10 +1,6 @@
-import { json } from "react-router-dom";
-
-// Ссылки Api
 const getAllTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/all/";
 const getOneTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/";
 
-// Получаем список треков
 export const getAllTracks = async () => {
   const response = await fetch(getAllTrackApi, {
     method: "GET",
@@ -16,8 +12,7 @@ export const getAllTracks = async () => {
   return data;
 };
 
-// Получаем трек по ID 
-export const getTrackID = async (id) => {
+export const getTrackId = async (id) => {
   const response = await fetch(`${getOneTrackApi}${id}`, {
     method: "GET",
   });
@@ -26,8 +21,7 @@ export const getTrackID = async (id) => {
   return data;
 };
 
-// Авторизация, возвращает token
-export const login = async (email, password) => {
+export const postLogin = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
     method: "POST",
     body: JSON.stringify({
@@ -38,34 +32,13 @@ export const login = async (email, password) => {
       "content-type": "application/json",
     },
   })
-
   console.log(response);
-
-  //Если рапрос прошел удачно, до выполняется запрос на получение токина
-  if (response.ok) {
-    const result = await getToken(email, password)
-    return result
-  }
-
+  const data = await response.json();
+  console.log(data);
+  const token = await getToken(email, password)
+  console.log(token);
 };
 
-// Получаем токен и сохраняем его в переменную result
-export const getToken = async (email, password) => {
-  const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password
-    }),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  const result = await response.json()
-  return result
-};
-
-// Регистриция  
 export const postRegister = async (email, password, username) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
     method: "POST",
@@ -89,3 +62,33 @@ export const postRegister = async (email, password, username) => {
 
 };
 
+export const getToken = async (email, password) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const data = await response.json()
+  await localStorage.setItem("user", JSON.stringify(data))
+  return data
+};
+
+export const getRefreshToken = async (email, password) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/refresh/", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const result = await response.json()
+  return result
+};

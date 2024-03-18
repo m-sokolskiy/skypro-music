@@ -1,36 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import * as S from './style/LoginPage.S'
-import { login } from '../../Api';
+import { getToken, postLogin } from '../../Api';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
 
 export const LoginPage = () => {
     //Вызываю данные из контекста
     const { setUser } = useContext(UserContext);
-    
-    //Состояние input почта
+
     const [email, setEmail] = useState("")
-    //Состояние input пароль
     const [password, setPassword] = useState("")
 
     const navigate = useNavigate()
 
-    //Консолим изменения в input
-    useEffect(() => {
-        console.log(email, password);
-    }, [email, password])
+    const login = async () => {
+        await postLogin(email, password)
+            .then((data) => {
+                console.log(data.json())
+            })
 
-    //Функция входа
-    //Делаем запрос в Api, если пользователь существует, то мы получаем токен
-    //И если токен существует, то разрешаем доступ к приложению
-    const loginPost = async () => {
-        const result = await login(email, password)
-        console.log(result);
-        if (result) {
-            console.log("Авторизация выполнена успешно")
-            setUser(true);
-            navigate('/main');
-        }
+        await JSON.parse(localStorage.getItem("user"))
+            .then((token) => {
+                console.log(token)
+            })
+
+
     }
 
     return (
@@ -54,7 +48,7 @@ export const LoginPage = () => {
 
                         <S.ModalBtnEnter >
 
-                            <S.ModalBtnEnterLink to="/main" onClick={loginPost}>Войти</S.ModalBtnEnterLink>
+                            <S.ModalBtnEnterLink onClick={login}>Войти</S.ModalBtnEnterLink>
 
                         </S.ModalBtnEnter>
 

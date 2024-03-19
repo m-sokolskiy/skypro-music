@@ -122,11 +122,10 @@ export const ModalInputPassword = styled(ModalInput)`
 margin-bottom: 30px;
 
 `
+
 export const ModalInputPasswordDouble = styled(ModalInput)`
 margin-bottom: 30px;
 `
-
-
 
 const Button = styled.button`
   display: flex;

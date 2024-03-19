@@ -7,18 +7,12 @@ import { UserContext } from './components/context/UserContext.js';
 
 const App = () => {
 
-  //Получает значение ключа "user" из localStorage 
   const userData = window.localStorage.getItem("user");
 
-  //Состояние принмающее текущее значение "user"(token)
   const [user, setUser] = useState(userData)
 
-  //Создадим переменную с useNavigate() для простоты использования.
-  //useNavigate() перенаправляет пользователя на определенный URL
   const navigate = useNavigate()
 
-  //Функция проверяет значение ключа "user" из localStorage 
-  //B если оно имеетеся, то перенаправляет пользователя на главную страницу
   const checkOut = () => {
     const result = localStorage.getItem("user")
     if (result) {
@@ -28,13 +22,11 @@ const App = () => {
     }
   }
 
-  //Запускает проверку на user, при запуске приложения 
   useEffect(() => {
     console.log("Запускается useEffect с checkOut")
     checkOut()
   }, [])
 
-  //Выход
   const logout = () => {
     setUser(false);
     removeToken("user")

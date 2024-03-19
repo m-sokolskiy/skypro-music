@@ -56,15 +56,15 @@ export const RegisterPage = () => {
         }
     }
 
-    // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
     useEffect(() => {
         setError(null);
-    }, [email, password, repeatPassword, username]);
+    }, [email, username, password, repeatPassword]);
 
     return (
 
         <S.Wrapper>
             <S.ContainerEnter>
+
                 <S.ModalBlock>
 
                     <S.ModalFormLogin action="#">
@@ -93,12 +93,15 @@ export const RegisterPage = () => {
                             <S.SignUpButton onClick={register} disabled={block} type="button" >
                                 {block ? "Регестрируем..." : "Зарегестрироваться"}
                             </S.SignUpButton>
+
                             <Link to="/">
                                 <S.LoginButton >Войти</S.LoginButton>
                             </Link>
+                            
                         </S.Buttons>
 
                     </S.ModalFormLogin>
+
                 </S.ModalBlock>
             </S.ContainerEnter>
         </S.Wrapper>

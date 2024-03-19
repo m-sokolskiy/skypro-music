@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
-import { getToken, postLogin } from '../../Api';
-import { useNavigate } from 'react-router-dom';
+import { postLogin } from '../../Api';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
 
 export const LoginPage = () => {
@@ -10,28 +10,47 @@ export const LoginPage = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(null);
 
     const navigate = useNavigate()
 
     const login = async () => {
-        await postLogin(email, password)
-            .then((data) => {
-                console.log(data.json())
-            })
 
-        await JSON.parse(localStorage.getItem("user"))
-            .then((token) => {
-                console.log(token)
-            })
-
+        if (email.length === 0 && password.length === 0) {
+            setError("Заполните поля");
+        } else if (email.length === 0) {
+            setError("Укажите почту");
+            return;
+        } else if (password.length === 0) {
+            setError("Укажите пароль");
+            return;
+        } else {
+            try {
+                const result = await postLogin(email, password).then((data) => {
+                    if (data.detail) {
+                        throw new Error(data.detail);
+                    }
+                })
+                navigate("/main");
+            } catch (error) {
+                console.log(error.message);
+                setError(error.message);
+            };
+        }
 
     }
+
+    useEffect(() => {
+        setError(null);
+    }, [email, password]);
 
     return (
 
         <S.Wrapper>
             <S.ContainerEnter>
+
                 <S.ModalBlock>
+
                     <S.ModalFormLogin action="#">
 
                         <S.ModalFormLoginLink to="/">
@@ -46,21 +65,24 @@ export const LoginPage = () => {
                         {/* Инпут пароль */}
                         <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
-                        <S.ModalBtnEnter >
+                        {/* Рендер ошибки */}
+                        {error && <S.Error>{error}</S.Error>}
 
-                            <S.ModalBtnEnterLink onClick={login}>Войти</S.ModalBtnEnterLink>
+                        <S.Buttons>
+                            <S.SignInButton onClick={login} type="button" >Войти</S.SignInButton>
 
-                        </S.ModalBtnEnter>
+                            <Link to="/register">
+                                <S.RegisterButton>Зарегестрироваться</S.RegisterButton>
+                            </Link>
 
-                        <S.ModalBtnSignUp >
-
-                            <S.ModalBtnSignUpLink to="/register">Зарегистрироваться</S.ModalBtnSignUpLink>
-
-                        </S.ModalBtnSignUp>
+                        </S.Buttons>
 
                     </S.ModalFormLogin>
+
                 </S.ModalBlock>
+
             </S.ContainerEnter>
         </S.Wrapper>
     );
 };
+

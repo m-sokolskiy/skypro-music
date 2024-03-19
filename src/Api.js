@@ -32,11 +32,19 @@ export const postLogin = async (email, password) => {
       "content-type": "application/json",
     },
   })
-  console.log(response);
+
+  if (response.status === 500) {
+    throw new Error("Сервер не отвечает")
+  }
+
+  // console.log(response);
+
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
+
   const token = await getToken(email, password)
-  console.log(token);
+  // console.log(token);
+  return data
 };
 
 export const postRegister = async (email, password, username) => {

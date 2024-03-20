@@ -38,12 +38,10 @@ export const postLogin = async (email, password) => {
   }
 
   // console.log(response);
-
   const data = await response.json();
   // console.log(data);
-
   const token = await getToken(email, password)
-  // console.log(token);
+  console.log(token);
   return data
 };
 
@@ -83,7 +81,6 @@ export const getToken = async (email, password) => {
   });
   const data = await response.json()
   await localStorage.setItem("user", JSON.stringify(data))
-  return data
 };
 
 export const getRefreshToken = async (email, password) => {

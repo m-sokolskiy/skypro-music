@@ -1,8 +1,16 @@
-import { removeToken } from "../../localStorage.js";
+
 import * as S from "./style/NavigationLink.S.js"
+import { UserContext } from '../context/UserContext.js';
+import { useContext} from 'react';
+
 
 // ССЫЛКИ ПО ПРЕЛОЖЕНИЮ
 const NavigationLink = () => {
+    const { setUser } = useContext(UserContext);
+    const logout = () => {
+        setUser(false);
+        window.localStorage.removeItem("user");
+    }
     return (
         <S.NavMenu >
             <S.MenuList >
@@ -16,7 +24,7 @@ const NavigationLink = () => {
                 </S.MenuItem>
 
                 <S.MenuItem >
-                    <S.MenuLink to="/" onClick={() => removeToken()} >Выйти</S.MenuLink>
+                    <S.MenuLink to="/" onClick={logout} >Выйти</S.MenuLink>
                 </S.MenuItem>
 
             </S.MenuList>

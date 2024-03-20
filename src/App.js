@@ -27,10 +27,6 @@ const App = () => {
     checkOut()
   }, [])
 
-  const logout = () => {
-    setUser(false);
-    removeToken("user")
-  }
 
   return (
     <>

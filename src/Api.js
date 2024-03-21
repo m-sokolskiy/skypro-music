@@ -37,11 +37,9 @@ export const postLogin = async (email, password) => {
     throw new Error("Сервер не отвечает")
   }
 
-  // console.log(response);
+  console.log(response);
   const data = await response.json();
-  // console.log(data);
-  const token = await getToken(email, password)
-  console.log(token);
+  console.log(data);
   return data
 };
 
@@ -61,7 +59,6 @@ export const postRegister = async (email, password, username) => {
   if (response.status === 500) {
     throw new Error("Сервер не отвечает")
   }
-
   const data = await response.json();
   console.log(data);
   return data
@@ -80,7 +77,7 @@ export const getToken = async (email, password) => {
     },
   });
   const data = await response.json()
-  await localStorage.setItem("user", JSON.stringify(data))
+  return data
 };
 
 export const getRefreshToken = async (email, password) => {
@@ -94,6 +91,6 @@ export const getRefreshToken = async (email, password) => {
       "content-type": "application/json",
     },
   });
-  const result = await response.json()
-  return result
+  const data = await response.json()
+  return data
 };

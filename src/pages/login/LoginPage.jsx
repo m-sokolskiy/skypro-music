@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
-import { postLogin } from '../../Api';
+import { getToken, postLogin } from '../../Api';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
 
@@ -33,11 +33,10 @@ export const LoginPage = () => {
                     if (data.detail) {
                         throw new Error(data.detail);
                     }
-                })
+                });
                 setBlock(false)
                 navigate("/main");
             } catch (error) {
-                console.log(error.message);
                 setError(error.message);
                 setBlock(false)
             };

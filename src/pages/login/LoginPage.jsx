@@ -6,6 +6,7 @@ import { UserContext } from '../../components/context/UserContext';
 
 export const LoginPage = () => {
     //Вызываю данные из контекста
+
     const { setUser } = useContext(UserContext);
 
     const [email, setEmail] = useState("")
@@ -29,13 +30,19 @@ export const LoginPage = () => {
         } else {
             try {
                 setBlock(true)
-                const result = await postLogin(email, password).then((data) => {
+                postLogin(email, password).then((data) => {
+                    localStorage.setItem("user", JSON.stringify(data))
                     if (data.detail) {
                         throw new Error(data.detail);
                     }
-                });
-                setBlock(false)
-                navigate("/main");
+                    setBlock(false)
+                    setUser(data)
+                    navigate("/main");
+                }).then(() => {
+                    return getToken(email, password)
+                }).then((token) => {
+                    localStorage.setItem("token", JSON.stringify(token))
+                })
             } catch (error) {
                 setError(error.message);
                 setBlock(false)
@@ -43,10 +50,6 @@ export const LoginPage = () => {
         }
 
     }
-
-    useEffect(() => {
-        setError(null);
-    }, [email, password]);
 
     return (
 
@@ -74,9 +77,9 @@ export const LoginPage = () => {
 
                         <S.Buttons>
                             <S.SignInButton onClick={login} disabled={block} type="button" >
-                            {block ? "Входим..." : "Войти"}
+                                {block ? "Входим..." : "Войти"}
 
-                                </S.SignInButton>
+                            </S.SignInButton>
 
                             <Link to="/register">
                                 <S.RegisterButton>Зарегестрироваться</S.RegisterButton>

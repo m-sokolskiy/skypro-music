@@ -37,9 +37,8 @@ export const postLogin = async (email, password) => {
     throw new Error("Сервер не отвечает")
   }
 
-  console.log(response);
   const data = await response.json();
-  console.log(data);
+
   return data
 };
 
@@ -76,7 +75,14 @@ export const getToken = async (email, password) => {
       "content-type": "application/json",
     },
   });
+
+  if(!response.ok) {
+    const error = await response.json()
+    throw new Error(error.message)
+  }
+
   const data = await response.json()
+  
   return data
 };
 

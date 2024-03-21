@@ -10,6 +10,7 @@ const NavigationLink = () => {
     const logout = () => {
         setUser(false);
         window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
     }
     return (
         <S.NavMenu >

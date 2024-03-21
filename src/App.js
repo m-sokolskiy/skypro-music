@@ -16,7 +16,7 @@ const App = () => {
   const checkOut = () => {
     const result = localStorage.getItem("user")
     if (result) {
-      setUser(true)
+      setUser(JSON.parse(result))
       navigate("/main")
       console.log("Работает проверка user")
     }

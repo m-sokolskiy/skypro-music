@@ -12,7 +12,7 @@ export const AppRoutes = ({ token }) => {
     return (
         // Компонент содержит все роуты
         <Routes>
-            {/* Сами роуты */}
+            {/* Доступные всем пользователям */}
             <Route path="/" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="*" element={<NotFoundPage />} />

@@ -49,8 +49,8 @@ export const RegisterPage = () => {
         }).finally(() => {
             setBlock(false)
         })
-
     }
+
 
     useEffect(() => {
         setError(null);

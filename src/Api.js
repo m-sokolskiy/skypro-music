@@ -32,13 +32,14 @@ export const postLogin = async (email, password) => {
       "content-type": "application/json",
     },
   })
-
   if (response.status === 500) {
     throw new Error("Сервер не отвечает")
   }
-
+  if(!response.ok) {
+    const error = await response.json()
+    throw new Error(error.detail)
+  }
   const data = await response.json();
-
   return data
 };
 
@@ -58,6 +59,13 @@ export const postRegister = async (email, password, username) => {
   if (response.status === 500) {
     throw new Error("Сервер не отвечает")
   }
+
+  if(!response.ok) {
+    const error = await response.json()
+    console.log(error);
+    throw new Error(error.email || error.password || error.username)
+  }
+
   const data = await response.json();
   console.log(data);
   return data

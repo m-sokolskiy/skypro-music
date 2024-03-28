@@ -19,36 +19,32 @@ export const LoginPage = () => {
 
     const login = async () => {
 
-        if (email.length === 0 && password.length === 0) {
-            setError("Заполните поля");
-        } else if (email.length === 0) {
+        if (!email && !password) {
+            setError("Заполните поля")
+            return;
+        }
+        if (!email) {
             setError("Укажите почту");
             return;
-        } else if (password.length === 0) {
+        }
+        if (!password) {
             setError("Укажите пароль");
             return;
-        } else {
-            try {
-                setBlock(true)
-                postLogin(email, password).then((data) => {
-                    localStorage.setItem("user", JSON.stringify(data))
-                    if (data.detail) {
-                        throw new Error(data.detail);
-                    }
-                    setBlock(false)
-                    setUser(data)
-                    navigate("/main");
-                }).then(() => {
-                    return getToken(email, password)
-                }).then((token) => {
-                    localStorage.setItem("token", JSON.stringify(token))
-                })
-            } catch (error) {
-                setError(error.message);
-                setBlock(false)
-            };
         }
-
+        setBlock(true)
+        postLogin(email, password).then((data) => {
+            localStorage.setItem("user", JSON.stringify(data))
+            setUser(data)
+            navigate("/main");
+        }).then(() => {
+            return getToken(email, password)
+        }).then((token) => {
+            localStorage.setItem("token", JSON.stringify(token))
+        }).catch((error) => {
+            setError(error.message);
+        }).finally(() => {
+            setBlock(false)
+        })
     }
 
     return (

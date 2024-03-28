@@ -18,42 +18,38 @@ export const RegisterPage = () => {
 
     const register = async () => {
 
-        if (email.length === 0 && password.length === 0 && username.length === 0) {
+        if (!email && !password && !username) {
             setError("Заполните поля");
-        } else if (email.length === 0) {
+            return;
+        }
+        if (!email) {
             setError("Укажите почту");
             return;
-        } else if (username.length === 0) {
+        }
+        if (!username) {
             setError("Укажите имя пользователя");
             return;
-        } else if (password.length === 0) {
+        }
+        if (!password) {
             setError(" Укажите пароль");
             return;
-        } else if (repeatPassword.length === 0) {
+        }
+        if (!repeatPassword) {
             setError("Повторите пароль");
             return;
-        } else if (password !== repeatPassword) {
-            setError("Пароли не совпадают");
-        } else {
-            try {
-                setBlock(true)
-                const result = await postRegister(email, password, username).then((data) => {
-                    if (data.email !== email && data.email !== undefined) {
-                        throw new Error(data.email);
-                    } else if ((data.username !== username && data.username !== undefined)) {
-                        throw new Error(data.username);
-                    } else if ((data.password !== password && data.password !== undefined)) {
-                        throw new Error(data.password);
-                    }
-                })
-                setBlock(false)
-                navigate("/");
-            } catch (error) {
-                console.log(error.message);
-                setError(error.message);
-                setBlock(false)
-            };
         }
+        if (password !== repeatPassword) {
+            setError("Пароли не совпадают");
+        }
+        setBlock(true)
+        postRegister(email, password, username).then((data) => {
+         navigate("/");
+        }).catch((error) => {
+            setError(error.message);
+        }).finally(() => {
+            setBlock(false)
+        })
+
     }
 
     useEffect(() => {
@@ -97,7 +93,7 @@ export const RegisterPage = () => {
                             <Link to="/">
                                 <S.LoginButton >Войти</S.LoginButton>
                             </Link>
-                            
+
                         </S.Buttons>
 
                     </S.ModalFormLogin>

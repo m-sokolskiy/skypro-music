@@ -1,8 +1,6 @@
-// Ссылки Api
 const getAllTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/all/";
 const getOneTrackApi = "https://skypro-music-api.skyeng.tech/catalog/track/";
 
-// Получаем список треков
 export const getAllTracks = async () => {
   const response = await fetch(getAllTrackApi, {
     method: "GET",
@@ -14,8 +12,7 @@ export const getAllTracks = async () => {
   return data;
 };
 
-// Получаем трек по ID 
-export const getTrackID = async (id) => {
+export const getTrackId = async (id) => {
   const response = await fetch(`${getOneTrackApi}${id}`, {
     method: "GET",
   });
@@ -24,27 +21,57 @@ export const getTrackID = async (id) => {
   return data;
 };
 
-// Авторизация 
-export const login = async (email, password) => {
+export const postLogin = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/login/", {
     method: "POST",
     body: JSON.stringify({
+      email: email,
+      password: password
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+  if (response.status === 500) {
+    throw new Error("Сервер не отвечает")
+  }
+  if(!response.ok) {
+    const error = await response.json()
+    throw new Error(error.detail)
+  }
+  const data = await response.json();
+  return data
+};
+
+export const postRegister = async (email, password, username) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
+    method: "POST",
+    body: JSON.stringify({
       email,
-      password
+      password,
+      username
     }),
     headers: {
       "content-type": "application/json",
     },
   })
 
-  if (response.ok) {
-    const data = await getToken(email, password)
-    return data
+  if (response.status === 500) {
+    throw new Error("Сервер не отвечает")
   }
-  
+
+  if(!response.ok) {
+    const error = await response.json()
+    console.log(error);
+    throw new Error(error.email || error.password || error.username)
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data
+
 };
 
-// Токен 
 export const getToken = async (email, password) => {
   const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
     method: "POST",
@@ -56,22 +83,28 @@ export const getToken = async (email, password) => {
       "content-type": "application/json",
     },
   });
-  const result = await response.json()
-  return result
+
+  if(!response.ok) {
+    const error = await response.json()
+    throw new Error(error.message)
+  }
+
+  const data = await response.json()
+  
+  return data
 };
 
-// Регистриция  
-export const registration = async (email, password, username) => {
-  const response = await fetch("https://skypro-music-api.skyeng.tech/user/signup/", {
+export const getRefreshToken = async (email, password) => {
+  const response = await fetch("https://skypro-music-api.skyeng.tech/user/token/refresh/", {
     method: "POST",
     body: JSON.stringify({
       email,
-      password,
-      username
+      password
     }),
     headers: {
       "content-type": "application/json",
     },
-  }).then((response) => response.json())
-  .then((json) => console.log(json));
+  });
+  const data = await response.json()
+  return data
 };

@@ -1,38 +1,59 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as S from './style/LoginPage.S'
-import { login } from '../../Api';
-import { setToken } from '../../localStorage';
-import { useNavigate } from 'react-router-dom';
+import { getToken, postLogin } from '../../Api';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../components/context/UserContext';
 
 export const LoginPage = () => {
+    //Вызываю данные из контекста
+
+    const { setUser } = useContext(UserContext);
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(null);
+    const [block, setBlock] = useState(null);
+
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        console.log(email, password);
-    }, [email, password])
+    const login = async () => {
 
-    useEffect(() => {
-        console.log("Логин компонент");
-    }, [])
-
-    const loginPost = async () => {
-        const result = await login(email, password)
-        console.log(result);
-        if (result) {
-            setToken(result.access);
-            navigate('/main');
+        if (!email && !password) {
+            setError("Заполните поля")
+            return;
         }
+        if (!email) {
+            setError("Укажите почту");
+            return;
+        }
+        if (!password) {
+            setError("Укажите пароль");
+            return;
+        }
+        setBlock(true)
+        postLogin(email, password).then((data) => {
+            localStorage.setItem("user", JSON.stringify(data))
+            setUser(data)
+            navigate("/main");
+        }).then(() => {
+            return getToken(email, password)
+        }).then((token) => {
+            localStorage.setItem("token", JSON.stringify(token))
+        }).catch((error) => {
+            setError(error.message);
+        }).finally(() => {
+            setBlock(false)
+        })
     }
 
     return (
 
         <S.Wrapper>
             <S.ContainerEnter>
+
                 <S.ModalBlock>
+
                     <S.ModalFormLogin action="#">
 
                         <S.ModalFormLoginLink to="/">
@@ -47,21 +68,27 @@ export const LoginPage = () => {
                         {/* Инпут пароль */}
                         <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
-                        <S.ModalBtnEnter >
+                        {/* Рендер ошибки */}
+                        {error && <S.Error>{error}</S.Error>}
 
-                            <S.ModalBtnEnterLink to="/main" onClick={loginPost}>Войти</S.ModalBtnEnterLink>
+                        <S.Buttons>
+                            <S.SignInButton onClick={login} disabled={block} type="button" >
+                                {block ? "Входим..." : "Войти"}
 
-                        </S.ModalBtnEnter>
+                            </S.SignInButton>
 
-                        <S.ModalBtnSignUp >
+                            <Link to="/register">
+                                <S.RegisterButton>Зарегестрироваться</S.RegisterButton>
+                            </Link>
 
-                            <S.ModalBtnSignUpLink to="/register">Зарегистрироваться</S.ModalBtnSignUpLink>
-
-                        </S.ModalBtnSignUp>
+                        </S.Buttons>
 
                     </S.ModalFormLogin>
+
                 </S.ModalBlock>
+
             </S.ContainerEnter>
         </S.Wrapper>
     );
 };
+

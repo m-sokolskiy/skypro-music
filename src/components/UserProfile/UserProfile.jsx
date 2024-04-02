@@ -12,7 +12,7 @@ const UserProfile = () => {
     }
     return (
         <S.SidebarPersonal >
-            <S.SidebarPersonalName >{user?.username}</S.SidebarPersonalName>
+            <S.SidebarPersonalName >{user.username}</S.SidebarPersonalName>
             <S.SidebarIcon >
                 <S.SidebarLogoutSvg alt="logout" onClick={logout}>
                     <use href="../img/icon/sprite.svg#logout"></use>

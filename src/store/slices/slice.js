@@ -1,12 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = [];
+const initialState = {
+    currentTrack: null,
+};
 
 export const trackSlice = createSlice({
     name:"track",
     initialState,
     reducers: {
-        currentTrack: () => {},
+        currentTrack: (state, action) => {
+            state.currentTrack
+        },
         nextTrack: () => {},
         prevTrack: () => {},
         shuffleTrack: () => {},

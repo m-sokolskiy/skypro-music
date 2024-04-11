@@ -6,24 +6,17 @@ import Bar from "../../components/Bar/Bar";
 import * as S from "./style/MainPage.S"
 
 export const MainPage = () => {
-    
-    //Состояние Bar
-    const [trackBar, setTrackBar] = useState(null)
 
     return (
         <S.Wrapper>
             <S.Container>
-
                 <S.Main>
                     <Navigation />
-                    <Content trackBar={trackBar} setTrackBar={setTrackBar} />
+                    <Content />
                     <SideBar />
                 </S.Main>
-
-                {trackBar ? <Bar trackBar={trackBar} /> : null}
-
+                <Bar />
             </S.Container>
-            
         </S.Wrapper>
     );
 };

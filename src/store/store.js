@@ -3,6 +3,6 @@ import trackReducer from "./slices/slice"
 
 export const store = configureStore({
     reducer: {
-        track: trackReducer,
+        player: trackReducer,
     },
 });

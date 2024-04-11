@@ -4,26 +4,27 @@ import * as S from './style/Playlist.S.js';
 import { getAllTracks } from '../../Api.js';
 import { useState, useEffect } from 'react';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentTrack, setTrackList } from '../../store/slices/slice.js';
 
 
 
 // ПЛЕЙЛИСТ
-const Playlist = ({ setTrackBar }) => {
+const Playlist = () => {
 
-    //Треки
-    const [tracks, setTracks] = useState([]);
-    //Загрузка треков
+    const dispatch = useDispatch()
+
     const [isLoading, setIsLoading] = useState(false);
     const [errorGetPlayList, setErrorGetPlayList] = useState(null)
 
+    const tracks = useSelector(state => state.player.trackList)
 
     const getTracks = async () => {
         try {
             setIsLoading(true);
             const allTracksData = await getAllTracks();
-            await setTracks(allTracksData);
             setIsLoading(false);
-            console.log(allTracksData);
+            dispatch(setTrackList(allTracksData))
         } catch (error) {
             setErrorGetPlayList("Не удалось получить список треков")
             setIsLoading(false);
@@ -33,7 +34,6 @@ const Playlist = ({ setTrackBar }) => {
     useEffect(() => {
         getTracks();
     }, []);
-
 
     return (
         <S.CenterBlockContent>
@@ -70,7 +70,7 @@ const Playlist = ({ setTrackBar }) => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                setTrackBar={setTrackBar}
+                                setTrackBar={() => dispatch(setCurrentTrack(track))}
                             />
                         )
                     }

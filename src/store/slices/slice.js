@@ -1,21 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
-    currentTrack: null,
-};
-
-export const trackSlice = createSlice({
-    name:"track",
-    initialState,
+export const playerSlice = createSlice({
+    name: "tracks",
+    initialState: {
+        trackList: [],
+        currentTrack: null,
+    },
     reducers: {
-        currentTrack: (state, action) => {
-            state.currentTrack
+        setTrackList: (state, action) => {
+            state.trackList = action.payload
         },
-        nextTrack: () => {},
-        prevTrack: () => {},
-        shuffleTrack: () => {},
-    }
+        setCurrentTrack: (state, action) => {
+            state.currentTrack = action.payload
+        },
+
+    },
 });
 
-export const {currentTrack, nextTrack, prevTrack, shuffleTrack} = trackSlice.actions;
-export default trackSlice.reducer;
+export const { setTrackList, setCurrentTrack } = playerSlice.actions;
+export default playerSlice.reducer;

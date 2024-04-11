@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react';
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 // Проигрыватель
-const Bar = ({ trackBar }) => {
+const Bar = () => {
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
+
+  const trackBar = useSelector(state => state.player.currentTrack)
+
   //Продолжительность трека
   const [isDuration, setIsDuration] = useState(0)
   //Текущее время трека
@@ -99,148 +103,152 @@ const Bar = ({ trackBar }) => {
   }, [trackBar])
 
   useEffect(() => {
-    audioRef.current.volume = isVolume;
+    if(audioRef.current) {
+      audioRef.current.volume = isVolume;
+    }
   }, [isVolume])
 
 
   return (
     <>
-      {/* HTML элемент на который мы ссылаемся */}
-      <audio
-        ref={audioRef}
-        src={trackBar.track_file}
-        onTimeUpdate={progressTrack}
-        autoPlay={true} >
-        <source src="/music/song.mp3" type="audio/mpeg" />
-      </audio>
+      {trackBar && <>
+        <audio
+          ref={audioRef}
+          src={trackBar?.track_file}
+          onTimeUpdate={progressTrack}
+          autoPlay={true} >
+          <source src="/music/song.mp3" type="audio/mpeg" />
+        </audio>
 
-      <p style={{
-        color: "rgba(255,255,255,0.61)",
-        position: "absolute",
-        bottom: "83px",
-        right: "15px"
-      }}>
-        {isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}
-      </p>
+        <p style={{
+          color: "rgba(255,255,255,0.61)",
+          position: "absolute",
+          bottom: "83px",
+          right: "15px"
+        }}>
+          {isDuration ? `${timeTrack(isCurrentTime)} / ${timeTrack(isDuration)}` : ""}
+        </p>
 
-      <S.Bar>
-        <S.BarContent>
+        <S.Bar>
+          <S.BarContent>
 
-          {/* Прогресс трека */}
-          <S.BarPlayerProgress
-            type="range"
-            min={0}
-            max={isDuration}
-            step={0.01}
-            value={isCurrentTime}
-            onChange={(event) => rewindingTrack(event)}
-          >
-          </S.BarPlayerProgress>
+            {/* Прогресс трека */}
+            <S.BarPlayerProgress
+              type="range"
+              min={0}
+              max={isDuration || 0}
+              step={0.01}
+              value={isCurrentTime}
+              onChange={(event) => rewindingTrack(event)}
+            >
+            </S.BarPlayerProgress>
 
-          {/* Проигрыватель */}
-          <S.BarPlayerBlock>
-            <S.BarPlayer >
+            {/* Проигрыватель */}
+            <S.BarPlayerBlock>
+              <S.BarPlayer >
 
-              <S.PlayerControls>
+                <S.PlayerControls>
 
-                {/* Предыдущий */}
-                <S.PlayerBtnPrev onClick={handleBack} >
-                  <S.PlayerBtnPrevSvg alt="prev">
-                    <use href="../img/icon/sprite.svg#icon-prev"></use>
-                  </S.PlayerBtnPrevSvg>
-                </S.PlayerBtnPrev>
+                  {/* Предыдущий */}
+                  <S.PlayerBtnPrev onClick={handleBack} >
+                    <S.PlayerBtnPrevSvg alt="prev">
+                      <use href="../img/icon/sprite.svg#icon-prev"></use>
+                    </S.PlayerBtnPrevSvg>
+                  </S.PlayerBtnPrev>
 
-                {/* Плей */}
-                <S.PlayerBtnPlay onClick={togglePlay} >
-                  <S.PlayerBtnPlaySvg alt={isPlaying ? "pause" : "play"}>
-                    <use href={isPlaying ? "../img/icon/sprite.svg#icon-pause" : "../img/icon/sprite.svg#icon-play"}
-                    ></use>
-                  </S.PlayerBtnPlaySvg>
-                </S.PlayerBtnPlay>
+                  {/* Плей */}
+                  <S.PlayerBtnPlay onClick={togglePlay} >
+                    <S.PlayerBtnPlaySvg alt={isPlaying ? "pause" : "play"}>
+                      <use href={isPlaying ? "../img/icon/sprite.svg#icon-pause" : "../img/icon/sprite.svg#icon-play"}
+                      ></use>
+                    </S.PlayerBtnPlaySvg>
+                  </S.PlayerBtnPlay>
 
-                {/* Следующий */}
-                <S.PlayerBtnNext onClick={handleNext} >
-                  <S.PlayerBtnNextSvg alt="next">
-                    <use href="../img/icon/sprite.svg#icon-next"></use>
-                  </S.PlayerBtnNextSvg>
-                </S.PlayerBtnNext>
+                  {/* Следующий */}
+                  <S.PlayerBtnNext onClick={handleNext} >
+                    <S.PlayerBtnNextSvg alt="next">
+                      <use href="../img/icon/sprite.svg#icon-next"></use>
+                    </S.PlayerBtnNextSvg>
+                  </S.PlayerBtnNext>
 
-                {/* Повтор */}
-                <S.PlayerBtnRepeat onClick={toggleLoop}  >
+                  {/* Повтор */}
+                  <S.PlayerBtnRepeat onClick={toggleLoop}  >
 
-                  <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLoop}>
-                    <use xlinkHref="../img/icon/sprite.svg#icon-repeat"></use>
-                  </S.PlayerBtnRepeatSvg>
+                    <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLoop}>
+                      <use xlinkHref="../img/icon/sprite.svg#icon-repeat"></use>
+                    </S.PlayerBtnRepeatSvg>
 
-                </S.PlayerBtnRepeat>
+                  </S.PlayerBtnRepeat>
 
-                {/* Случайный */}
-                <S.PlayerBtnShuffle onClick={handleShuffle} >
-                  <S.PlayerBtnShuffleSvg alt="shuffle">
-                    <use href="../img/icon/sprite.svg#icon-shuffle"></use>
-                  </S.PlayerBtnShuffleSvg>
-                </S.PlayerBtnShuffle>
+                  {/* Случайный */}
+                  <S.PlayerBtnShuffle onClick={handleShuffle} >
+                    <S.PlayerBtnShuffleSvg alt="shuffle">
+                      <use href="../img/icon/sprite.svg#icon-shuffle"></use>
+                    </S.PlayerBtnShuffleSvg>
+                  </S.PlayerBtnShuffle>
 
-              </S.PlayerControls>
+                </S.PlayerControls>
 
-              {/* ТРЕК */}
+                {/* ТРЕК */}
 
-              <S.PlayerTrackPlay>
+                <S.PlayerTrackPlay>
 
-                {/* Активный трек */}
-                <BarPlayer trackBar={trackBar} />
+                  {/* Активный трек */}
+                  <BarPlayer trackBar={trackBar} />
 
 
-                {/* Лайки */}
-                <S.TrackPlayLikeDis>
+                  {/* Лайки */}
+                  <S.TrackPlayLikeDis>
 
-                  <S.TrackPlayLike>
-                    <S.TrackPlayLikeSvg alt="like">
-                      <use href="../img/icon/sprite.svg#icon-like"></use>
-                    </S.TrackPlayLikeSvg>
-                  </S.TrackPlayLike>
+                    <S.TrackPlayLike>
+                      <S.TrackPlayLikeSvg alt="like">
+                        <use href="../img/icon/sprite.svg#icon-like"></use>
+                      </S.TrackPlayLikeSvg>
+                    </S.TrackPlayLike>
 
-                  <S.TrackPlayDislike>
-                    <S.TrackPlayDislikeSvg alt="dislike">
-                      <use href="../img/icon/sprite.svg#icon-dislike"></use>
-                    </S.TrackPlayDislikeSvg>
-                  </S.TrackPlayDislike>
+                    <S.TrackPlayDislike>
+                      <S.TrackPlayDislikeSvg alt="dislike">
+                        <use href="../img/icon/sprite.svg#icon-dislike"></use>
+                      </S.TrackPlayDislikeSvg>
+                    </S.TrackPlayDislike>
 
-                </S.TrackPlayLikeDis>
+                  </S.TrackPlayLikeDis>
 
-              </S.PlayerTrackPlay>
+                </S.PlayerTrackPlay>
 
-            </S.BarPlayer>
+              </S.BarPlayer>
 
-            {/* Громкость */}
-            <S.BarVolumeBlock>
-              <S.VolumeContent >
-                <S.VolumeImage>
-                  <S.VolumeSvg alt="volume">
-                    <use href="../img/icon/sprite.svg#icon-volume"></use>
-                  </S.VolumeSvg>
-                </S.VolumeImage>
+              {/* Громкость */}
+              <S.BarVolumeBlock>
+                <S.VolumeContent >
+                  <S.VolumeImage>
+                    <S.VolumeSvg alt="volume">
+                      <use href="../img/icon/sprite.svg#icon-volume"></use>
+                    </S.VolumeSvg>
+                  </S.VolumeImage>
 
-                {/* Регулировка громкости */}
-                <S.VolumeProgress>
-                  <S.VolumeProgressLine
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={isVolume}
-                    onChange={(event) => handleVolume(event)} />
-                </S.VolumeProgress>
+                  {/* Регулировка громкости */}
+                  <S.VolumeProgress>
+                    <S.VolumeProgressLine
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={isVolume}
+                      onChange={(event) => handleVolume(event)} />
+                  </S.VolumeProgress>
 
-              </S.VolumeContent>
+                </S.VolumeContent>
 
-            </S.BarVolumeBlock>
+              </S.BarVolumeBlock>
 
-          </S.BarPlayerBlock>
+            </S.BarPlayerBlock>
 
-        </S.BarContent>
+          </S.BarContent>
 
-      </S.Bar>
+        </S.Bar>
+      </>}
+
     </>
   );
 }

@@ -17,5 +17,7 @@ export const playerSlice = createSlice({
     },
 });
 
+const playerReducer = playerSlice.reducer
+
 export const { setTrackList, setCurrentTrack } = playerSlice.actions;
-export default playerSlice.reducer;
+export default playerReducer;

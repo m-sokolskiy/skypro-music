@@ -17,7 +17,6 @@ const Bar = () => {
   const [isDuration, setIsDuration] = useState(0)
   //Текущее время трека
   const [isCurrentTime, setCurrentTime] = useState(0);
-
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
 
@@ -83,13 +82,13 @@ const Bar = () => {
     return `${min}:${sec}`;
   };
 
-  //Назад 
-  const handleBack = () => {
+  //Вперед 
+  const handleNext = () => {
     alert("Еще не реализовано")
   };
 
-  //Вперед 
-  const handleNext = () => {
+  //Назад 
+  const handleBack = () => {
     alert("Еще не реализовано")
   };
 
@@ -103,7 +102,7 @@ const Bar = () => {
   }, [trackBar])
 
   useEffect(() => {
-    if(audioRef.current) {
+    if (audioRef.current) {
       audioRef.current.volume = isVolume;
     }
   }, [isVolume])

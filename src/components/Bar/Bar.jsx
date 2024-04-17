@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPlayingAnimation } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
@@ -10,6 +11,8 @@ const Bar = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
+
+  const dispatch = useDispatch()
 
   const trackBar = useSelector(state => state.player.currentTrack)
 
@@ -24,6 +27,7 @@ const Bar = () => {
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
+    dispatch(setPlayingAnimation(true))
     console.log(isPlaying)
   };
 
@@ -31,6 +35,7 @@ const Bar = () => {
   const handleStop = () => {
     audioRef.current.pause();
     setIsPlaying(false);
+    dispatch(setPlayingAnimation(false))
     console.log(isPlaying)
   };
   const togglePlay = isPlaying ? handleStop : handleStart;

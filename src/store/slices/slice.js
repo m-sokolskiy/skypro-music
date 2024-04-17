@@ -16,7 +16,6 @@ export const playerSlice = createSlice({
         },
         setPlayingAnimation: (state, action) => {
             state.playingAnimation = action.payload
-            console.log(action.payload.id)
         },
     },
 });

@@ -3,18 +3,19 @@ import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPlayingAnimation } from '../../store/slices/slice.js';
+import { setIsPlaying } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
 
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
 
   const dispatch = useDispatch()
 
   const trackBar = useSelector(state => state.player.currentTrack)
+
+  const isPlaying = useSelector(state => state.player.isPlaying)
 
   //Продолжительность трека
   const [isDuration, setIsDuration] = useState(0)
@@ -26,18 +27,17 @@ const Bar = () => {
   //Воспроизведение.
   const handleStart = () => {
     audioRef.current.play();
-    setIsPlaying(true);
-    dispatch(setPlayingAnimation(true))
+    dispatch(setIsPlaying(true))
     console.log(isPlaying)
   };
 
   //Пауза.
   const handleStop = () => {
     audioRef.current.pause();
-    setIsPlaying(false);
-    dispatch(setPlayingAnimation(false))
+    dispatch(setIsPlaying(false))
     console.log(isPlaying)
   };
+
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   //Включить зацикливание трека
@@ -74,7 +74,7 @@ const Bar = () => {
     setIsDuration(duration);
     setCurrentTime(currentTime);
     if (currentTime === duration) {
-      setIsPlaying(false)
+      dispatch(setIsPlaying(false))
     }
   };
 
@@ -103,7 +103,9 @@ const Bar = () => {
   };
 
   useEffect(() => {
-    setIsPlaying(true);
+    if (trackBar) {
+      dispatch(setIsPlaying(true));
+    }
   }, [trackBar])
 
   useEffect(() => {

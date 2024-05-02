@@ -5,7 +5,7 @@ export const playerSlice = createSlice({
     initialState: {
         trackList: [],
         currentTrack: null,
-        playingAnimation: null,
+        isPlaying: false,
     },
     reducers: {
         setTrackList: (state, action) => {
@@ -14,13 +14,13 @@ export const playerSlice = createSlice({
         setCurrentTrack: (state, action) => {
             state.currentTrack = action.payload
         },
-        setPlayingAnimation: (state, action) => {
-            state.playingAnimation = action.payload
+        setIsPlaying: (state, action) => {
+            state.isPlaying = action.payload
         },
     },
 });
 
 const playerReducer = playerSlice.reducer
 
-export const { setTrackList, setCurrentTrack, setPlayingAnimation } = playerSlice.actions;
+export const { setTrackList, setCurrentTrack, setIsPlaying } = playerSlice.actions;
 export default playerReducer;

@@ -17,12 +17,14 @@ const timeTrack = (time) => {
 const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
     const dispatch = useDispatch()
-    const isPlaying = useSelector(state => state.player.playingAnimation)
+
+    const isPlaying = useSelector(state => state.player.isPlaying)
+    const trackBar = useSelector(state => state.player.currentTrack)
+
 
     //Клик на трек и включение Bar
     const handelTrackBar = () => {
         setTrackBar(track)
-        dispatch(setPlayingAnimation(track))
         console.log(track);
     }
 
@@ -36,11 +38,11 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                     {/* Изображение */}
                     <S.TrackTitleImage>
 
-                        {isPlaying ? <S.PlayingAnimation /> : <S.TrackTitleSvg alt="music">
+                        {trackBar?.id === track.id ? isPlaying ? <S.PlayingAnimation /> : <S.PlayingAnimationPause /> :
+                        
+                        <S.TrackTitleSvg alt="music">
                             <use href="../img/icon/sprite.svg#icon-note"></use>
                         </S.TrackTitleSvg>}
-
-
 
                     </S.TrackTitleImage>
 

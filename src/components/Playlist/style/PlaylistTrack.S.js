@@ -134,9 +134,11 @@ export const TrackTimeText = styled.span`
   color: #696969;
 `
 
-export const TrackTitleText = styled.div``
+export const TrackTitleText = styled.div`
+`
 
-export const TrackTime = styled.div``
+export const TrackTime = styled.div`
+`
 
 const PlayingAnimationKeyframes = keyframes`
   0%,
@@ -155,5 +157,14 @@ export const PlayingAnimation = styled.svg`
   border-radius: 8px;
   display: block;
   animation: ${PlayingAnimationKeyframes} 0.6s ease-in-out infinite both;
+}
+`
+
+export const PlayingAnimationPause = styled.svg`
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+  display: block;
 }
 `

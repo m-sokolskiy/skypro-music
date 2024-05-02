@@ -3,7 +3,7 @@ import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsPlaying } from '../../store/slices/slice.js';
+import { setIsPlaying, setNextTrack, setPreviousTrack } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
@@ -89,12 +89,12 @@ const Bar = () => {
 
   //Вперед 
   const handleNext = () => {
-    alert("Еще не реализовано")
+    dispatch(setNextTrack())
   };
 
   //Назад 
   const handleBack = () => {
-    alert("Еще не реализовано")
+    dispatch(setPreviousTrack())
   };
 
   //Перемешать 

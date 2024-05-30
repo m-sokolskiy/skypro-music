@@ -12,7 +12,7 @@ const Bar = () => {
   const [isVolume, setIsVolume] = useState("0.3")
 
   const dispatch = useDispatch()
-
+  //Текущий трек
   const trackBar = useSelector(state => state.player.currentTrack)
 
   const isPlaying = useSelector(state => state.player.isPlaying)
@@ -36,6 +36,12 @@ const Bar = () => {
     audioRef.current.pause();
     dispatch(setIsPlaying(false))
     console.log(isPlaying)
+    const timeOne = isCurrentTime;
+    const timeTwo = trackBar.duration_in_seconds
+
+    console.log(timeTwo);
+    console.log(isCurrentTime);
+    console.log(isDuration);
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
@@ -75,6 +81,7 @@ const Bar = () => {
     setCurrentTime(currentTime);
     if (currentTime === duration) {
       dispatch(setIsPlaying(false))
+      dispatch(setNextTrack())
     }
   };
 
@@ -105,7 +112,7 @@ const Bar = () => {
   useEffect(() => {
     if (trackBar) {
       dispatch(setIsPlaying(true));
-    }
+    };
   }, [trackBar])
 
   useEffect(() => {
@@ -114,6 +121,11 @@ const Bar = () => {
     }
   }, [isVolume])
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = isVolume;
+    }
+  }, [])
 
   return (
     <>

@@ -9,18 +9,16 @@ import { setIsPlaying, setNextTrack, setPreviousTrack } from '../../store/slices
 const Bar = () => {
 
   const [isLoop, setIsLoop] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
+  const [isDuration, setIsDuration] = useState(0)
+  const [isCurrentTime, setCurrentTime] = useState(0);
 
   const dispatch = useDispatch()
-  //Текущий трек
-  const trackBar = useSelector(state => state.player.currentTrack)
 
+  const trackBar = useSelector(state => state.player.currentTrack)
   const isPlaying = useSelector(state => state.player.isPlaying)
 
-  //Продолжительность трека
-  const [isDuration, setIsDuration] = useState(0)
-  //Текущее время трека
-  const [isCurrentTime, setCurrentTime] = useState(0);
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
 
@@ -30,20 +28,12 @@ const Bar = () => {
     dispatch(setIsPlaying(true))
     console.log(isPlaying)
   };
-
   //Пауза.
   const handleStop = () => {
     audioRef.current.pause();
     dispatch(setIsPlaying(false))
     console.log(isPlaying)
-    const timeOne = isCurrentTime;
-    const timeTwo = trackBar.duration_in_seconds
-
-    console.log(timeTwo);
-    console.log(isCurrentTime);
-    console.log(isDuration);
   };
-
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   //Включить зацикливание трека
@@ -52,13 +42,24 @@ const Bar = () => {
     setIsLoop(true)
     console.log(audioRef.current.loop);
   }
-  //Отключение зацикливания трека
+  //Отключить зацикливания трека
   const handleDisLoop = () => {
     audioRef.current.loop = false;
     setIsLoop(false)
     console.log(audioRef.current.loop);
   }
   const toggleLoop = isLoop ? handleDisLoop : handleLoop;
+
+
+  //Включить перемешивание
+  const handleShuffle = () => {
+    setIsShuffle(true)
+  };
+  //Отключить перемешивание
+  const handleDisShuffle = () => {
+    setIsShuffle(false)
+  };
+  const toggleShuffle = isShuffle ? handleDisShuffle : handleShuffle;
 
   //Громкость
   const handleVolume = (event) => {
@@ -104,10 +105,6 @@ const Bar = () => {
     dispatch(setPreviousTrack())
   };
 
-  //Перемешать 
-  const handleShuffle = () => {
-    alert("Еще не реализовано")
-  };
 
   useEffect(() => {
     if (trackBar) {
@@ -199,8 +196,8 @@ const Bar = () => {
                   </S.PlayerBtnRepeat>
 
                   {/* Случайный */}
-                  <S.PlayerBtnShuffle onClick={handleShuffle} >
-                    <S.PlayerBtnShuffleSvg alt="shuffle">
+                  <S.PlayerBtnShuffle onClick={toggleShuffle} >
+                    <S.PlayerBtnShuffleSvg alt="shuffle" $isActive={isShuffle}>
                       <use href="../img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>
                   </S.PlayerBtnShuffle>

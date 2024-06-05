@@ -70,7 +70,7 @@ const Playlist = () => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                setTrackBar={() => dispatch(setCurrentTrack(track))}
+                                setTrackBar={() => dispatch(setCurrentTrack(track))}                                
                             />
                         )
                     }

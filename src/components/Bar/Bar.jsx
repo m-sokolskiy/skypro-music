@@ -3,7 +3,7 @@ import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsPlaying, setNextTrack, setPreviousTrack } from '../../store/slices/slice.js';
+import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
@@ -18,6 +18,7 @@ const Bar = () => {
 
   const trackBar = useSelector(state => state.player.currentTrack)
   const isPlaying = useSelector(state => state.player.isPlaying)
+  const tracks = useSelector(state => state.player.trackList)
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -54,6 +55,7 @@ const Bar = () => {
   //Включить перемешивание
   const handleShuffle = () => {
     setIsShuffle(true)
+    dispatch(setShuffleList())
   };
   //Отключить перемешивание
   const handleDisShuffle = () => {

@@ -37,19 +37,12 @@ const Bar = () => {
   };
   const togglePlay = isPlaying ? handleStop : handleStart;
 
-  //Включить зацикливание трека
+  //Зацикливание трека
   const handleLoop = () => {
-    audioRef.current.loop = true;
-    setIsLoop(true)
-    console.log(audioRef.current.loop);
+    audioRef.current.loop = !audioRef.current.loop ;
+    setIsLoop(!audioRef.current.loop )
   }
-  //Отключить зацикливания трека
-  const handleDisLoop = () => {
-    audioRef.current.loop = false;
-    setIsLoop(false)
-    console.log(audioRef.current.loop);
-  }
-  const toggleLoop = isLoop ? handleDisLoop : handleLoop;
+
 
 
   //Включить перемешивание
@@ -191,7 +184,7 @@ const Bar = () => {
                   </S.PlayerBtnNext>
 
                   {/* Повтор */}
-                  <S.PlayerBtnRepeat onClick={toggleLoop}  >
+                  <S.PlayerBtnRepeat onClick={handleLoop}  >
 
                     <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLoop}>
                       <use xlinkHref="../img/icon/sprite.svg#icon-repeat"></use>

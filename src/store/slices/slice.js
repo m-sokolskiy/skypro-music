@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { shuffle } from "../../lib/shuffle";
 
 let arr = [1,2,3]
 let newArr = arr
@@ -18,13 +19,6 @@ export const playerSlice = createSlice({
         },
         setShuffleList: (state) => {
             const tracks = [...state.trackList]
-            const shuffle = (array) => {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
-            };
             const randomArr = shuffle(tracks)
             state.shuffleList = randomArr
         },
@@ -39,7 +33,7 @@ export const playerSlice = createSlice({
         },
         setNextTrack: (state) => {
             const playList = state.isShuffle ? state.shuffleList : state.trackList
-            
+
             const index = playList.findIndex((t) => t.id === state.currentTrack.id);
             const nextTrack = playList[index + 1]
             if (nextTrack) {

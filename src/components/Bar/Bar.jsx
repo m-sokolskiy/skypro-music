@@ -3,13 +3,12 @@ import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList } from '../../store/slices/slice.js';
+import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
 
   const [isLoop, setIsLoop] = useState(false);
-  const [isShuffle, setIsShuffle] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
   const [isDuration, setIsDuration] = useState(0)
   const [isCurrentTime, setCurrentTime] = useState(0);
@@ -18,7 +17,8 @@ const Bar = () => {
 
   const trackBar = useSelector(state => state.player.currentTrack)
   const isPlaying = useSelector(state => state.player.isPlaying)
-  const tracks = useSelector(state => state.player.trackList)
+  const isShuffle = useSelector(state => state.player.isShuffle)
+
 
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
@@ -54,14 +54,10 @@ const Bar = () => {
 
   //Включить перемешивание
   const handleShuffle = () => {
-    setIsShuffle(true)
+    dispatch(setIsShuffle(!isShuffle))
     dispatch(setShuffleList())
   };
-  //Отключить перемешивание
-  const handleDisShuffle = () => {
-    setIsShuffle(false)
-  };
-  const toggleShuffle = isShuffle ? handleDisShuffle : handleShuffle;
+
 
   //Громкость
   const handleVolume = (event) => {
@@ -198,7 +194,7 @@ const Bar = () => {
                   </S.PlayerBtnRepeat>
 
                   {/* Случайный */}
-                  <S.PlayerBtnShuffle onClick={toggleShuffle} >
+                  <S.PlayerBtnShuffle onClick={handleShuffle} >
                     <S.PlayerBtnShuffleSvg alt="shuffle" $isActive={isShuffle}>
                       <use href="../img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerBtnShuffleSvg>

@@ -78,6 +78,7 @@ const Bar = () => {
 
     setIsDuration(duration);
     setCurrentTime(currentTime);
+
     if (currentTime === duration) {
       dispatch(setIsPlaying(false))
       dispatch(setNextTrack())
@@ -100,7 +101,12 @@ const Bar = () => {
 
   //Назад 
   const handleBack = () => {
-    dispatch(setPreviousTrack())
+    if (isCurrentTime > 5) {
+      audioRef.current.currentTime = 0
+      setCurrentTime(0)
+    } else {
+      dispatch(setPreviousTrack())
+    }
   };
 
 

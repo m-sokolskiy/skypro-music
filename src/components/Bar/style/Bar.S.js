@@ -162,11 +162,8 @@ export const PlayerBtnPrevSvg = styled.svg`
 
   &:hover{
     cursor: pointer;
-    background: red;
-  }
-
-  &:active{
-    background: blue;
+    stroke: #b1b3b1;
+    fill: #b1b3b1;
   }
 `
 export const PlayerBtnPlaySvg = styled.svg`
@@ -176,11 +173,8 @@ export const PlayerBtnPlaySvg = styled.svg`
   
   &:hover{
     cursor: pointer;
-    background: red;
-  }
-
-  &:active{
-    background: blue;
+    stroke: #b1b3b1;
+    fill: #b1b3b1;
   }
 `
 export const PlayerBtnNextSvg = styled.svg`
@@ -191,11 +185,8 @@ export const PlayerBtnNextSvg = styled.svg`
 
   &:hover{
     cursor: pointer;
-    background: red;
-  }
-
-  &:active{
-    background: blue;
+    stroke: #b1b3b1;
+    fill: #b1b3b1;
   }
 `
 export const PlayerBtnRepeatSvg = styled.svg`
@@ -214,16 +205,14 @@ export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => props.$isActive ?  "#ffffff" :  '#696969' };
 
   &:hover{
     cursor: pointer;
-    background: red;
+    stroke: #acacac;
+    fill: #acacac;
   }
 
-  &:active{
-    background: blue;
-  }
 `
 
 export const TrackPlayLikeSvg = styled.svg`

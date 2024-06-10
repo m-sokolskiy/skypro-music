@@ -1,5 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlayingAnimation } from '../../store/slices/slice';
 
 // Правильный формат времени
 const timeTrack = (time) => {
@@ -12,7 +14,13 @@ const timeTrack = (time) => {
 
 
 
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track}) => {
+const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
+
+    const dispatch = useDispatch()
+
+    const isPlaying = useSelector(state => state.player.isPlaying)
+    const trackBar = useSelector(state => state.player.currentTrack)
+
 
     //Клик на трек и включение Bar
     const handelTrackBar = () => {
@@ -21,7 +29,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track}) => {
     }
 
     return (
-        <S.PlaylistItem>
+        <S.PlaylistItem onClick={() => handelTrackBar()}>
 
             <S.PlaylistTrack>
 
@@ -29,15 +37,19 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track}) => {
 
                     {/* Изображение */}
                     <S.TrackTitleImage>
+
+                        {trackBar?.id === track.id ? isPlaying ? <S.PlayingAnimation /> : <S.PlayingAnimationPause /> :
+                        
                         <S.TrackTitleSvg alt="music">
                             <use href="../img/icon/sprite.svg#icon-note"></use>
-                        </S.TrackTitleSvg>
+                        </S.TrackTitleSvg>}
+
                     </S.TrackTitleImage>
 
                     {/* Трек */}
                     <S.TrackTitleText >
 
-                        <S.TrackTitleLink href="#" onClick={() => handelTrackBar()}>
+                        <S.TrackTitleLink href="#" >
                             {name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>

@@ -101,3 +101,4 @@ export const getRefreshToken = async (email, password) => {
   const data = await response.json()
   return data
 };
+

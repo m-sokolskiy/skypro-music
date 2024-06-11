@@ -1,7 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlayingAnimation } from '../../store/slices/slice';
+import { setIsLiked } from '../../store/slices/slice';
 
 // Правильный формат времени
 const timeTrack = (time) => {
@@ -19,6 +19,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
     const dispatch = useDispatch()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
+    const isLiked = useSelector(state => state.player.isLiked)
     const trackBar = useSelector(state => state.player.currentTrack)
 
 
@@ -26,6 +27,10 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
     const handelTrackBar = () => {
         setTrackBar(track)
         console.log(track);
+    }
+
+    const handleLiked = () => {
+        dispatch(setIsLiked(!isLiked))
     }
 
     return (
@@ -39,10 +44,10 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                     <S.TrackTitleImage>
 
                         {trackBar?.id === track.id ? isPlaying ? <S.PlayingAnimation /> : <S.PlayingAnimationPause /> :
-                        
-                        <S.TrackTitleSvg alt="music">
-                            <use href="../img/icon/sprite.svg#icon-note"></use>
-                        </S.TrackTitleSvg>}
+
+                            <S.TrackTitleSvg alt="music">
+                                <use href="../img/icon/sprite.svg#icon-note"></use>
+                            </S.TrackTitleSvg>}
 
                     </S.TrackTitleImage>
 
@@ -75,9 +80,20 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                 <S.TrackTime >
 
                     {/* Лайки */}
-                    <S.TrackTimeSvg alt="time">
-                        <use href="../img/icon/sprite.svg#icon-like"></use>
-                    </S.TrackTimeSvg>
+
+                    {/* <S.PlayerBtnRepeat onClick={handleLiked} >
+                        <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLiked}>
+                            <use href="../img/icon/sprite.svg#icon-like"></use>
+                        </S.PlayerBtnRepeatSvg>
+                    </S.PlayerBtnRepeat> */}
+
+                    <S.LikedBtn  >
+                        <S.LikedSvg alt="time">
+                            <use href="../img/icon/sprite.svg#icon-like"></use>
+                        </S.LikedSvg>
+                    </S.LikedBtn>
+
+
 
                     {/* Время */}
                     <S.TrackTimeText >

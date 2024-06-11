@@ -19,7 +19,6 @@ const Bar = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const isShuffle = useSelector(state => state.player.isShuffle)
 
-
   //Ссылка на нативный html-элемент <audio>
   const audioRef = useRef(null);
 
@@ -43,14 +42,11 @@ const Bar = () => {
     setIsLoop(!audioRef.current.loop )
   }
 
-
-
   //Включить перемешивание
   const handleShuffle = () => {
     dispatch(setIsShuffle(!isShuffle))
     dispatch(setShuffleList())
   };
-
 
   //Громкость
   const handleVolume = (event) => {
@@ -101,7 +97,6 @@ const Bar = () => {
       dispatch(setPreviousTrack())
     }
   };
-
 
   useEffect(() => {
     if (trackBar) {

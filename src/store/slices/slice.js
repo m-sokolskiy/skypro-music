@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { shuffle } from "../../lib/shuffle";
 
-let arr = [1,2,3]
-let newArr = arr
-
 export const playerSlice = createSlice({
     name: "tracks",
     initialState: {

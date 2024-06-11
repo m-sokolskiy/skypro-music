@@ -1,14 +1,29 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const App = styled.div`
-text-align: center;
+export const Container = styled.div`
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  background-color: #181818;
 `
 
-export const AppHeader = styled.header`
-  background-color: #282c34;
-  min-height: 100vh;
+export const Main = styled.main`
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+`
+export const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #383838;
 `

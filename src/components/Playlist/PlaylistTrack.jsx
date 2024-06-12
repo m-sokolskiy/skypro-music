@@ -2,6 +2,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLiked } from '../../store/slices/slice';
+import { useSetLikedMutation } from '../../services/trackAPI.js';
 
 // Правильный формат времени
 const timeTrack = (time) => {
@@ -19,8 +20,12 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
     const dispatch = useDispatch()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
-    const isLiked = useSelector(state => state.player.isLiked)
+    // const isLiked = useSelector(state => state.player.isLiked)
     const trackBar = useSelector(state => state.player.currentTrack)
+
+
+
+    const [setLiked, {data, error, isLoading}] = useSetLikedMutation();
 
 
     //Клик на трек и включение Bar
@@ -29,8 +34,10 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
         console.log(track);
     }
 
-    const handleLiked = () => {
-        dispatch(setIsLiked(!isLiked))
+    const handleLiked = (event) => {
+        event.stopPropagation()
+        const token = JSON.parse(localStorage.getItem("token"))
+        setLiked({id: track.id, token: token.access});
     }
 
     return (
@@ -81,19 +88,11 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
                     {/* Лайки */}
 
-                    {/* <S.PlayerBtnRepeat onClick={handleLiked} >
-                        <S.PlayerBtnRepeatSvg alt="repeat" $isActive={isLiked}>
-                            <use href="../img/icon/sprite.svg#icon-like"></use>
-                        </S.PlayerBtnRepeatSvg>
-                    </S.PlayerBtnRepeat> */}
-
-                    <S.LikedBtn  >
+                    <S.LikedBtn  onClick={handleLiked}>
                         <S.LikedSvg alt="time">
                             <use href="../img/icon/sprite.svg#icon-like"></use>
                         </S.LikedSvg>
                     </S.LikedBtn>
-
-
 
                     {/* Время */}
                     <S.TrackTimeText >

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTrack, setTrackList } from '../../store/slices/slice.js';
+import { useGetAllTracksQuery } from '../../services/trackAPI.js';
 
 
 
@@ -14,26 +15,25 @@ const Playlist = () => {
 
     const dispatch = useDispatch()
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorGetPlayList, setErrorGetPlayList] = useState(null)
-
     const tracks = useSelector(state => state.player.trackList)
 
-    const getTracks = async () => {
-        try {
-            setIsLoading(true);
-            const allTracksData = await getAllTracks();
-            setIsLoading(false);
-            dispatch(setTrackList(allTracksData))
-        } catch (error) {
-            setErrorGetPlayList("Не удалось получить список треков")
-            setIsLoading(false);
-        }
-    };
+    const {error, isLoading} = useGetAllTracksQuery()
 
-    useEffect(() => {
-        getTracks();
-    }, []);
+    // const getTracks = async () => {
+    //     try {
+    //         setIsLoading(true);
+    //         const allTracksData = await getAllTracks();
+    //         setIsLoading(false);
+    //         dispatch(setTrackList(allTracksData))
+    //     } catch (error) {
+    //         setErrorGetPlayList("Не удалось получить список треков")
+    //         setIsLoading(false);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     getTracks();
+    // }, []);
 
     return (
         <S.CenterBlockContent>
@@ -53,7 +53,7 @@ const Playlist = () => {
             <S.ContentPlaylist>
 
                 <p style={{ color: "red" }}>
-                    {errorGetPlayList}
+                    {error}
                 </p>
 
                 {isLoading ?

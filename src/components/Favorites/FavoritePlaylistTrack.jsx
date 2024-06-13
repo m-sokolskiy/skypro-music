@@ -1,5 +1,5 @@
 import 'react-loading-skeleton/dist/skeleton.css'
-import * as S from './style/PlaylistTrack.S.js'
+import * as S from './style/FavoritesPlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { useSetLikedMutation } from '../../services/trackAPI.js';
 import { useState } from 'react';
@@ -13,9 +13,9 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
+const FavoritePlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
-    const [isLiked, setIsLiked] = useState(false);
+    const [isLiked, setIsLiked] = useState(true);
 
     const dispatch = useDispatch()
 
@@ -105,4 +105,4 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
         </S.PlaylistItem>
     )
 }
-export default PlaylistTrack
+export default FavoritePlaylistTrack

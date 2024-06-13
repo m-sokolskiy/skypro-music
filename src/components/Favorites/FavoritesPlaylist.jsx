@@ -1,34 +1,17 @@
 import * as S from './style/FavoritesPlaylist.S.js';
-import { useState, useEffect } from 'react';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetAllFavoritesTracksQuery } from '../../services/trackAPI.js';
+import { setCurrentTrack } from '../../store/slices/slice.js';
+import FavoritePlaylistTrack from './FavoritePlaylistTrack.jsx';
 
 
 // ПЛЕЙЛИСТ
 const FavoritesPlaylist = () => {
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [errorGetPlayList, setErrorGetPlayList] = useState(null)
-
-    // const tracks = useSelector(state => state.player.trackList)
-
-    // const getTracks = async () => {
-    //     try {
-    //         setIsLoading(true);
-    //         const allTracksData = await getAllTracks();
-    //         setIsLoading(false);
-    //         dispatch(setTrackList(allTracksData))
-    //     } catch (error) {
-    //         setErrorGetPlayList("Не удалось получить список треков")
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     getTracks();
-    // }, []);
+    const {data, error, isLoading } = useGetAllFavoritesTracksQuery()
 
     return (
         <S.CenterBlockContent>
@@ -46,7 +29,31 @@ const FavoritesPlaylist = () => {
 
             {/* Треки */}
             <S.ContentPlaylist>
-                <p >"Здесь должны быть треки"</p>
+
+                <p style={{ color: "red" }}>{error}</p>
+
+                {isLoading ?
+                    <S.PlaylistSkeleton>
+                        <SkeletonPlaylist />
+                    </S.PlaylistSkeleton> :
+                    data?.map((track) => {
+                        return (
+                            <FavoritePlaylistTrack
+                                key={track.id}
+                                id={track.id}
+                                name={track.name}
+                                author={track.author}
+                                album={track.album}
+                                time={track.duration_in_seconds}
+                                track={track}
+                                setTrackBar={() => dispatch(setCurrentTrack(track))}
+                            />
+                        )
+                    }
+                )}
+
+
+
             </S.ContentPlaylist>
 
         </S.CenterBlockContent>

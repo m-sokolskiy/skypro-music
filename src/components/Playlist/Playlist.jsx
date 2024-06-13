@@ -1,11 +1,9 @@
 import './style/Playlist.S.js'
 import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
-import { getAllTracks } from '../../Api.js';
-import { useState, useEffect } from 'react';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentTrack, setTrackList } from '../../store/slices/slice.js';
+import { setCurrentTrack } from '../../store/slices/slice.js';
 import { useGetAllTracksQuery } from '../../services/trackAPI.js';
 
 
@@ -17,23 +15,7 @@ const Playlist = () => {
 
     const tracks = useSelector(state => state.player.trackList)
 
-    const {error, isLoading} = useGetAllTracksQuery()
-
-    // const getTracks = async () => {
-    //     try {
-    //         setIsLoading(true);
-    //         const allTracksData = await getAllTracks();
-    //         setIsLoading(false);
-    //         dispatch(setTrackList(allTracksData))
-    //     } catch (error) {
-    //         setErrorGetPlayList("Не удалось получить список треков")
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     getTracks();
-    // }, []);
+    const { error, isLoading } = useGetAllTracksQuery()
 
     return (
         <S.CenterBlockContent>
@@ -52,9 +34,7 @@ const Playlist = () => {
             {/* Треки */}
             <S.ContentPlaylist>
 
-                <p style={{ color: "red" }}>
-                    {error}
-                </p>
+                <p style={{ color: "red" }}>{error}</p>
 
                 {isLoading ?
                     <S.PlaylistSkeleton>
@@ -70,11 +50,11 @@ const Playlist = () => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                setTrackBar={() => dispatch(setCurrentTrack(track))}                                
+                                setTrackBar={() => dispatch(setCurrentTrack(track))}
                             />
                         )
                     }
-                    )}
+                )}
 
 
 

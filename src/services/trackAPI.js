@@ -3,8 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //Добавить трек в избранное по id * https://skypro-music-api.skyeng.tech/catalog/track/<id>/favorite/ [POST]
 //Удалить трек из избранного по id * https://skypro-music-api.skyeng.tech/catalog/track/<id>/favorite/ [DELETE]
 //Получить все избранные треки * https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/ [GET]
-
-//Хранит все запросы 
+ 
 export const trackApi = createApi({
     reducerPath: "trackApi",
     baseQuery: fetchBaseQuery({
@@ -16,6 +15,10 @@ export const trackApi = createApi({
             query: () => "all"
         }),
 
+        getAllFavoritesTracks: builder.query({
+            query: () => "favorite/all/"
+        }),
+
         setLiked: builder.mutation({
             query: ({id, token}) => ({
                 method: "POST",
@@ -25,9 +28,8 @@ export const trackApi = createApi({
                 }
             })
         })
-        
+
     }),
 });
 
-//Собственно написанный хук
-export const { useGetAllTracksQuery, useSetLikedMutation } = trackApi;
+export const { useGetAllTracksQuery, useSetLikedMutation, useGetAllFavoritesTracksQuery } = trackApi;

@@ -7,15 +7,11 @@ export const playerSlice = createSlice({
     initialState: {
         trackList: [],
         shuffleList: [],
-        favoritesList: [],
         currentTrack: null,
         isPlaying: false,
         isShuffle: false,
     },
     reducers: {
-        setTrackList: (state, action) => {
-            state.trackList = action.payload
-        },
         setShuffleList: (state) => {
             const tracks = [...state.trackList]
             const randomArr = shuffle(tracks)
@@ -47,16 +43,13 @@ export const playerSlice = createSlice({
                 state.currentTrack = prevTrack
             }
         },
-        setFavoritesList: () => {
-            
-        }
     },
     extraReducers: builder => {
-        builder.addMatcher(trackApi.endpoints.getAllTracks.matchFulfilled, (state, {payload}) => {state.trackList = payload})
+        builder.addMatcher(trackApi.endpoints.getAllTracks.matchFulfilled, (state, { payload }) => { state.trackList = payload })
     }
 });
 
 const playerReducer = playerSlice.reducer
 
-export const { setTrackList, setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList } = playerSlice.actions;
+export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList } = playerSlice.actions;
 export default playerReducer;

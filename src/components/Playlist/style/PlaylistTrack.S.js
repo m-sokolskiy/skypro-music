@@ -178,8 +178,8 @@ export const LikedSvg = styled.svg`
   width: 14px;
   height: 12px;
   margin-right: 17px;
-  fill: transparent;
-  stroke: ${(props) => props.$isActive ?  "#ffffff" :  '#696969' };
+  fill: ${(props) => props.$isActive ?  "#b672ff" :  'transparent' };
+  stroke: #696969;
 
   &:hover{
     cursor: pointer;

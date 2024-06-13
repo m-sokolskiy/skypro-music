@@ -3,6 +3,7 @@ import * as S from './style/PlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLiked } from '../../store/slices/slice';
 import { useSetLikedMutation } from '../../services/trackAPI.js';
+import { useState } from 'react';
 
 // Правильный формат времени
 const timeTrack = (time) => {
@@ -17,13 +18,12 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
+  const [isLiked, setIsLiked] = useState(false);
+
     const dispatch = useDispatch()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
-    // const isLiked = useSelector(state => state.player.isLiked)
     const trackBar = useSelector(state => state.player.currentTrack)
-
-
 
     const [setLiked, {data, error, isLoading}] = useSetLikedMutation();
 
@@ -36,6 +36,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
     const handleLiked = (event) => {
         event.stopPropagation()
+        setIsLiked(!isLiked)
         const token = JSON.parse(localStorage.getItem("token"))
         setLiked({id: track.id, token: token.access});
     }
@@ -89,7 +90,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                     {/* Лайки */}
 
                     <S.LikedBtn  onClick={handleLiked}>
-                        <S.LikedSvg alt="time">
+                        <S.LikedSvg alt="time" $isActive={isLiked}>
                             <use href="../img/icon/sprite.svg#icon-like"></use>
                         </S.LikedSvg>
                     </S.LikedBtn>

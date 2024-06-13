@@ -25,8 +25,9 @@ export const trackApi = createApi({
                 }
             })
         })
+        
     }),
 });
 
 //Собственно написанный хук
-export const { useGetAllTracksQuery, useLazyGetAllTracksQuery, useSetLikedMutation } = trackApi;
+export const { useGetAllTracksQuery, useSetLikedMutation } = trackApi;

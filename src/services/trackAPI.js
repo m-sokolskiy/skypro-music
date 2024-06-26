@@ -20,8 +20,8 @@ export const trackApi = createApi({
         }),
 
         setLiked: builder.mutation({
-            query: ({id, token}) => ({
-                method: "POST",
+            query: ({id, token, state}) => ({
+                method: `${state ? "POST" : "DELETE"}`,
                 url: `${id}/favorite/`,
                 headers: {
                     Authorization: `Bearer ${token}`

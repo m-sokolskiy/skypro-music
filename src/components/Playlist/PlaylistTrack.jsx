@@ -35,7 +35,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
         event.stopPropagation()
         setIsLiked(!isLiked)
         const token = JSON.parse(localStorage.getItem("token"))
-        setLiked({ id: track.id, token: token.access });
+        setLiked({ id: track.id, token: token.access, state: !isLiked });
         console.log(data);
     }
 

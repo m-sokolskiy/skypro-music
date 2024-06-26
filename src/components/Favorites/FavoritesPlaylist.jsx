@@ -1,7 +1,7 @@
 import * as S from './style/FavoritesPlaylist.S.js';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetAllFavoritesTracksQuery } from '../../services/trackAPI.js';
+import { useGetFavoritesTracksQuery } from '../../services/trackAPI.js';
 import { setCurrentTrack } from '../../store/slices/slice.js';
 import FavoritePlaylistTrack from './FavoritePlaylistTrack.jsx';
 
@@ -11,7 +11,9 @@ const FavoritesPlaylist = () => {
 
     const dispatch = useDispatch()
 
-    const {data, error, isLoading } = useGetAllFavoritesTracksQuery()
+    const tracks = useSelector(state => state.player.favoritesList)
+
+    const {error, isLoading } = useGetFavoritesTracksQuery()
 
     return (
         <S.CenterBlockContent>
@@ -36,7 +38,7 @@ const FavoritesPlaylist = () => {
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
                     </S.PlaylistSkeleton> :
-                    data?.map((track) => {
+                    tracks.map((track) => {
                         return (
                             <FavoritePlaylistTrack
                                 key={track.id}

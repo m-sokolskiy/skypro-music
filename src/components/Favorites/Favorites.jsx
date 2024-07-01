@@ -1,4 +1,7 @@
+import { getToken } from '../../localStorage';
+import { useGetFavoritesTracksQuery } from '../../services/trackAPI';
 import Filter from '../Filter/Filter';
+import Playlist from '../Playlist/Playlist';
 import Search from '../Search/Search';
 import FavoritesPlaylist from './FavoritesPlaylist';
 import FavoritesTitle from './FavoritesTitle';
@@ -6,12 +9,13 @@ import * as S from './style/Favorites.S'
 
 // КОМПОНЕНТ КОНТЕНТ
 const Favorites = () => {
+
+    const { data, error, isLoading } = useGetFavoritesTracksQuery({token:getToken("token")})
+
     return (
         <S.MainCenterBlock>
-            <Search />
             <FavoritesTitle />
-            <Filter />
-            <FavoritesPlaylist  />
+            <Playlist tracks={data} error={error} isLoading={isLoading} />
         </S.MainCenterBlock>
     );
 }

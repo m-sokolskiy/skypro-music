@@ -2,15 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { shuffle } from "../../lib/shuffle";
 import { trackApi } from "../../services/trackAPI";
 
-const allTracks = (builder) => { builder.addMatcher(trackApi.endpoints.getAllTracks.matchFulfilled, (state, { payload }) => { state.trackList = payload }) }
-const favoritesTracks = (builder) => { builder.addMatcher(trackApi.endpoints.getFavoritesTracks.matchFulfilled, (state, { payload }) => { state.favoritesList = payload }) }
-
 export const playerSlice = createSlice({
     name: "tracks",
     initialState: {
         trackList: [],
         shuffleList: [],
-        favoritesList: [],
+        initialTracks: [],
         currentTrack: null,
         isPlaying: false,
         isShuffle: false,
@@ -47,12 +44,17 @@ export const playerSlice = createSlice({
                 state.currentTrack = prevTrack
             }
         },
+        setPlayList: (state, action) => {
+            state.trackList = action.payload
+        }
     },
-    extraReducers: allTracks
+    extraReducers: builder => {
+        builder.addMatcher(trackApi.endpoints.getAllTracks.matchFulfilled, (state, { payload }) => { state.initialTracks = payload })
+    }
 });
 
 const playerReducer = playerSlice.reducer
 
-export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList } = playerSlice.actions;
+export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList, setPlayList } = playerSlice.actions;
 export default playerReducer;
 

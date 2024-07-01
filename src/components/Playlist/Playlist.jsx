@@ -3,19 +3,12 @@ import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentTrack } from '../../store/slices/slice.js';
-import { useGetAllTracksQuery } from '../../services/trackAPI.js';
-
-
+import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
 
 // ПЛЕЙЛИСТ
-const Playlist = () => {
+const Playlist = ({tracks, error, isLoading}) => {
 
     const dispatch = useDispatch()
-
-    const tracks = useSelector(state => state.player.trackList)
-
-    const { error, isLoading } = useGetAllTracksQuery()
 
     return (
         <S.CenterBlockContent>
@@ -34,13 +27,13 @@ const Playlist = () => {
             {/* Треки */}
             <S.ContentPlaylist>
 
-                <p style={{ color: "red" }}>{error}</p>
+                {/* <p style={{ color: "red" }}>{error.message}</p> */}
 
                 {isLoading ?
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
                     </S.PlaylistSkeleton> :
-                    tracks.map((track) => {
+                    tracks?.map((track) => {
                         return (
                             <PlaylistTrack
                                 key={track.id}
@@ -50,7 +43,10 @@ const Playlist = () => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                setTrackBar={() => dispatch(setCurrentTrack(track))}
+                                setTrackBar={() => {
+                                    dispatch(setCurrentTrack(track));
+                                    dispatch(setPlayList(tracks));
+                                }}
                             />
                         )
                     }

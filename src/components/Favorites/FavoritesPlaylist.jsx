@@ -9,12 +9,6 @@ import FavoritePlaylistTrack from './FavoritePlaylistTrack.jsx';
 // ПЛЕЙЛИСТ
 const FavoritesPlaylist = () => {
 
-    const dispatch = useDispatch()
-
-    const tracks = useSelector(state => state.player.favoritesList)
-
-    const {error, isLoading } = useGetFavoritesTracksQuery()
-
     return (
         <S.CenterBlockContent>
             {/* Титул */}
@@ -31,30 +25,6 @@ const FavoritesPlaylist = () => {
 
             {/* Треки */}
             <S.ContentPlaylist>
-
-                <p style={{ color: "red" }}>{error}</p>
-
-                {isLoading ?
-                    <S.PlaylistSkeleton>
-                        <SkeletonPlaylist />
-                    </S.PlaylistSkeleton> :
-                    tracks.map((track) => {
-                        return (
-                            <FavoritePlaylistTrack
-                                key={track.id}
-                                id={track.id}
-                                name={track.name}
-                                author={track.author}
-                                album={track.album}
-                                time={track.duration_in_seconds}
-                                track={track}
-                                setTrackBar={() => dispatch(setCurrentTrack(track))}
-                            />
-                        )
-                    }
-                )}
-
-
 
             </S.ContentPlaylist>
 

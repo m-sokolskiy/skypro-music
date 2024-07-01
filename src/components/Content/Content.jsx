@@ -5,13 +5,13 @@ import TitlePage from '../TitlePage/TitlePage';
 import * as S from './style/Content.S'
 
 // КОМПОНЕНТ КОНТЕНТ
-const Content = () => {
+const Content = ({tracks, error, isLoading}) => {
     return (
         <S.MainCenterBlock>
             <Search />
             <TitlePage />
             <Filter />
-            <Playlist  />
+            <Playlist tracks={tracks} error={error} isLoading={isLoading} />
         </S.MainCenterBlock>
     );
 }

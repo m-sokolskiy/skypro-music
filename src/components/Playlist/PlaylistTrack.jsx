@@ -15,7 +15,7 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
-    const [isLiked, setIsLiked] = useState(false);
+    const [isLiked, setIsLiked] = useState(track.isLiked);
 
     const dispatch = useDispatch()
 

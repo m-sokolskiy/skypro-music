@@ -15,7 +15,7 @@ export const trackApi = createApi({
                     const currentUser = getToken("user")
                     const isLiked = !!track.stared_user.find((user) => user.id === currentUser?.id)
                     return {
-                        ...track,isLiked
+                        ...track, isLiked
                     }
                 })
             }
@@ -31,7 +31,7 @@ export const trackApi = createApi({
             transformResponse: (result) => {
                 return result.map((track) => {
                     return {
-                        ...track,isLiked: true
+                        ...track, isLiked: true
                     }
                 })
             }

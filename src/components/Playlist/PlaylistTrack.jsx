@@ -15,19 +15,13 @@ const timeTrack = (time) => {
 
 const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
-    const [isLiked, setIsLiked] = useState(track.isLiked);
-
-    const dispatch = useDispatch()
-
     const isPlaying = useSelector(state => state.player.isPlaying)
     const trackBar = useSelector(state => state.player.currentTrack)
+    const [isLiked, setIsLiked] = useState(track.isLiked);
+    const [setLiked, { data }] = useSetLikedMutation();
 
-    const [setLiked, { data, error, isLoading }] = useSetLikedMutation();
-
-
-    //Клик на трек и включение Bar
     const handelTrackBar = () => {
-        setTrackBar(track)
+        setTrackBar()
         console.log(track);
     }
 
@@ -48,23 +42,18 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
                     {/* Изображение */}
                     <S.TrackTitleImage>
-
                         {trackBar?.id === track.id ? isPlaying ? <S.PlayingAnimation /> : <S.PlayingAnimationPause /> :
-
                             <S.TrackTitleSvg alt="music">
                                 <use href="../img/icon/sprite.svg#icon-note"></use>
                             </S.TrackTitleSvg>}
-
                     </S.TrackTitleImage>
 
                     {/* Трек */}
                     <S.TrackTitleText >
-
                         <S.TrackTitleLink href="#" >
                             {name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
-
                     </S.TrackTitleText>
 
                 </S.TrackTitle>
@@ -86,7 +75,6 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                 <S.TrackTime >
 
                     {/* Лайки */}
-
                     <S.LikedBtn onClick={handleLiked}>
                         <S.LikedSvg alt="time" $isActive={isLiked}>
                             <use href="../img/icon/sprite.svg#icon-like"></use>

@@ -29,7 +29,6 @@ export const playerSlice = createSlice({
         },
         setNextTrack: (state) => {
             const playList = state.isShuffle ? state.shuffleList : state.trackList
-
             const index = playList.findIndex((t) => t.id === state.currentTrack.id);
             const nextTrack = playList[index + 1]
             if (nextTrack) {

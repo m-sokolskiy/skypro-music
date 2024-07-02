@@ -1,9 +1,6 @@
 import { getToken } from '../../localStorage';
 import { useGetFavoritesTracksQuery } from '../../services/trackAPI';
-import Filter from '../Filter/Filter';
 import Playlist from '../Playlist/Playlist';
-import Search from '../Search/Search';
-import FavoritesPlaylist from './FavoritesPlaylist';
 import FavoritesTitle from './FavoritesTitle';
 import * as S from './style/Favorites.S'
 

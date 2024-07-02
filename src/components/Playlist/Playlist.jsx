@@ -2,16 +2,17 @@ import './style/Playlist.S.js'
 import PlaylistTrack from './PlaylistTrack.jsx';
 import * as S from './style/Playlist.S.js';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
 
 // ПЛЕЙЛИСТ
-const Playlist = ({tracks, error, isLoading}) => {
+const Playlist = ({ tracks, error, isLoading }) => {
 
     const dispatch = useDispatch()
 
     return (
         <S.CenterBlockContent>
+
             {/* Титул */}
             <S.ContentTitle>
                 <S.PlaylistTitleColTrack>Трек</S.PlaylistTitleColTrack>
@@ -26,9 +27,6 @@ const Playlist = ({tracks, error, isLoading}) => {
 
             {/* Треки */}
             <S.ContentPlaylist>
-
-                {/* <p style={{ color: "red" }}>{error.message}</p> */}
-
                 {isLoading ?
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
@@ -50,13 +48,11 @@ const Playlist = ({tracks, error, isLoading}) => {
                             />
                         )
                     }
-                )}
-
-
+                    )}
 
             </S.ContentPlaylist>
-
         </S.CenterBlockContent>
     );
 }
 export default Playlist
+

@@ -34,7 +34,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
 
             {/* Треки */}
             <S.ContentPlaylist>
-                {error ? <p style={{ color: "red" }}>{error.message}</p> : isLoading ?
+                {isLoading ?
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
                     </S.PlaylistSkeleton> :
@@ -48,6 +48,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
+                                error={error}
                                 setTrackBar={() => {
                                     dispatch(setCurrentTrack(track));
                                     dispatch(setPlayList(tracks));

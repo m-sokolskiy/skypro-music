@@ -3,6 +3,7 @@ import * as S from './style/PlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { useSetLikedMutation } from '../../services/trackAPI.js';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Правильный формат времени
 const timeTrack = (time) => {
@@ -13,12 +14,14 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
+const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, error }) => {
 
     const isPlaying = useSelector(state => state.player.isPlaying)
     const trackBar = useSelector(state => state.player.currentTrack)
     const [isLiked, setIsLiked] = useState(track.isLiked);
     const [setLiked, { data }] = useSetLikedMutation();
+
+    const navigate = useNavigate()
 
     const handelTrackBar = () => {
         setTrackBar()
@@ -31,6 +34,10 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
         const token = JSON.parse(localStorage.getItem("token"))
         setLiked({ id: track.id, token: token.access, state: !isLiked });
         console.log(data);
+
+        if (error) {
+            navigate("/");
+        }
     }
 
     return (

@@ -4,11 +4,18 @@ import * as S from './style/Playlist.S.js';
 import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch } from 'react-redux';
 import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
+import { useNavigate } from 'react-router-dom';
+
 
 // ПЛЕЙЛИСТ
 const Playlist = ({ tracks, error, isLoading }) => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    if (error) {
+        navigate("/");
+    }
 
     return (
         <S.CenterBlockContent>
@@ -27,7 +34,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
 
             {/* Треки */}
             <S.ContentPlaylist>
-                {isLoading ?
+                {error ? <p style={{ color: "red" }}>{error.message}</p> : isLoading ?
                     <S.PlaylistSkeleton>
                         <SkeletonPlaylist />
                     </S.PlaylistSkeleton> :
@@ -49,7 +56,6 @@ const Playlist = ({ tracks, error, isLoading }) => {
                         )
                     }
                     )}
-
             </S.ContentPlaylist>
         </S.CenterBlockContent>
     );

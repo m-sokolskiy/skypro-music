@@ -18,7 +18,8 @@ export const trackApi = createApi({
                         ...track, isLiked
                     }
                 })
-            }
+            },
+            providesTags: ['tracks'],
         }),
 
         getFavoritesTracks: builder.query({
@@ -34,7 +35,8 @@ export const trackApi = createApi({
                         ...track, isLiked: true
                     }
                 })
-            }
+            },
+            providesTags: ['tracks'],
         }),
 
         setLiked: builder.mutation({
@@ -44,10 +46,12 @@ export const trackApi = createApi({
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
+            }),
+            invalidatesTags: ['tracks'],
         })
 
     }),
 });
 
 export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery } = trackApi;
+

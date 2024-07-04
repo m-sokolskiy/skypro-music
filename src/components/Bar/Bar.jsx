@@ -199,7 +199,7 @@ const Bar = () => {
 
 
                   {/* Лайки */}
-                  <S.TrackPlayLikeDis>
+                  {/* <S.TrackPlayLikeDis>
 
                     <S.TrackPlayLike>
                       <S.TrackPlayLikeSvg alt="like">
@@ -213,7 +213,7 @@ const Bar = () => {
                       </S.TrackPlayDislikeSvg>
                     </S.TrackPlayDislike>
 
-                  </S.TrackPlayLikeDis>
+                  </S.TrackPlayLikeDis> */}
 
                 </S.PlayerTrackPlay>
 

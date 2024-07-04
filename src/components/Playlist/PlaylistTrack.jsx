@@ -1,11 +1,12 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useSetLikedMutation } from '../../services/trackAPI.js';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext.js';
 import { useNavigate } from 'react-router-dom';
 
-// Правильный формат времени
 const timeTrack = (time) => {
     let min = Math.floor(time / 60);
     let sec = time % 60;
@@ -14,18 +15,27 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, error }) => {
+const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
+
+    const navigate = useNavigate()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
     const trackBar = useSelector(state => state.player.currentTrack)
     const [isLiked, setIsLiked] = useState(track.isLiked);
-    const [setLiked, { data }] = useSetLikedMutation();
+    const [setLiked, { data, error }] = useSetLikedMutation();
+    const { setUser } = useContext(UserContext);
 
-    const navigate = useNavigate()
 
     const handelTrackBar = () => {
         setTrackBar()
         console.log(track);
+    }
+
+    if (error) {
+        setUser(false);
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
+        navigate("/");
     }
 
     const handleLiked = (event) => {
@@ -34,10 +44,6 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, error })
         const token = JSON.parse(localStorage.getItem("token"))
         setLiked({ id: track.id, token: token.access, state: !isLiked });
         console.log(data);
-
-        if (error) {
-            navigate("/");
-        }
     }
 
     return (

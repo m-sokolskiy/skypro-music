@@ -5,6 +5,8 @@ import SkeletonPlaylist from '../Skeleton/Skeleton.jsx';
 import { useDispatch } from 'react-redux';
 import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext.js';
 
 
 // ПЛЕЙЛИСТ
@@ -12,8 +14,13 @@ const Playlist = ({ tracks, error, isLoading }) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { setUser } = useContext(UserContext);
+
 
     if (error) {
+        setUser(false);
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
         navigate("/");
     }
 
@@ -48,7 +55,6 @@ const Playlist = ({ tracks, error, isLoading }) => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                error={error}
                                 setTrackBar={() => {
                                     dispatch(setCurrentTrack(track));
                                     dispatch(setPlayList(tracks));

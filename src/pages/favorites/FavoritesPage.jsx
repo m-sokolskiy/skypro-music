@@ -9,12 +9,15 @@ export const FavoritesPage = () => {
     return (
         <S.Wrapper>
             <S.Container>
+
                 <S.Main>
                     <Navigation />
                     <Favorites />
                     <SideBar />
+                    <Bar />
                 </S.Main>
-                <Bar />
+
+
             </S.Container>
         </S.Wrapper>
     );

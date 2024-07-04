@@ -1,3 +1,4 @@
+import { useGetAllTracksQuery } from '../../services/trackAPI';
 import Filter from '../Filter/Filter';
 import Playlist from '../Playlist/Playlist';
 import Search from '../Search/Search';
@@ -5,14 +6,17 @@ import TitlePage from '../TitlePage/TitlePage';
 import * as S from './style/Content.S'
 
 // КОМПОНЕНТ КОНТЕНТ
-const Content = ({tracks, error, isLoading}) => {
+const Content = () => {
+
+    const { data, error, isLoading } = useGetAllTracksQuery()
+
     return (
         <S.MainCenterBlock>
             <Search />
             <TitlePage />
             <Filter />
-            <Playlist tracks={tracks} error={error} isLoading={isLoading} />
+            <Playlist tracks={data} error={error} isLoading={isLoading} />
         </S.MainCenterBlock>
     );
 }
-export default Content
+export { Content }

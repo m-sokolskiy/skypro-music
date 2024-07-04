@@ -3,8 +3,6 @@ import * as S from "./style/NavigationLink.S.js"
 import { UserContext } from '../context/UserContext.js';
 import { useContext} from 'react';
 
-
-// ССЫЛКИ ПО ПРЕЛОЖЕНИЮ
 const NavigationLink = () => {
     const { setUser } = useContext(UserContext);
     const logout = () => {
@@ -15,7 +13,7 @@ const NavigationLink = () => {
     return (
         <S.NavMenu >
             <S.MenuList >
-
+ 
                 <S.MenuItem >
                     <S.MenuLink to="/main" >Главное</S.MenuLink>
                 </S.MenuItem>
@@ -25,7 +23,7 @@ const NavigationLink = () => {
                 </S.MenuItem>
 
                 <S.MenuItem >
-                    <S.MenuLink to="/" onClick={logout} >Выйти</S.MenuLink>
+                    <S.MenuLink to="/login" onClick={logout} >Выйти</S.MenuLink>
                 </S.MenuItem>
 
             </S.MenuList>

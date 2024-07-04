@@ -110,12 +110,6 @@ const Bar = () => {
     }
   }, [isVolume])
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = isVolume;
-    }
-  }, [])
-
   return (
     <>
       {trackBar && <>

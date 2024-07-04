@@ -12,12 +12,14 @@ export const MainPage = () => {
     return (
         <S.Wrapper>
             <S.Container>
+
                 <S.Main>
                     <Navigation />
                     <Content tracks={data} error={error} isLoading={isLoading} />
                     <SideBar />
+                    <Bar />
                 </S.Main>
-                <Bar />
+
             </S.Container>
         </S.Wrapper>
     );

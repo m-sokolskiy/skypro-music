@@ -35,7 +35,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
         setUser(false);
         window.localStorage.removeItem("user");
         window.localStorage.removeItem("token");
-        navigate("/");
+        navigate("/login");
     }
 
     const handleLiked = (event) => {

@@ -56,7 +56,7 @@ export const LoginPage = () => {
 
                     <S.ModalFormLogin action="#">
 
-                        <S.ModalFormLoginLink to="/">
+                        <S.ModalFormLoginLink to="/login">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>

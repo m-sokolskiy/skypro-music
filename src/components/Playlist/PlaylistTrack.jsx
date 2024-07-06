@@ -1,11 +1,12 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSetLikedMutation } from '../../services/trackAPI.js';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext.js';
 import { useNavigate } from 'react-router-dom';
+import { setCurrentTrack } from '../../store/slices/slice.js';
 
 const timeTrack = (time) => {
     let min = Math.floor(time / 60);
@@ -18,6 +19,7 @@ const timeTrack = (time) => {
 const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
     const trackBar = useSelector(state => state.player.currentTrack)
@@ -35,6 +37,7 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
         setUser(false);
         window.localStorage.removeItem("user");
         window.localStorage.removeItem("token");
+        dispatch(setCurrentTrack(null))
         navigate("/login");
     }
 

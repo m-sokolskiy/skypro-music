@@ -21,6 +21,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
         setUser(false);
         window.localStorage.removeItem("user");
         window.localStorage.removeItem("token");
+        dispatch(setCurrentTrack(null))
         navigate("/login");
     }
 

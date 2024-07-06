@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import Skeleton from "react-loading-skeleton";
 import * as S from './style/RecommendationList.S.js'
 
 const RecommendationList = ({ item }) => {

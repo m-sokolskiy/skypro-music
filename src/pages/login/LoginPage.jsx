@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import * as S from './style/LoginPage.S'
 import { getToken, postLogin } from '../../Api';
 import { Link, useNavigate } from 'react-router-dom';
@@ -56,7 +56,7 @@ export const LoginPage = () => {
 
                     <S.ModalFormLogin action="#">
 
-                        <S.ModalFormLoginLink to="/">
+                        <S.ModalFormLoginLink to="/login">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>

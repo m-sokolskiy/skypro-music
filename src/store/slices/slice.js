@@ -1,22 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { shuffle } from "../../lib/shuffle";
-
-let arr = [1,2,3]
-let newArr = arr
+import { trackApi } from "../../services/trackAPI";
 
 export const playerSlice = createSlice({
     name: "tracks",
     initialState: {
         trackList: [],
         shuffleList: [],
+        initialTracks: [],
         currentTrack: null,
         isPlaying: false,
         isShuffle: false,
     },
     reducers: {
-        setTrackList: (state, action) => {
-            state.trackList = action.payload
-        },
         setShuffleList: (state) => {
             const tracks = [...state.trackList]
             const randomArr = shuffle(tracks)
@@ -33,7 +29,6 @@ export const playerSlice = createSlice({
         },
         setNextTrack: (state) => {
             const playList = state.isShuffle ? state.shuffleList : state.trackList
-
             const index = playList.findIndex((t) => t.id === state.currentTrack.id);
             const nextTrack = playList[index + 1]
             if (nextTrack) {
@@ -47,11 +42,18 @@ export const playerSlice = createSlice({
             if (prevTrack) {
                 state.currentTrack = prevTrack
             }
+        },
+        setPlayList: (state, action) => {
+            state.trackList = action.payload
         }
     },
+    extraReducers: builder => {
+        builder.addMatcher(trackApi.endpoints.getAllTracks.matchFulfilled, (state, { payload }) => { state.initialTracks = payload })
+    }
 });
 
 const playerReducer = playerSlice.reducer
 
-export const { setTrackList, setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle } = playerSlice.actions;
+export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList, setPlayList } = playerSlice.actions;
 export default playerReducer;
+

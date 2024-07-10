@@ -117,14 +117,6 @@ export const TrackAlbumLink = styled.a`
   color: #696969;
 `
 
-export const TrackTimeSvg = styled.svg`
-  width: 14px;
-  height: 12px;
-  margin-right: 17px;
-  fill: transparent;
-  stroke: #696969;
-`
-
 export const TrackTimeText = styled.span`
   font-style: normal;
   font-weight: 400;
@@ -138,6 +130,16 @@ export const TrackTitleText = styled.div`
 `
 
 export const TrackTime = styled.div`
+    display: flex;
+    flex-direction: row;
+
+`
+export const TrackTimeSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+  fill: transparent;
+  stroke: #696969;
 `
 
 const PlayingAnimationKeyframes = keyframes`
@@ -167,4 +169,21 @@ export const PlayingAnimationPause = styled.svg`
   border-radius: 8px;
   display: block;
 }
+`
+
+// Лайк
+export const LikedBtn= styled.div`
+`
+export const LikedSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+  fill: ${(props) => props.$isActive ?  "#b672ff" :  'transparent' };
+  stroke: #696969;
+
+  &:hover{
+    cursor: pointer;
+    stroke: #acacac;
+    fill: #acacac;
+  }
 `

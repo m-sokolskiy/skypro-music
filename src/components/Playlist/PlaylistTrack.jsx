@@ -1,9 +1,13 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './style/PlaylistTrack.S.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlayingAnimation } from '../../store/slices/slice';
+import { useSetLikedMutation } from '../../services/trackAPI.js';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext.js';
+import { useNavigate } from 'react-router-dom';
+import { setCurrentTrack } from '../../store/slices/slice.js';
 
-// Правильный формат времени
 const timeTrack = (time) => {
     let min = Math.floor(time / 60);
     let sec = time % 60;
@@ -12,20 +16,37 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
+const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
 
-
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const isPlaying = useSelector(state => state.player.isPlaying)
     const trackBar = useSelector(state => state.player.currentTrack)
+    const [isLiked, setIsLiked] = useState(track.isLiked);
+    const [setLiked, { data, error }] = useSetLikedMutation();
+    const { setUser } = useContext(UserContext);
 
 
-    //Клик на трек и включение Bar
     const handelTrackBar = () => {
-        setTrackBar(track)
+        setTrackBar()
         console.log(track);
+    }
+
+    if (error) {
+        setUser(false);
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
+        dispatch(setCurrentTrack(null))
+        navigate("/login");
+    }
+
+    const handleLiked = (event) => {
+        event.stopPropagation()
+        setIsLiked(!isLiked)
+        const token = JSON.parse(localStorage.getItem("token"))
+        setLiked({ id: track.id, token: token.access, state: !isLiked });
+        console.log(data);
     }
 
     return (
@@ -37,23 +58,18 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
 
                     {/* Изображение */}
                     <S.TrackTitleImage>
-
                         {trackBar?.id === track.id ? isPlaying ? <S.PlayingAnimation /> : <S.PlayingAnimationPause /> :
-                        
-                        <S.TrackTitleSvg alt="music">
-                            <use href="../img/icon/sprite.svg#icon-note"></use>
-                        </S.TrackTitleSvg>}
-
+                            <S.TrackTitleSvg alt="music">
+                                <use href="../img/icon/sprite.svg#icon-note"></use>
+                            </S.TrackTitleSvg>}
                     </S.TrackTitleImage>
 
                     {/* Трек */}
                     <S.TrackTitleText >
-
                         <S.TrackTitleLink href="#" >
                             {name}
                             <S.TrackTitleSpan></S.TrackTitleSpan>
                         </S.TrackTitleLink>
-
                     </S.TrackTitleText>
 
                 </S.TrackTitle>
@@ -75,9 +91,11 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track }) => {
                 <S.TrackTime >
 
                     {/* Лайки */}
-                    <S.TrackTimeSvg alt="time">
-                        <use href="../img/icon/sprite.svg#icon-like"></use>
-                    </S.TrackTimeSvg>
+                    <S.LikedBtn onClick={handleLiked}>
+                        <S.LikedSvg alt="time" $isActive={isLiked}>
+                            <use href="../img/icon/sprite.svg#icon-like"></use>
+                        </S.LikedSvg>
+                    </S.LikedBtn>
 
                     {/* Время */}
                     <S.TrackTimeText >

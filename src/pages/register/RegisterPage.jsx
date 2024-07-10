@@ -43,7 +43,7 @@ export const RegisterPage = () => {
         }
         setBlock(true)
         postRegister(email, password, username).then((data) => {
-         navigate("/");
+         navigate("/login");
         }).catch((error) => {
             setError(error.message);
         }).finally(() => {
@@ -64,7 +64,7 @@ export const RegisterPage = () => {
                 <S.ModalBlock>
 
                     <S.ModalFormLogin action="#">
-                        <S.ModalFormLoginLink to="/">
+                        <S.ModalFormLoginLink to="/login">
                             <S.ModalLogo>
                                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
                             </S.ModalLogo>
@@ -90,7 +90,7 @@ export const RegisterPage = () => {
                                 {block ? "Регестрируем..." : "Зарегестрироваться"}
                             </S.SignUpButton>
 
-                            <Link to="/">
+                            <Link to="/login">
                                 <S.LoginButton >Войти</S.LoginButton>
                             </Link>
 

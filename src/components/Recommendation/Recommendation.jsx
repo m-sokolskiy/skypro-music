@@ -8,7 +8,6 @@ const Recommendation = () => {
     return (
         <S.SidebarBlock >
             <S.SidebarList >
-                {/* Рекомендации */}
                 {RecommendationArr.map((item) => (
                     <RecommendationList key={item.id} item={item} />
                 ))}

@@ -4,6 +4,7 @@ import { getToken, postLogin } from '../../Api';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
 import Button from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
 
 export const LoginPage = () => {
     //Вызываю данные из контекста
@@ -63,25 +64,26 @@ export const LoginPage = () => {
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
 
-                        {/* Инпут почта */}
-                        <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
+                        <Input value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
+                        <Input value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
-                        {/* Инпут пароль */}
-                        <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
+                        {/* <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" /> */}
 
-                        {/* Рендер ошибки */}
+                        {/* <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" /> */}
+
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.Buttons>
 
-                            <Button onClick={login} disabled={block} type="button" value={block ? "Входим..." : "Войти"}/>
+                            <Button onClick={login} disabled={block} type="button" value={block ? "Входим..." : "Войти"} />
 
                             {/* <S.SignInButton onClick={login} disabled={block} type="button" >
                                 {block ? "Входим..." : "Войти"}
                             </S.SignInButton> */}
 
                             <Link to="/register">
-                                <S.RegisterButton>Зарегестрироваться</S.RegisterButton>
+                                <Button type="button" value={"Зарегестрироваться"} />
+                                {/* <S.RegisterButton>Зарегестрироваться</S.RegisterButton> */}
                             </Link>
 
                         </S.Buttons>

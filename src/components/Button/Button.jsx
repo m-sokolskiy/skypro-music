@@ -5,4 +5,5 @@ const Button = ({ value, onClick, dataTestId, disabled, type }) => {
         </button>
     );
 }
+
 export default Button 

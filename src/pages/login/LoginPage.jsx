@@ -3,6 +3,7 @@ import * as S from './style/LoginPage.S'
 import { getToken, postLogin } from '../../Api';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
+import Button from '../../components/Button/Button';
 
 export const LoginPage = () => {
     //Вызываю данные из контекста
@@ -72,10 +73,12 @@ export const LoginPage = () => {
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.Buttons>
-                            <S.SignInButton onClick={login} disabled={block} type="button" >
-                                {block ? "Входим..." : "Войти"}
 
-                            </S.SignInButton>
+                            <Button onClick={login} disabled={block} type="button" value={block ? "Входим..." : "Войти"}/>
+
+                            {/* <S.SignInButton onClick={login} disabled={block} type="button" >
+                                {block ? "Входим..." : "Войти"}
+                            </S.SignInButton> */}
 
                             <Link to="/register">
                                 <S.RegisterButton>Зарегестрироваться</S.RegisterButton>

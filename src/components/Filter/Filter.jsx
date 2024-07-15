@@ -35,7 +35,7 @@ const Filter = () => {
             </div>
 
             {/* Жанр */}
-            <div onClick={() => { activeSlide("button-genre"); }}>
+            <div onClick={() => { activeSlide("button-genre"); }} data-testid={"genre-block"}>
                 {isActive === "button-genre" ? <S.FilterButtonActive>жанру</S.FilterButtonActive> : <S.FilterButton>жанру</S.FilterButton>}
             </div>
 

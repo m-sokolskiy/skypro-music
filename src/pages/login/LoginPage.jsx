@@ -3,8 +3,6 @@ import * as S from './style/LoginPage.S'
 import { getToken, postLogin } from '../../Api';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../components/context/UserContext';
-import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
 
 export const LoginPage = () => {
     //Вызываю данные из контекста
@@ -64,28 +62,19 @@ export const LoginPage = () => {
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
 
-                        <Input value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
-                        <Input value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
+                        <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
 
-                        {/* <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" /> */}
-
-                        {/* <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" /> */}
+                        <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.Buttons>
-
-                            <Button onClick={login} disabled={block} type="button" value={block ? "Входим..." : "Войти"} />
-
-                            {/* <S.SignInButton onClick={login} disabled={block} type="button" >
+                            <S.SignInButton onClick={login} disabled={block} type="button" >
                                 {block ? "Входим..." : "Войти"}
-                            </S.SignInButton> */}
-
+                            </S.SignInButton>
                             <Link to="/register">
-                                <Button type="button" value={"Зарегестрироваться"} />
-                                {/* <S.RegisterButton>Зарегестрироваться</S.RegisterButton> */}
+                                <S.RegisterButton>Зарегестрироваться</S.RegisterButton>
                             </Link>
-
                         </S.Buttons>
 
                     </S.ModalFormLogin>

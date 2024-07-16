@@ -1,4 +1,3 @@
-import { RecommendationArr } from '../Array.js';
 import RecommendationList from './RecommendationList.jsx';
 import * as S from './style/Recommendation.S.js'
 
@@ -8,9 +7,7 @@ const Recommendation = () => {
     return (
         <S.SidebarBlock >
             <S.SidebarList >
-                {RecommendationArr.map((item) => (
-                    <RecommendationList key={item.id} item={item} />
-                ))}
+                <RecommendationList />
             </S.SidebarList>
         </S.SidebarBlock>
     );

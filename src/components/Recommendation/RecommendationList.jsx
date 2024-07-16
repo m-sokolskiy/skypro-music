@@ -1,14 +1,19 @@
 import * as S from './style/RecommendationList.S.js'
 
-const RecommendationList = ({ item }) => {
+const RecommendationList = () => {
 
     return (
         <S.SidebarItem >
-            <S.SidebarLink  to={`/category/${item.id}`} >
-               <S.SidebarImg src={item.img} alt="day's playlist" />
+            <S.SidebarLink to="/classic_music">
+                <S.SidebarImg alt="classic_music" src="../img/classic_music.png"/>
+            </S.SidebarLink>
+            <S.SidebarLink to="/electro_music">
+                <S.SidebarImg alt="classic_music" src="../img/electro_music.png"/>
+            </S.SidebarLink>
+            <S.SidebarLink to="/rock_music">
+                <S.SidebarImg alt="classic_music" src="../img/rock_music.png"/>
             </S.SidebarLink>
         </S.SidebarItem>
-
     )
 }
 export default RecommendationList

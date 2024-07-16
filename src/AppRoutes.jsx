@@ -6,9 +6,6 @@ import { RegisterPage } from "./pages/register/RegisterPage"
 import { Layout } from "./components/Layout/Layout"
 import { Content } from "./components/Content/Content"
 import { Favorites } from "./components/Favorites/Favorites"
-import { ClassicalMusic } from "./components/ClassicalMusic/ClassicalMusic"
-import { ElectroMusic } from "./components/ElectroMusic/ElectroMusic"
-import { RockMusic } from "./components/RockMusic/RockMusic"
 import { CategoryPage } from "./pages/category/CategoryPage"
 
 // Компонент возвращает реестр всех маршрутов

@@ -65,8 +65,24 @@ export const trackApi = createApi({
             providesTags: ['tracks'],
         }),
 
+        getSelectionOnId: builder.query({
+            query: ({ id }) => ({
+                url: `selection/${id}/`,
+            }),
+            transformResponse: (result) => {
+                return result.map((track) => {
+                    const currentUser = getToken("user")
+                    const isLiked = !!track.stared_user.find((user) => user.id === currentUser?.id)
+                    return {
+                        ...track, isLiked
+                    }
+                })
+            },
+            providesTags: ['tracks'],
+        }),
+
     }),
 });
 
-export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery, useGetAllSelectionQuery } = trackApi;
+export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery, useGetAllSelectionQuery, useGetSelectionOnIdQuery } = trackApi;
 

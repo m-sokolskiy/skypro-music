@@ -1,13 +1,17 @@
+import { useGetAllSelectionQuery } from '../../services/trackAPI.js';
 import RecommendationList from './RecommendationList.jsx';
 import * as S from './style/Recommendation.S.js'
 
-// РЕКОМЕНДАЦИИ
 const Recommendation = () => {
+
+    const { data } = useGetAllSelectionQuery()
 
     return (
         <S.SidebarBlock >
             <S.SidebarList >
-                <RecommendationList />
+                {data?.map((item) => (
+                    <RecommendationList key={item.id} item={item} />
+                ))}
             </S.SidebarList>
         </S.SidebarBlock>
     );

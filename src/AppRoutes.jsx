@@ -9,6 +9,7 @@ import { Favorites } from "./components/Favorites/Favorites"
 import { ClassicalMusic } from "./components/ClassicalMusic/ClassicalMusic"
 import { ElectroMusic } from "./components/ElectroMusic/ElectroMusic"
 import { RockMusic } from "./components/RockMusic/RockMusic"
+import { CategoryPage } from "./pages/category/CategoryPage"
 
 // Компонент возвращает реестр всех маршрутов
 export const AppRoutes = ({ token }) => {
@@ -24,9 +25,7 @@ export const AppRoutes = ({ token }) => {
                 <Route path="/" element={<Layout />}>
                     <Route path="main" element={<Content />} />
                     <Route path="favorites" element={<Favorites />} />
-                    <Route path="classic_music" element={<ClassicalMusic />} />
-                    <Route path="electro_music" element={<ElectroMusic />} />
-                    <Route path="rock_music" element={<RockMusic />} />
+                    <Route path="category/:id" element={<CategoryPage />} />
                 </Route>
             </Route>
         </Routes>

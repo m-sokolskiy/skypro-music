@@ -4,16 +4,19 @@ import { getToken } from "../localStorage";
 export const trackApi = createApi({
     reducerPath: "trackApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://skypro-music-api.skyeng.tech/catalog/track/",
+        baseUrl: "https://skypro-music-api.skyeng.tech/catalog/",
     }),
     endpoints: (builder) => ({
 
         getAllTracks: builder.query({
-            query: () => "all",
+            query: () => "track/all",
             transformResponse: (result) => {
                 return result.map((track) => {
+
                     const currentUser = getToken("user")
+
                     const isLiked = !!track.stared_user.find((user) => user.id === currentUser?.id)
+
                     return {
                         ...track, isLiked
                     }
@@ -24,7 +27,7 @@ export const trackApi = createApi({
 
         getFavoritesTracks: builder.query({
             query: ({ token }) => ({
-                url: "favorite/all",
+                url: "track/favorite/all",
                 headers: {
                     Authorization: `Bearer ${token.access}`
                 }
@@ -42,16 +45,28 @@ export const trackApi = createApi({
         setLiked: builder.mutation({
             query: ({ id, token, state }) => ({
                 method: `${state ? "POST" : "DELETE"}`,
-                url: `${id}/favorite/`,
+                url: `track/${id}/favorite/`,
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
             invalidatesTags: ['tracks'],
-        })
+        }),
+
+        getAllSelection: builder.query({
+            query: () => "selection",
+            transformResponse: (result) => {
+                return result.map((data) => {
+                    return {
+                        ...data
+                    }
+                })
+            },
+            providesTags: ['tracks'],
+        }),
 
     }),
 });
 
-export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery } = trackApi;
+export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery, useGetAllSelectionQuery } = trackApi;
 

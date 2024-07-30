@@ -65,16 +65,14 @@ export const trackApi = createApi({
             providesTags: ['tracks'],
         }),
 
-        getSelectionOnId: builder.query({
+        getSelectionOnId: builder.mutation({
             query: ({ id }) => ({
                 url: `selection/${id}/`,
             }),
             transformResponse: (result) => {
-                return result.map((track) => {
-                    const currentUser = getToken("user")
-                    const isLiked = !!track.stared_user.find((user) => user.id === currentUser?.id)
+                return result.map((track) => { 
                     return {
-                        ...track, isLiked
+                        ...track
                     }
                 })
             },

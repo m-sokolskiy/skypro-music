@@ -8,10 +8,8 @@ import { Content } from "./components/Content/Content"
 import { Favorites } from "./components/Favorites/Favorites"
 import { CategoryPage } from "./pages/category/CategoryPage"
 
-// Компонент возвращает реестр всех маршрутов
 export const AppRoutes = ({ token }) => {
     return (
-        // Компонент содержит все роуты
         <Routes>
             {/* Доступные всем пользователям */}
             <Route path="/login" element={<LoginPage />} />

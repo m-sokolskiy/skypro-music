@@ -62,25 +62,19 @@ export const LoginPage = () => {
                             </S.ModalLogo>
                         </S.ModalFormLoginLink>
 
-                        {/* Инпут почта */}
                         <S.ModalInputLogin value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="login" placeholder="Почта" />
 
-                        {/* Инпут пароль */}
                         <S.ModalInputPassword value={password} onChange={(event) => setPassword(event.target.value)} type="password" name="password" placeholder="Пароль" />
 
-                        {/* Рендер ошибки */}
                         {error && <S.Error>{error}</S.Error>}
 
                         <S.Buttons>
                             <S.SignInButton onClick={login} disabled={block} type="button" >
                                 {block ? "Входим..." : "Войти"}
-
                             </S.SignInButton>
-
                             <Link to="/register">
                                 <S.RegisterButton>Зарегестрироваться</S.RegisterButton>
                             </Link>
-
                         </S.Buttons>
 
                     </S.ModalFormLogin>

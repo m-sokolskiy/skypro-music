@@ -1,12 +1,21 @@
+import { useNavigate } from 'react-router-dom'
+import { useGetSelectionOnIdQuery } from '../../services/trackAPI.js'
 import * as S from './style/RecommendationList.S.js'
 
 const RecommendationList = ({ item }) => {
 
+    // const [setSelection, { data, error, isLoading }] = useGetSelectionOnIdQuery
+
+    // const navigation = useNavigate()
+
+    // const handleSelection = () => {
+    //     setSelection({ id: data.id, data: data.items});
+    //     navigation(`/category/${item.id}`)
+    // }
+
     return (
         <S.SidebarItem >
-            <S.SidebarLink  to={`/category/${item.id}`} >
-               <S.SidebarImg src={item.img} alt="day's playlist" />
-            </S.SidebarLink>
+            <div>{item.id}</div>
         </S.SidebarItem>
 
     )

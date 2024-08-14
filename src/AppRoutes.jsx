@@ -3,15 +3,13 @@ import { LoginPage } from "./pages/login/LoginPage"
 import { NotFoundPage } from "./pages/not-found/NotFoundPage"
 import { ProtectedRoute } from "./components/ProtectedRoute/protectedRoute"
 import { RegisterPage } from "./pages/register/RegisterPage"
-import { CategoryPage } from "./pages/category/CategoryPage"
 import { Layout } from "./components/Layout/Layout"
 import { Content } from "./components/Content/Content"
 import { Favorites } from "./components/Favorites/Favorites"
+import { CategoryPage } from "./pages/category/CategoryPage"
 
-// Компонент возвращает реестр всех маршрутов
 export const AppRoutes = ({ token }) => {
     return (
-        // Компонент содержит все роуты
         <Routes>
             {/* Доступные всем пользователям */}
             <Route path="/login" element={<LoginPage />} />

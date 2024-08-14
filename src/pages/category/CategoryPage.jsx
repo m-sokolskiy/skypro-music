@@ -1,19 +1,19 @@
-import { useParams } from "react-router-dom";
-import { RecommendationArr } from "../../components/Array";
 import * as S from "./style/CategoryPage.S"
+import Search from "../../components/Search/Search";
+import Playlist from "../../components/Playlist/Playlist";
+import Title from "../../components/Playlist/Title";
+import { useGetSelectionOnIdQuery } from "../../services/trackAPI";
 
 
 export const CategoryPage = () => {
-    // useParams хук позволяет получить параметры из адресной строки объявленые ранее
-    const params = useParams()
-    // Метод find вернет первый найденный в массиве элемент подходящий под условия
-    const item = RecommendationArr.find((item) => item.id === Number(params.id));
+
+    const { data, error, isLoading } = useGetSelectionOnIdQuery
 
     return (
-        <S.App >
-            <S.AppHeader >
-                <S.Igm src={item.img} alt="favorite" />
-            </S.AppHeader>
-        </S.App>
+        <S.MainCenterBlock>
+            <Search />
+            <Title data={data} />
+            <Playlist tracks={data} error={error} isLoading={isLoading}/>
+        </S.MainCenterBlock>
     );
 };

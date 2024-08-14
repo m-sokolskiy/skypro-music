@@ -11,7 +11,7 @@ const NavigationBurger = () => {
 
     return (
         <>
-            <S.NavBurger onClick={() => setVisible(!visible)}>
+            <S.NavBurger onClick={() => setVisible(!visible)} data-testid={"burger-button"}>
                 <S.BurgerLine ></S.BurgerLine>
                 <S.BurgerLine ></S.BurgerLine>
                 <S.BurgerLine ></S.BurgerLine>

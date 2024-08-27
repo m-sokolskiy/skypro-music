@@ -6,7 +6,7 @@ import { RegisterPage } from "./pages/register/RegisterPage"
 import { Layout } from "./components/Layout/Layout"
 import { Content } from "./components/Content/Content"
 import { Favorites } from "./components/Favorites/Favorites"
-import { CategoryPage } from "./pages/category/CategoryPage"
+import { SelectionPage } from "./pages/selection/SelectionPage"
 
 export const AppRoutes = ({ token }) => {
     return (
@@ -20,7 +20,7 @@ export const AppRoutes = ({ token }) => {
                 <Route path="/" element={<Layout />}>
                     <Route path="main" element={<Content />} />
                     <Route path="favorites" element={<Favorites />} />
-                    <Route path="category/:id" element={<CategoryPage />} />
+                    <Route path="selection/:id" element={<SelectionPage />} />
                 </Route>
             </Route>
         </Routes>

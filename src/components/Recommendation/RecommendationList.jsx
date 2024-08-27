@@ -1,21 +1,16 @@
-import { useNavigate } from 'react-router-dom'
-import { useGetSelectionOnIdQuery } from '../../services/trackAPI.js'
+import { useEffect } from 'react'
 import * as S from './style/RecommendationList.S.js'
+import { setSelectionId } from '../../localStorage.js'
 
 const RecommendationList = ({ item }) => {
 
-    // const [setSelection, { data, error, isLoading }] = useGetSelectionOnIdQuery
-
-    // const navigation = useNavigate()
-
-    // const handleSelection = () => {
-    //     setSelection({ id: data.id, data: data.items});
-    //     navigation(`/category/${item.id}`)
-    // }
+    useEffect(()=>{
+        setSelectionId(item.id)
+    },[])
 
     return (
         <S.SidebarItem >
-            <div>{item.id}</div>
+            <S.SidebarLink to={`/selection/${item.id}`}>{item.id}</S.SidebarLink>
         </S.SidebarItem>
 
     )

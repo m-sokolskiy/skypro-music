@@ -65,22 +65,22 @@ export const trackApi = createApi({
             providesTags: ['tracks'],
         }),
 
-        getSelectionOnId: builder.mutation({
+        getSelectionById: builder.query({
             query: ({ id }) => ({
-                url: `selection/${id}/`,
-            }),
-            transformResponse: (result) => {
-                return result.map((track) => { 
-                    return {
-                        ...track
-                    }
-                })
-            },
-            providesTags: ['tracks'],
+                url: `selection/${id}`,
+                transformResponse: (result) => {
+                    return result.map((data) => {
+                        return {
+                            ...data
+                        }
+                    })
+                },
+                providesTags: ['tracks'],
+            })
         }),
 
     }),
 });
 
-export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery, useGetAllSelectionQuery, useGetSelectionOnIdQuery } = trackApi;
+export const { useGetAllTracksQuery, useSetLikedMutation, useGetFavoritesTracksQuery, useGetAllSelectionQuery, useGetSelectionByIdQuery } = trackApi;
 

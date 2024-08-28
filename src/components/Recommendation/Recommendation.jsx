@@ -3,7 +3,8 @@ import RecommendationList from './RecommendationList.jsx';
 import * as S from './style/Recommendation.S.js'
 
 const Recommendation = () => {
-
+    
+    //Список подборок
     const { data } = useGetAllSelectionQuery()
 
     return (

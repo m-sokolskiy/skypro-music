@@ -7,6 +7,7 @@ import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext.js';
+import { useEffect } from 'react';
 
 
 // ПЛЕЙЛИСТ
@@ -16,6 +17,9 @@ const Playlist = ({ tracks, error, isLoading }) => {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext);
 
+    useEffect(() => {
+        console.log(`Компонент Playlist получает этот список треков ${tracks}`);
+    }, [])
 
     if (error) {
         setUser(false);

@@ -14,12 +14,3 @@ export const getToken = (key) => {
     return null
   }
 };
-
-export const setSelectionId = (id) => {
-  window.localStorage.setItem("selection", id);
-  console.log(`Добавил в localStorage Плейлист подборки ${id}`);
-};
-
-export const getSelectionId = (id) => {
-  window.localStorage.getItem(id);
-}

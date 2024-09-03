@@ -53,25 +53,13 @@ export const trackApi = createApi({
             invalidatesTags: ['tracks'],
         }),
 
-        getAllSelection: builder.query({
-            query: () => "selection",
-            transformResponse: (result) => {
-                return result.map((data) => {
-                    return {
-                        ...data
-                    }
-                })
-            },
-            providesTags: ['tracks'],
-        }),
-
         getSelectionById: builder.query({
             query: ({ id }) => ({
                 url: `selection/${id}`,
                 transformResponse: (result) => {
-                    return result.map((data) => {
+                    return result.map((track) => {
                         return {
-                            ...data
+                            ...track
                         }
                     })
                 },

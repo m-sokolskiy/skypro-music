@@ -4,7 +4,10 @@ import * as S from "./style/Logo.S.js"
 const Logo = () => {
     return (
         <S.NanLogo >
-            <S.LogoImage src="../img/logo.png" alt="logo" />
+            <S.LogoLink to="/main">
+                <S.LogoImage src="../img/logo.png" alt="logo" />
+
+            </S.LogoLink>
         </S.NanLogo>
     );
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NanLogo = styled.div`
@@ -12,4 +13,9 @@ export const LogoImage = styled.img`
     width: 113.33px;
     height: 17px;
     color: #181818;
+`
+
+export const LogoLink = styled(Link)`
+    width: 100%;
+    height: 100%;
 `

@@ -1,9 +1,9 @@
 import * as S from './style/Title.S'
 
 // ТИТУЛ СТРАНИЦЫ
-const FavoritesTitle = ({ data }) => {
+const Title = ({ data }) => {
     return (
         <S.CenterBlockH >{data}</S.CenterBlockH>
     );
 }
-export default FavoritesTitle
+export default Title

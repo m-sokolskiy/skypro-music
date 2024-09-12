@@ -57,13 +57,10 @@ export const trackApi = createApi({
             query: ({ id }) => ({
                 url: `selection/${id}`,
                 transformResponse: (result) => {
-                    return result.map((track) => {
-                        return {
-                            ...track
-                        }
-                    })
+                    return result.items.map((track) => {
+                        return { ...track }
+                    });
                 },
-                providesTags: ['tracks'],
             })
         }),
 

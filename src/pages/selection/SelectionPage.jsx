@@ -17,7 +17,7 @@ export const SelectionPage = () => {
     return (
         <S.MainCenterBlock>
             <Search />
-            <Playlist tracks={data.items} isLoading={isLoading} error={error}/>
+            <Playlist tracks={data} isLoading={isLoading} error={error}/>
         </S.MainCenterBlock>
     );
 };

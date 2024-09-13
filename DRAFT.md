@@ -16,9 +16,7 @@
 
 [
     {
-        //Плейлист
         "id": 1,
-        //Список треков
         "items": [
             {
                 //Трек
@@ -73,23 +71,16 @@
 Тот же самый запрос по id, сервер нам отдаст объект 
 
 {
-    //Плейлист
-    "id": 1,
-    //Список треков
-    "items": [
-        {
-            //Трек
-            "id": 8,
-            "name": "Chase",
-            "author": "Alexander Nakarada",
-            "release_date": "2005-06-11",
-            "genre": "Классическая музыка",
-            "duration_in_seconds": 205,
-            "album": "Chase",
-            "logo": null,
-            "track_file": "https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3",
-            //Пользователи поставившие лайк трек
-            "stared_user": []
-        },
-    ],
+    "id": 1, 
+    "items": [ {Трек 1},{Трек 2},{Трек 3} ] 
 }
+
+[ {Трек 1},{Трек 2},{Трек 3} ]
+
+
+[
+    {"id": 1,"name": "Carol Of The Bells"},
+    {"id": 2,"name": "Carol Of The Bells"}, 
+    {"id": 3,"name": "Carol Of The Bells"},
+    {"id": 4,"name": "Carol Of The Bells"}
+]

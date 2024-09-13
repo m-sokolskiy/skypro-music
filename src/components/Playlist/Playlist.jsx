@@ -17,9 +17,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext);
 
-    useEffect(() => {
-        console.log(`Компонент Playlist получает этот список треков ${tracks}`);
-    }, [])
+    console.log(tracks);
 
     if (error) {
         setUser(false);

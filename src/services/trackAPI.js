@@ -52,16 +52,15 @@ export const trackApi = createApi({
 
         getSelectionById: builder.query({
             query: ({ id }) => ({
-                url: `selection/${id}`,
-                method: "GET",
-                transformResponse: (result) => {
-                    return result.items.map((track) => {
-                        return {
-                            ...track
-                        }
-                    })
-                },
-            })
+                url: `/selection/${id}/`,
+            }),
+            transformResponse: (response) => {
+                return response.items.map((track) => {
+                    return {
+                        ...track
+                    }
+                });
+            },
         }),
 
     }),

@@ -3,24 +3,23 @@ import BarPlayer from './BarPlayer.jsx';
 import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle } from '../../store/slices/slice.js';
+import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setIsLoop } from '../../store/slices/slice.js';
 
 // Проигрыватель
 const Bar = () => {
 
-  const [isLoop, setIsLoop] = useState(false);
+  const audioRef = useRef(null);
+  const dispatch = useDispatch()
+
+  // const [isLoop, setIsLoop] = useState(false);
   const [isVolume, setIsVolume] = useState("0.3")
   const [isDuration, setIsDuration] = useState(0)
   const [isCurrentTime, setCurrentTime] = useState(0);
 
-  const dispatch = useDispatch()
-
   const trackBar = useSelector(state => state.player.currentTrack)
   const isPlaying = useSelector(state => state.player.isPlaying)
   const isShuffle = useSelector(state => state.player.isShuffle)
-
-  //Ссылка на нативный html-элемент <audio>
-  const audioRef = useRef(null);
+  const isLoop = useSelector(state => state.player.isLoop)
 
   //Воспроизведение.
   const handleStart = () => {
@@ -34,12 +33,13 @@ const Bar = () => {
     dispatch(setIsPlaying(false))
     console.log(isPlaying)
   };
+
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   //Зацикливание трека
   const handleLoop = () => {
+    dispatch(setIsLoop(!isLoop))
     audioRef.current.loop = !audioRef.current.loop ;
-    setIsLoop(!audioRef.current.loop )
   }
 
   //Включить перемешивание

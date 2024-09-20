@@ -56,8 +56,10 @@ export const trackApi = createApi({
             }),
             transformResponse: (response) => {
                 return response.items.map((track) => {
+                    const currentUser = getToken("user")
+                    const isLiked = !!track.stared_user.find((user) => user.id === currentUser?.id)
                     return {
-                        ...track
+                        ...track, isLiked
                     }
                 });
             },

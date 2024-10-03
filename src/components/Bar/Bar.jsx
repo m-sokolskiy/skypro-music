@@ -4,6 +4,7 @@ import * as S from "./style/Bar.S.js"
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setIsLoop } from '../../store/slices/slice.js';
+import { trackApi, useSetLikedMutation } from '../../services/trackAPI.js';
 
 // Проигрыватель
 const Bar = () => {
@@ -11,27 +12,34 @@ const Bar = () => {
   const audioRef = useRef(null);
   const dispatch = useDispatch()
 
-  // const [isLoop, setIsLoop] = useState(false);
-  const [isVolume, setIsVolume] = useState("0.3")
-  const [isDuration, setIsDuration] = useState(0)
-  const [isCurrentTime, setCurrentTime] = useState(0);
-
   const trackBar = useSelector(state => state.player.currentTrack)
   const isPlaying = useSelector(state => state.player.isPlaying)
   const isShuffle = useSelector(state => state.player.isShuffle)
   const isLoop = useSelector(state => state.player.isLoop)
 
-  //Воспроизведение.
+  const isLiked = useSelector(state => state.player.isLiked)
+
+  const [isVolume, setIsVolume] = useState("0.3")
+  const [isDuration, setIsDuration] = useState(0)
+  const [isCurrentTime, setCurrentTime] = useState(0);
+
+
+  //Лайк
+  const handleLiked = () => {
+
+  }
+
+  //Воспроизведение.А
   const handleStart = () => {
     audioRef.current.play();
     dispatch(setIsPlaying(true))
-    console.log(isPlaying)
+    console.log(`Трек играет ${isPlaying}`)
   };
   //Пауза.
   const handleStop = () => {
     audioRef.current.pause();
     dispatch(setIsPlaying(false))
-    console.log(isPlaying)
+    console.log(`Трек играет ${isPlaying}`)
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
@@ -39,7 +47,7 @@ const Bar = () => {
   //Зацикливание трека
   const handleLoop = () => {
     dispatch(setIsLoop(!isLoop))
-    audioRef.current.loop = !audioRef.current.loop ;
+    audioRef.current.loop = !audioRef.current.loop;
   }
 
   //Включить перемешивание
@@ -101,6 +109,8 @@ const Bar = () => {
   useEffect(() => {
     if (trackBar) {
       dispatch(setIsPlaying(true));
+      // console.log(`Трек ${trackBar}`);
+      // console.log(`Трек лайкнут ${isLiked}`);
     };
   }, [trackBar])
 
@@ -199,21 +209,29 @@ const Bar = () => {
 
 
                   {/* Лайки */}
-                  {/* <S.TrackPlayLikeDis>
 
-                    <S.TrackPlayLike>
+                  <S.TrackPlayLikeDis>
+
+
+                    <S.LikedBtn >
+                      <S.LikedSvg alt="like"  >
+                        <use href="../img/icon/sprite.svg#icon-like"></use>
+                      </S.LikedSvg>
+                    </S.LikedBtn>
+
+                    {/* <S.TrackPlayLike>
                       <S.TrackPlayLikeSvg alt="like">
                         <use href="../img/icon/sprite.svg#icon-like"></use>
                       </S.TrackPlayLikeSvg>
-                    </S.TrackPlayLike>
+                    </S.TrackPlayLike> */}
 
-                    <S.TrackPlayDislike>
+                    {/* <S.TrackPlayDislike>
                       <S.TrackPlayDislikeSvg alt="dislike">
                         <use href="../img/icon/sprite.svg#icon-dislike"></use>
                       </S.TrackPlayDislikeSvg>
-                    </S.TrackPlayDislike>
+                    </S.TrackPlayDislike> */}
 
-                  </S.TrackPlayLikeDis> */}
+                  </S.TrackPlayLikeDis>
 
                 </S.PlayerTrackPlay>
 

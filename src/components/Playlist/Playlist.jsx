@@ -16,8 +16,6 @@ const Playlist = ({ tracks, error, isLoading }) => {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext);
 
-    console.log(tracks);
-
     if (error) {
         setUser(false);
         window.localStorage.removeItem("user");
@@ -57,10 +55,7 @@ const Playlist = ({ tracks, error, isLoading }) => {
                                 album={track.album}
                                 time={track.duration_in_seconds}
                                 track={track}
-                                setTrackBar={() => {
-                                    dispatch(setCurrentTrack(track));
-                                    dispatch(setPlayList(tracks));
-                                }}
+                                tracks={tracks}
                             />
                         )
                     }

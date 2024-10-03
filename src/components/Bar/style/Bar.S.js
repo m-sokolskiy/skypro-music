@@ -324,3 +324,20 @@ width: 109px;
 export const VolumeProgressLine = styled.input`
 width: 109px;
 `
+
+// Лайк
+export const LikedBtn= styled.div`
+`
+export const LikedSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  margin-left: 17px;
+  fill: ${(props) => props.$isActive ?  "#b672ff" :  'transparent' };
+  stroke: #696969;
+
+  &:hover{
+    cursor: pointer;
+    stroke: #acacac;
+    fill: #acacac;
+  }
+`

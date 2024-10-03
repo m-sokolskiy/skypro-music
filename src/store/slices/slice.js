@@ -12,6 +12,7 @@ export const playerSlice = createSlice({
         isPlaying: false,
         isShuffle: false,
         isLoop: false,
+        isLiked: null,
     },
     reducers: {
         setShuffleList: (state) => {
@@ -30,6 +31,9 @@ export const playerSlice = createSlice({
         },
         setIsPlaying: (state, action) => {
             state.isPlaying = action.payload
+        },
+        setIsLikedCurrentTrack: (state, action) => {
+            state.isLiked = state.currentTrack.id
         },
         setNextTrack: (state) => {
             const playList = state.isShuffle ? state.shuffleList : state.trackList
@@ -58,6 +62,6 @@ export const playerSlice = createSlice({
 
 const playerReducer = playerSlice.reducer
 
-export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList, setPlayList, setIsLoop } = playerSlice.actions;
+export const { setCurrentTrack, setIsPlaying, setNextTrack, setPreviousTrack, setShuffleList, setIsShuffle, setFavoritesList, setPlayList, setIsLoop, setIsLiked } = playerSlice.actions;
 export default playerReducer;
 

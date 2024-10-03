@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext.js';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentTrack } from '../../store/slices/slice.js';
+import { setCurrentTrack, setPlayList } from '../../store/slices/slice.js';
 
 const timeTrack = (time) => {
     let min = Math.floor(time / 60);
@@ -16,7 +16,7 @@ const timeTrack = (time) => {
     return `${min}:${sec}`;
 };
 
-const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
+const PlaylistTrack = ({ name, author, album, time, track, tracks }) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -29,8 +29,10 @@ const PlaylistTrack = ({ name, author, album, time, setTrackBar, track, }) => {
 
 
     const handelTrackBar = () => {
-        setTrackBar()
-        console.log(track);
+        dispatch(setCurrentTrack(track));
+        dispatch(setPlayList(tracks));
+
+        console.log(`Трек ${trackBar}`);
     }
 
     if (error) {
